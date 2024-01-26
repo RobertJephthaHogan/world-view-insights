@@ -43,3 +43,45 @@
     align-items: center;
     margin-left: 3em;
 }
+
+.hc-menu-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px
+}
+
+.hc-mi-caret {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.hc-right {
+    display: flex;
+}
+
+.login-btn {
+    all: unset;
+    border: 1px solid #1890FF;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+.login-btn-text {
+    font-size: 12px;
+}
+
+.hc-login-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px
+}
+
+.hc-menu-item:hover {
+    cursor: pointer;
+}

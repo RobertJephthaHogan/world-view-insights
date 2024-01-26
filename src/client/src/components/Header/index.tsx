@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import './styles.css'
-import { Input, Tooltip } from 'antd'
+import { Button, Input, Tooltip } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
+import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 
 
 const { Search } = Input;
@@ -41,7 +42,37 @@ export default function Header() {
                     </div>
                 </div>
                 <div className='hc-right'>
-                    Right
+                    <div className='hc-menu-item'>
+                        <span>
+                            News
+                        </span>
+                        <CaretDownOutlined className='hc-mi-caret'/>
+                    </div>
+                    <div className='hc-menu-item'>
+                        <span>
+                            Markets
+                        </span>
+                        <CaretDownOutlined className='hc-mi-caret'/>
+                    </div>
+                    <div className='hc-menu-item'>
+                        <span>
+                            Tools
+                        </span>
+                        <CaretDownOutlined className='hc-mi-caret'/>
+                    </div>
+                    <div className='hc-menu-item'>
+                        <span>
+                            Mortgages
+                        </span>
+                        <CaretDownOutlined className='hc-mi-caret'/>
+                    </div>
+                    <div className='hc-login-item'>
+                        <Button className='login-btn'>
+                            <span className='login-btn-text'>
+                                Login
+                            </span>
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
