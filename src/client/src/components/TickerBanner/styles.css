@@ -7,6 +7,10 @@
     display: flex;
 }
 
+.banner-rail {
+    display: flex;
+}
+
 .banner-item {
     display: flex;
     align-items: center;
@@ -32,4 +36,31 @@
     font-weight: 500;
     color: var(--green-one);
     margin-left: 10px
+}
+
+
+#scroll-container {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+#scroll-text {
+    display: flex;
+    animation: moveItems 30s linear infinite;
+}
+
+.item {
+    flex: none; /* Prevents flex items from growing or shrinking */
+    margin-right: 20px; /* Space between items */
+    /* Add more styling as needed */
+}
+
+@keyframes moveItems {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
