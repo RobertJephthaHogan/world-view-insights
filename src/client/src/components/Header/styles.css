@@ -37,3 +37,9 @@
     font-weight: 500;
     margin-left: 10px
 }
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 3em;
+}
