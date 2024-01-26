@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic_settings import BaseSettings
-from pydantic import BaseModel, ConfigDict
 
 from app.models.User import User
 
@@ -34,7 +33,7 @@ class Settings(BaseSettings):
 
 async def initiate_database():
     client = AsyncIOMotorClient(Settings().DATABASE_URL)
-    await init_beanie(database=client.cher_ami,
+    await init_beanie(database=client.world_view_insights,
                         document_models=[
                                             User,
                                         ])

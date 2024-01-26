@@ -15,6 +15,7 @@ origins = [
            'https://cher-ami.roberthogan.io',
            'https://www.cher-ami.roberthogan.io' 
         ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
