@@ -1,0 +1,35 @@
+
+
+
+.ticker-banner {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+}
+
+.banner-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    padding: 0 10px;
+}
+
+.bi-info-text {
+    font-weight: 500;
+    color: #787878;
+    white-space: nowrap;
+}
+
+.bi-change-down-text {
+    font-weight: 500;
+    color: var(--red-one);
+    margin-left: 10px
+
+}
+
+.bi-change-up-text {
+    font-weight: 500;
+    color: var(--green-one);
+    margin-left: 10px
+}
