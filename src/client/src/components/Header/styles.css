@@ -1,0 +1,87 @@
+
+
+.header {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.hc-left {
+    display: flex;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.wvi-icon-dark {
+    background-image: url('../../assets/images/WVI_logo_transparent_dark_xsmall.png'); 
+    background-size: cover;
+    height: 50px;
+    width: 90px;
+}
+
+.wvi-logo-text {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 3em;
+}
+
+.hc-menu-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px
+}
+
+.hc-mi-caret {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.hc-right {
+    display: flex;
+}
+
+.login-btn {
+    all: unset;
+    border: 1px solid #1890FF;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+.login-btn-text {
+    font-size: 12px;
+}
+
+.hc-login-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px
+}
+
+.hc-menu-item:hover {
+    cursor: pointer;
+}
