@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .config import initiate_database
 
 
 
@@ -27,6 +28,8 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     print("Starting Server...")
+    print("Initiating Database...")
+    await initiate_database()
     
     
 # Root Render
