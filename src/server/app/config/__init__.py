@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     # database configurations
     DATABASE_URL: Optional[str] = os.getenv("MONGO_DETAILS")
 
+    # keys
+    FMP_API_KEY: Optional[str] = os.getenv("FMP_KEY")
+
     # JWT
     SECRET_KEY: str
     algorithm: str = "HS256"
