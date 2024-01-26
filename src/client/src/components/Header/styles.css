@@ -1,0 +1,39 @@
+
+
+.header {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.hc-left {
+    display: flex;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.wvi-icon-dark {
+    background-image: url('../../assets/images/WVI_logo_transparent_dark_xsmall.png'); 
+    background-size: cover;
+    height: 50px;
+    width: 90px;
+}
+
+.wvi-logo-text {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px
+}
