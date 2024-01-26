@@ -11,7 +11,7 @@ from .stock_fundamental_analysis import FmpStockFundamentalAnalysis
 from .stock_prices import StockPrices
 from .symbols import Symbols
 
-class FmpData:
+class FmpService:
     
     class Calendars(Calendars):
         pass

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 import asyncio
 
-from app.services.fmp import FmpData
+from .. import FmpService
 from ..price_targets import PriceTargets
 from ..stock_prices import StockPrices
 from ..stock_fundamental_analysis import FmpStockFundamentalAnalysis
@@ -25,12 +25,12 @@ class FmpController:
     # Get all quarterly financial statements as reported
     @router.get("/quarterly_financial_statements_as_reported/{ticker}")
     async def get_all_quarterly_financial_statements_as_reported(ticker):
-        return await FmpData.FmpAggregatedFinancialStatements.getAllQuarterlyFinancialStatementsAsReported(ticker)
+        return await FmpService.FmpAggregatedFinancialStatements.getAllQuarterlyFinancialStatementsAsReported(ticker)
 
     # Get all standardized quarterly financial statements 
     @router.get("/quarterly_standardized_financial_statements/{ticker}")
     async def get_all_standardized_quarterly_financial_statements(ticker):
-        return await FmpData.FmpAggregatedFinancialStatements.getAllQuarterlyStandardizedFinancialStatements(ticker)
+        return await FmpService.FmpAggregatedFinancialStatements.getAllQuarterlyStandardizedFinancialStatements(ticker)
 
     # Get Price Target
     @router.get("/get_price_target/{symbol}")
