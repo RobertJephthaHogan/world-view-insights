@@ -63,11 +63,7 @@ class UpdateUserModel(BaseModel):
     id: Optional[str]
     firstName: Optional[str]
     lastOrBusinessName: Optional[str]
-    receiveToEmail: Optional[EmailStr]
-    receiveToPhone: Optional[str]
-    sendFromEmailAddresses: Optional[list]
-    sendFromPhoneNumbers: Optional[list]
-    twilioCredentials: Optional[Union[str, Dict[Any, Any]]]
+    email: Optional[EmailStr]
     password: Optional[str]
     role: Optional[str]
 
@@ -77,12 +73,8 @@ class UpdateUserModel(BaseModel):
                 "id": "6276c8a63de1b5229336df5c",
                 "firstName": "John",
                 "lastOrBusinessName": "Doe",
-                "receiveToEmail": "John@user.dev",
-                "receiveToPhone": "4042222222",
-                "sendFromEmailAddresses": [],
-                "sendFromPhoneNumbers": [],
-                "twilioCredentials": {},
-                "password": "password",
+                "email": "johndoe@gmail.com",
+                "password": "password123",
                 "role": "user"
             }
         }
