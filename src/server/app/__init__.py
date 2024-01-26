@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import initiate_database
 
+from app.services.user.routes import router as UserRouter
+
 
 
 
@@ -37,3 +39,7 @@ async def startup_event():
 @app.get("/", tags=["Root"])
 async def read_root():
     return {"message": "Hello! Welcome to World View Insights."}
+
+
+# Add service routers to app router
+app.include_router(UserRouter, tags=["User"], prefix="/user")
