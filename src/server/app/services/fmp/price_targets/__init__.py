@@ -6,22 +6,22 @@ fmp_key = Settings().FMP_API_KEY
 
 class PriceTargets:
 
-    async def getPriceTarget(symbol):
+    async def get_price_target(symbol):
         url = f'https://financialmodelingprep.com/api/v4/price-target?symbol={symbol}&apikey={fmp_key}'
         return requests.get(url)
 
-    async def getPriceTargetSummary(symbol):
+    async def get_price_target_summary(symbol):
         url = f'https://financialmodelingprep.com/api/v4/price-target-summary?symbol={symbol}&apikey={fmp_key}'
         return requests.get(url)
     
-    async def getPriceTargetByAnalystName(name):
+    async def get_price_target_by_analyst_name(name):
         url = f'https://financialmodelingprep.com/api/v4/price-target-analyst-name?name={name}&apikey={fmp_key}'
         return requests.get(url)
     
-    async def getPriceTargetByAnalystCompany(company):
+    async def get_price_target_by_analyst_company(company):
         url = f'https://financialmodelingprep.com/api/v4/price-target-analyst-company?name={company}&apikey={fmp_key}'
         return requests.get(url)
 
-    async def getPriceTargetConsensus(symbol):
+    async def get_price_target_consensus(symbol):
         url = f'https://financialmodelingprep.com/api/v4/price-target-consensus?symbol={symbol}&apikey={fmp_key}'
         return requests.get(url)

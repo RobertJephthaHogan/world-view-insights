@@ -5,7 +5,7 @@ from . import FmpFinancialStatements
 
 class FmpAggregateFinancialStatements:
 
-    async def getAllQuarterlyFinancialStatementsAsReported(ticker):
+    async def get_all_quarterly_financial_statements_as_reported(ticker):
         
         list_of_full_statements = []
         client = FmpFinancialStatements(ticker)
@@ -67,7 +67,7 @@ class FmpAggregateFinancialStatements:
         return list_of_full_statements
 
 
-    async def getAllQuarterlyStandardizedFinancialStatements(ticker):
+    async def get_all_quarterly_standardized_financial_statements(ticker):
 
         list_of_full_statements = []
         client = FmpFinancialStatements(ticker)
