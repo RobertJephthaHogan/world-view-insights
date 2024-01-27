@@ -22,6 +22,12 @@ class CompanyData:
         return requests.get(url)
     
     # Stock Screener
-    def stock_screener(ticker):
-        url = f'https://financialmodelingprep.com/api/v3/stock-screener?apikey={fmp_key}'
+    # def stock_screener():
+    #     url = f'https://financialmodelingprep.com/api/v3/stock-screener?apikey={fmp_key}'
+    #     return requests.get(url)
+    
+    # Dynamic Stock Screener
+    # Takes a params dict and adds them as query params to the request
+    def stock_screener(params):        
+        url = f"https://financialmodelingprep.com/api/v3/stock-screener?{'&'.join(f'{key}={value}' for key, value in params.items())}&apikey={fmp_key}"
         return requests.get(url)
