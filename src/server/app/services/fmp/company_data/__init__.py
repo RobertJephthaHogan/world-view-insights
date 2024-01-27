@@ -20,3 +20,8 @@ class CompanyData:
     def getCoreCompanyInformation(ticker):
         url = f'https://financialmodelingprep.com/api/v4/company-core-information?symbol={ticker}&apikey={fmp_key}'
         return requests.get(url)
+    
+    # Stock Screener
+    def getCoreCompanyInformation(ticker):
+        url = f'https://financialmodelingprep.com/api/v3/stock-screener?apikey={fmp_key}'
+        return requests.get(url)
