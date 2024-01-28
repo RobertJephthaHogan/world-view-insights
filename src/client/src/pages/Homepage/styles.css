@@ -1,0 +1,19 @@
+
+
+
+.homepage-body {
+    padding: 0 100px;
+    display: flex;
+    padding-top: 30px;
+}
+
+.hpb-l {
+    width: 70%;
+}
+
+.hpb-r {
+    width: 30%;
+    border-left: 1px solid #dfdfdf;
+    padding-left: 2em;
+    padding-top: 2em;
+}
