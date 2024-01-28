@@ -51,7 +51,7 @@
 
 #scroll-text {
     display: flex;
-    animation: moveItems 30s linear infinite;
+    animation: moveItems 100s linear infinite;
 }
 
 .item {
