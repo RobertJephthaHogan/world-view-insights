@@ -28,7 +28,6 @@ class DataService:
     
     
     async def get_major_index_overview():
-        # TODO: Index data to provide to index banner api
         
         # get major equity market index data
         data = await FmpService.MarketIndexes.get_all_major_indexes()
@@ -37,7 +36,6 @@ class DataService:
         matches = [obj for obj in objects if obj['symbol'] in indexes_needed]
 
         # get Bitcoin data        
-        coin_data = await DFS.CryptoData.CoinGecko.get_coins_list()
         btc_data = await DFS.CryptoData.CoinGecko(**{'id': "bitcoin"}).get_current_data_for_a_coin()
         
         # format required bitcoin data to avoid unnecessary data in payload
@@ -50,6 +48,7 @@ class DataService:
         dto_list = []
         dto_list.append(btc_dto)
         
+        # standardize equity market index data
         for match in matches:
             dta = {
                 "title": match['name'],
