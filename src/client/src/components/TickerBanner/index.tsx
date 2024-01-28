@@ -12,12 +12,9 @@ export default function TickerBanner() {
 
 
     useEffect(() => {
-
-        console.log('hello')
         
         dataService.getMarketLeaderQuotes(10)
             .then((resp: any) => {
-                console.log('resp', resp)
                 setBannerData(resp)
             })
             .catch((error: any) => {
