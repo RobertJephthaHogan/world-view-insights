@@ -122,17 +122,17 @@ class DataService:
         sorted_data = sorted(companies, key=lambda x: x['marketCap'], reverse=True)
         
         # Add market leader quotes to dto
-        dto['market_leader_quotes'] = sorted_data[0:5]
+        dto['marketLeaderQuotes'] = sorted_data[0:5]
 
         
         # Quotes for top 5 gainers
         gainer_data = await FmpService.MarketPerformance.get_largest_gainers()
-        dto['gainer_quotes'] = gainer_data.json()[0:5]
+        dto['gainerQuotes'] = gainer_data.json()[0:5]
         
         # Quotes for top 5 losers
         loser_data = await FmpService.MarketPerformance.get_largest_losers()
-        dto['loser_quotes'] = loser_data.json()[0:5]
+        dto['loserQuotes'] = loser_data.json()[0:5]
         
         return dto
     
-    pass
+    
