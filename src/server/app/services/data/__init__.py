@@ -2,8 +2,9 @@
 
 
 
+import json
 from app.services.fmp import FmpService
-
+from app.services.dfs import DataFetcherService as DFS
 
 class DataService:
     
@@ -26,9 +27,39 @@ class DataService:
         return companies
     
     
-    async def get_index_banner_data():
-        # TODO: Index data to provide to index banner api
-        pass
+    async def get_major_index_overview():
+        
+        # get major equity market index data
+        data = await FmpService.MarketIndexes.get_all_major_indexes()
+        objects = data.json()
+        indexes_needed = ['^DJI', '^GSPC', '^NDX', '^W5000']
+        matches = [obj for obj in objects if obj['symbol'] in indexes_needed]
+
+        # get Bitcoin data        
+        btc_data = await DFS.CryptoData.CoinGecko(**{'id': "bitcoin"}).get_current_data_for_a_coin()
+        
+        # format required bitcoin data to avoid unnecessary data in payload
+        btc_dto = {"title": "Bitcoin"}
+        btc_dto['price_change_24h'] = btc_data['market_data']['price_change_24h']
+        btc_dto['price_change_percentage_24h'] = btc_data['market_data']['price_change_percentage_24h']
+        btc_dto['current_price'] = btc_data['market_data']['current_price']['usd']
+                
+        # construct dto list        
+        dto_list = []
+        dto_list.append(btc_dto)
+        
+        # standardize equity market index data
+        for match in matches:
+            dta = {
+                "title": match['name'],
+                "price_change_24h": match['changesPercentage'],
+                "price_change_percentage_24h": match['changesPercentage'],
+                "current_price": "",
+                "intraday_price_history": [],
+            }
+            dto_list.append(dta)
+                    
+        return dto_list
     
     
     async def get_notable_quotes():
