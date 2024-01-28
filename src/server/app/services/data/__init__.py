@@ -15,8 +15,10 @@ class DataService:
         companies = FmpService.CompanyData.stock_screener(
             {
                 'marketCapMoreThan': 1000000000, 
-                'limit': limit }
-            )
+                'limit': limit,
+                'isEtf' : False 
+            }
+        )
         companies = companies.json()
         
         # Get quote data for each company and add it to the company data
@@ -48,13 +50,15 @@ class DataService:
         dto_list = []
         dto_list.append(btc_dto)
         
+        print('matches', matches)
+        
         # standardize equity market index data
         for match in matches:
             dta = {
                 "title": match['name'],
-                "price_change_24h": match['changesPercentage'],
+                "price_change_24h": match['change'],
                 "price_change_percentage_24h": match['changesPercentage'],
-                "current_price": "",
+                "current_price": match['price'],
                 "intraday_price_history": [],
             }
             dto_list.append(dta)

@@ -23,7 +23,7 @@ export default function IndexDataCard(props: IndexDataCardProps) {
                         {props?.displayPrice}
                     </span>
                 </div>
-                <div className='idc-l-top'>
+                <div className='idc-l-bottom'>
                     <span className={
                         `change-text 
                         ${ props?.percentChange?.[0] === '+' && 'change-up'}

@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
+import { dataService } from '../../services/data.service'
 
 
 
 
 
-// TODO: REFACTOR BANNER ITEMS WITH DYNAMIC COMPONENT
 export default function TickerBanner() {
+
+    const [bannerData, setBannerData] = useState<Array<any>|null>(null)
+
+
+    useEffect(() => {
+        
+        dataService.getMarketLeaderQuotes(10)
+            .then((resp: any) => {
+                setBannerData(resp)
+            })
+            .catch((error: any) => {
+                console.log('error', error)
+            })
+
+    }, [])
 
     return (
         <div 
@@ -26,168 +41,50 @@ export default function TickerBanner() {
                 */}
                 
                 {/* Set One */}
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        AAPL - $193.55
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.28%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        MSFT - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        -0.18%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        NVDA - $612.25
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.32%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        WBA - $22.89
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        META - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        AAPL - $193.55
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.28%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        MSFT - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        -0.18%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        NVDA - $612.25
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.32%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        WBA - $22.89
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        META - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
+
+                {
+                    bannerData &&
+                    bannerData?.map((coData: any) => {
+                        
+                        return (
+                            <div className='banner-item item'>
+                                <span className='bi-info-text'>
+                                    {coData?.symbol ?? "err"} - ${coData?.price}
+                                </span>
+                                <span className={
+                                    `bi-change-text
+                                    ${ coData?.changesPercentage < 0 ? 'bi-change-down-text' : 'bi-change-up-text'}
+                                    `
+                                }>
+                                    {coData?.changesPercentage}%
+                                </span>
+                            </div>
+                        )
+                    })
+                }
 
                 {/* Set Two */}
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        AAPL - $193.55
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.28%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        MSFT - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        -0.18%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        NVDA - $612.25
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.32%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        WBA - $22.89
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        META - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        AAPL - $193.55
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.28%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        MSFT - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        -0.18%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        NVDA - $612.25
-                    </span>
-                    <span className='bi-change-down-text'>
-                        -0.32%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        WBA - $22.89
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
-                <div className='banner-item item'>
-                    <span className='bi-info-text'>
-                        META - $403.25
-                    </span>
-                    <span className='bi-change-up-text'>
-                        +0.14%
-                    </span>
-                </div>
+
+                {
+                    bannerData &&
+                    bannerData?.map((coData: any) => {
+                        
+                        return (
+                            <div className='banner-item item'>
+                                <span className='bi-info-text'>
+                                    {coData?.symbol ?? "err"} - ${coData?.price}
+                                </span>
+                                <span className={
+                                    `bi-change-text
+                                    ${ coData?.changesPercentage < 0 ? 'bi-change-down-text' : 'bi-change-up-text'}
+                                    `
+                                }>
+                                    {coData?.changesPercentage}%
+                                </span>
+                            </div>
+                        )
+                    })
+                }
 
             </div>
         </div>
