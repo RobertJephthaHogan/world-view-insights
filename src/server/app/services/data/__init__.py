@@ -15,8 +15,10 @@ class DataService:
         companies = FmpService.CompanyData.stock_screener(
             {
                 'marketCapMoreThan': 1000000000, 
-                'limit': limit }
-            )
+                'limit': limit,
+                'isEtf' : False 
+            }
+        )
         companies = companies.json()
         
         # Get quote data for each company and add it to the company data

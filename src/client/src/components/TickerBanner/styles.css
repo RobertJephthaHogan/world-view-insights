@@ -29,7 +29,11 @@
     font-weight: 500;
     color: var(--red-one);
     margin-left: 10px
+}
 
+.bi-change-text {
+    font-weight: 500;
+    margin-left: 10px
 }
 
 .bi-change-up-text {
