@@ -11,16 +11,33 @@ class DataService:
 
     async def get_market_leader_quotes(limit):
 
-        # get the largest {x} companies by market cap
-        companies = FmpService.CompanyData.stock_screener(
+        # get the largest {x} companies by market cap from nyse and nasdaq
+        nyseCompanies = FmpService.CompanyData.stock_screener(
             {
-                'marketCapMoreThan': 1000000000, 
+                'marketCapMoreThan': 100000000000, 
                 'limit': limit,
-                'isEtf' : False 
+                'isEtf' : False,
+                'exchange': 'nyse'
             }
         )
-        companies = companies.json()
+        nyseCompanies = nyseCompanies.json()
         
+        nasdaqCompanies = FmpService.CompanyData.stock_screener(
+            {
+                'marketCapMoreThan': 100000000000, 
+                'limit': limit,
+                'isEtf' : False,
+                'exchange': 'nasdaq'
+            }
+        )
+        nasdaqCompanies = nasdaqCompanies.json()
+
+        # Concatenate the company lists
+        companies = nyseCompanies + nasdaqCompanies
+        
+        # Filter out objects where 'sector' is null
+        companies = [obj for obj in companies if obj.get('sector') is not None]
+                
         # Get quote data for each company and add it to the company data
         for co in companies:
             quote_data = await FmpService.StockPrices.get_company_quote(co['symbol']) # get quote for entry
@@ -49,9 +66,7 @@ class DataService:
         # construct dto list        
         dto_list = []
         dto_list.append(btc_dto)
-        
-        print('matches', matches)
-        
+                
         # standardize equity market index data
         for match in matches:
             dta = {
@@ -67,9 +82,57 @@ class DataService:
     
     
     async def get_notable_quotes():
-        # TODO: Quotes for top 5 market leaders
-        # TODO: Quotes for top 5 gainers
-        # TODO: Quotes for top 5 losers
-        pass
+        
+        dto = {}
+        
+        # Get quotes for top 5 market leaders
+        # get the largest 5 companies by market cap from nyse and nasdaq
+        nyseCompanies = FmpService.CompanyData.stock_screener(
+            {
+                'marketCapMoreThan': 100000000000, 
+                'limit': 5,
+                'isEtf' : False,
+                'exchange': 'nyse'
+            }
+        )
+        nyseCompanies = nyseCompanies.json()
+        
+        nasdaqCompanies = FmpService.CompanyData.stock_screener(
+            {
+                'marketCapMoreThan': 100000000000, 
+                'limit': 5,
+                'isEtf' : False,
+                'exchange': 'nasdaq'
+            }
+        )
+        nasdaqCompanies = nasdaqCompanies.json()
+
+        # Concatenate the company lists
+        companies = nyseCompanies + nasdaqCompanies
+        
+        # Filter out objects where 'sector' is null
+        companies = [obj for obj in companies if obj.get('sector') is not None]
+
+        # Get quote data for each company and add it to the company data
+        for co in companies:
+            quote_data = await FmpService.StockPrices.get_company_quote(co['symbol']) # get quote for entry
+            co.update(quote_data.json()[0]) # add quote data to company data
+            
+        # Sort the companies by 'marketCap' in descending order
+        sorted_data = sorted(companies, key=lambda x: x['marketCap'], reverse=True)
+        
+        # Add market leader quotes to dto
+        dto['market_leader_quotes'] = sorted_data[0:5]
+
+        
+        # Quotes for top 5 gainers
+        gainer_data = await FmpService.MarketPerformance.get_largest_gainers()
+        dto['gainer_quotes'] = gainer_data.json()[0:5]
+        
+        # Quotes for top 5 losers
+        loser_data = await FmpService.MarketPerformance.get_largest_losers()
+        dto['loser_quotes'] = loser_data.json()[0:5]
+        
+        return dto
     
     pass
