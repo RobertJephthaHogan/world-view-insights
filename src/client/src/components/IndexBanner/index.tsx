@@ -12,7 +12,6 @@ export default function IndexBanner() {
         
         dataService.getMajorIndicesOverview()
             .then((resp: any) => {
-                console.log('resp', resp)
                 setBannerData(resp)
             })
             .catch((error: any) => {
@@ -21,44 +20,6 @@ export default function IndexBanner() {
 
     }, [])
 
-
-    const componentData = [
-        {
-            title: "S&P 500",
-            displayPrice: "$4870.5",
-            grossChange: "+1.95",
-            percentChange: "+0.04%",
-            chartData: []
-        },
-        {
-            title: "DOW 30",
-            displayPrice: "$37817.5",
-            grossChange: "+10.86",
-            percentChange: "+0.03%",
-            chartData: []
-        },
-        {
-            title: "NASDAQ",
-            displayPrice: "$15444.5",
-            grossChange: "-37.78",
-            percentChange: "-0.24%",
-            chartData: []
-        },
-        {
-            title: "Bitcoin",
-            displayPrice: "$39745.62",
-            grossChange: "-37.78",
-            percentChange: "-0.24%",
-            chartData: []
-        },
-        {
-            title: "EUR/USD",
-            displayPrice: "$1.08",
-            grossChange: "+0.0005",
-            percentChange: "+0.48%",
-            chartData: []
-        },
-    ]
 
     return (
         <div className='index-banner'>
