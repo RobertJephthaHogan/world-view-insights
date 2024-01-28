@@ -5,6 +5,7 @@ from .config import initiate_database
 from app.services.user.routes import router as UserRouter
 from app.services.fmp.routes import router as FMPRouter
 from app.services.data.routes import router as DataRouter
+from app.services.rss.routes import router as RssRouter
 
 
 # Create the App
@@ -44,4 +45,5 @@ async def read_root():
 # Add service routers to app router
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(DataRouter, tags=["Data"], prefix="/data")
+app.include_router(RssRouter, tags=["RSS"], prefix="/rss")
 app.include_router(FMPRouter, tags=["FMP"], prefix="/fmp")

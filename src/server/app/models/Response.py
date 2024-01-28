@@ -9,7 +9,7 @@ class Response(BaseModel):
     data: Optional[Any]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "status_code": 200,
                 "response_type": "success",
@@ -26,7 +26,7 @@ class Response200(BaseModel):
     data: Optional[Any]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "status_code": 200,
                 "response_type": "success",
@@ -43,7 +43,7 @@ class Response404(BaseModel):
     data: Optional[Any]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "status_code": 404,
                 "response_type": "Error",
