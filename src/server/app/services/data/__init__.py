@@ -2,6 +2,7 @@
 
 
 
+import json
 from app.services.fmp import FmpService
 
 
@@ -26,9 +27,18 @@ class DataService:
         return companies
     
     
-    async def get_index_banner_data():
+    async def get_major_index_overview():
         # TODO: Index data to provide to index banner api
-        pass
+        data = await FmpService.MarketIndexes.get_all_major_indexes()
+        objects = data.json()
+        
+        indexes_needed = ['^DJI', '^GSPC', '^NDX', '^W5000']
+        
+        matches = [obj for obj in objects if obj['symbol'] in indexes_needed]
+
+        print('matches', matches)
+        
+        return matches
     
     
     async def get_notable_quotes():
