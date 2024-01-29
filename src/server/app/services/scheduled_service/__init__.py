@@ -14,7 +14,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
         scheduler.add_job(self.check_scheduled_tasks, "interval", seconds=10)  # Check every 10 seconds
-        scheduler.add_job(self.collect_all_rss_feeds, "interval", seconds=3600)  # update rss feeds every hour
+        scheduler.add_job(self.collect_all_rss_feeds, "interval", seconds=900)  # update rss feeds every 15 min
         scheduler.start()
         
         
@@ -23,9 +23,9 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         # Perform Scheduled Service Handling Based on 'action'
         
     
-    async def collect_all_rss_feeds():
+    async def collect_all_rss_feeds(self):
         print('Collecting RSS Feeds...')
-        RSSCollector.collect_all_rss_feeds()    
+        await RSSCollector().collect_all_rss_feeds()    
     
 
     async def check_scheduled_tasks(self):
