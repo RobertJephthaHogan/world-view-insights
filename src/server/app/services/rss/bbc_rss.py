@@ -9,7 +9,7 @@ class BbcRSS:
         
     async def get_bbc_news_feed():
         
-        # URL of the Reuters RSS feed
+        # URL of the BBS RSS feed
         rss_url = "https://feeds.bbci.co.uk/news/rss.xml?edition=us"
 
         # Parsing the RSS feed

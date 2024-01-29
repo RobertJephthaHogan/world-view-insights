@@ -4,13 +4,13 @@ from bson import ObjectId
 
 
 
-class ZDNetRSS:
+class BloombergRSS:
     
         
-    async def get_zdnet_feed():
+    async def get_bloomberg_news_rss_feed():
         
-        # URL of the ZDNet RSS feed
-        rss_url = "https://www.zdnet.com/news/rss.xml"
+        # URL of the Bloomberg News RSS feed via google news
+        rss_url = "https://news.google.com/rss/search?q=when:24h+allinurl:bloomberg.com&hl=en-US&gl=US&ceid=US:en"
 
         # Parsing the RSS feed
         feed = feedparser.parse(rss_url)
@@ -28,9 +28,9 @@ class ZDNetRSS:
                 "description": item.description,
                 "link": item.link,
                 "publicationDate": item.published,
-                "authors": item.media_credit,
+                "authors": [item.source],
                 "guid": item.id,
-                "systemId": f"zdnet-{item.id}",
+                "systemId": f"bloomberg-{item.id}",
             }
             
             feed_items.append(feed_item)

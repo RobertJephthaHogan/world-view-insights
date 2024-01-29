@@ -9,7 +9,7 @@ class VentureBeatRSS:
         
     async def get_venture_beat_news_feed():
         
-        # URL of the Reuters RSS feed
+        # URL of the Venture Beat RSS feed
         rss_url = "https://venturebeat.com/feed/"
 
         # Parsing the RSS feed
