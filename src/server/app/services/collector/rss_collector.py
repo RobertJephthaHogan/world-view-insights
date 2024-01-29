@@ -8,6 +8,7 @@ class RSSCollector:
     
     async def collect_all_rss_feeds(self):
         await self.collect_reuters_financial_news()
+        await self.collect_zdnet_news()
         
     
     
@@ -18,17 +19,31 @@ class RSSCollector:
 
         # Check if each feed item exists, if not, add the feed entry        
         for feed_item in reuters_feed:
-            print('feed_item', feed_item)
             
             existing_feed_entry = await FeedItemOperations.retrieve_feed_item_by_system_id(feed_item['systemId'])
-            print('existing_feed_entry', existing_feed_entry)
             
             if not existing_feed_entry:
                 item_instance = FeedItem(**feed_item)
                 await FeedItemOperations.add_feed_item(item_instance)
             
-            
         return {"status": "complete"}
+    
+    
+    async def collect_zdnet_news(self):
+        
+        # get most recent feed items from ZDNet news feed
+        zdnet_feed = await RSS.ZDNetRSS.get_zdnet_feed()
+
+        # Check if each feed item exists, if not, add the feed entry        
+        for feed_item in zdnet_feed:
+            
+            existing_feed_entry = await FeedItemOperations.retrieve_feed_item_by_system_id(feed_item['systemId'])
+            
+            if not existing_feed_entry:
+                item_instance = FeedItem(**feed_item)
+                await FeedItemOperations.add_feed_item(item_instance)
+            
+        return zdnet_feed
         
         
     
