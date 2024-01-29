@@ -1,4 +1,5 @@
 import feedparser
+from bson import ObjectId
 
 
 
@@ -23,6 +24,7 @@ class ReutersRSS:
         # organize feed items and add to feed items list
         for item in news_items:
             feed_item = {
+                'id': str(ObjectId()),
                 "title": item.title,
                 "description": item.description,
                 "link": item.link,

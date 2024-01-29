@@ -32,6 +32,10 @@ class FeedItemOperations:
         if feed_item:
             return feed_item
         
+    async def retrieve_feed_item_by_system_id(system_id: str) -> FeedItem:
+        feed_item = await feed_item_collection.find({'systemId': system_id}).to_list()
+        if feed_item:
+            return feed_item
 
     async def delete_feed_item(id: PydanticObjectId) -> bool:
         try:

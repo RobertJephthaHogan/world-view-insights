@@ -6,7 +6,7 @@ from app.services.user.routes import router as UserRouter
 from app.services.fmp.routes import router as FMPRouter
 from app.services.data.routes import router as DataRouter
 from app.services.rss.routes import router as RssRouter
-
+from app.services.collector.routes import router as CollectorRouter
 
 # Create the App
 app = FastAPI()
@@ -46,4 +46,5 @@ async def read_root():
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(DataRouter, tags=["Data"], prefix="/data")
 app.include_router(RssRouter, tags=["RSS"], prefix="/rss")
+app.include_router(CollectorRouter, tags=["Collector"], prefix="/collector")
 app.include_router(FMPRouter, tags=["FMP"], prefix="/fmp")
