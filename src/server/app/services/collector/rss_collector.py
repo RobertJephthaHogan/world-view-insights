@@ -85,7 +85,7 @@ class RSSCollector:
             
     async def collect_bloomberg_news(self):
         
-        # get most recent feed items from Venture Beat news feed
+        # get most recent feed items from Bloomberg news feed
         bloomberg_feed = await RSS.BloombergRSS.get_bloomberg_news_rss_feed()
 
         # Check if each feed item exists, if not, add the feed entry        
