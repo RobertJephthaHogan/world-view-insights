@@ -6,7 +6,12 @@ from app.models.FeedItem import FeedItem
 class RSSCollector:
     
     
-    async def collect_reuters_financial_news():
+    async def collect_all_rss_feeds(self):
+        await self.collect_reuters_financial_news()
+        
+    
+    
+    async def collect_reuters_financial_news(self):
         
         # get most recent feed items from Reuters Financial news feed
         reuters_feed = await RSS.ReutersRSS.get_reuters_financial_news_rss_feed()
@@ -23,7 +28,7 @@ class RSSCollector:
                 await FeedItemOperations.add_feed_item(item_instance)
             
             
-        return {}
+        return {"status": "complete"}
         
         
     

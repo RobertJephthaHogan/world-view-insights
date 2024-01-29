@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.services.scheduled_service import ScheduledServiceService
 from .config import initiate_database
 
 from app.services.user.routes import router as UserRouter
@@ -34,6 +36,8 @@ async def startup_event():
     print("Starting Server...")
     print("Initiating Database...")
     await initiate_database()
+    print("Starting Service Scheduler...")
+    ScheduledServiceService().startScheduler()
     
     
 # Root Render
