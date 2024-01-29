@@ -6,6 +6,8 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic_settings import BaseSettings
 
 from app.models.User import User
+from app.models.FeedItem import FeedItem
+from app.models.ScheduledService import ScheduledService
 
 
 # Load the environment variables
@@ -39,4 +41,6 @@ async def initiate_database():
     await init_beanie(database=client.world_view_insights,
                         document_models=[
                                             User,
+                                            FeedItem,
+                                            ScheduledService
                                         ])
