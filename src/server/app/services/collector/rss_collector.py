@@ -11,6 +11,7 @@ class RSSCollector:
         await self.collect_zdnet_news()
         await self.collect_bbc_news()
         await self.collect_venture_beat_news()
+        await self.collect_bloomberg_news()
         
     
     
@@ -81,6 +82,22 @@ class RSSCollector:
             
         return {"status": "complete"}
         
+            
+    async def collect_bloomberg_news(self):
+        
+        # get most recent feed items from Venture Beat news feed
+        bloomberg_feed = await RSS.BloombergRSS.get_bloomberg_news_rss_feed()
+
+        # Check if each feed item exists, if not, add the feed entry        
+        for feed_item in bloomberg_feed:
+            
+            existing_feed_entry = await FeedItemOperations.retrieve_feed_item_by_system_id(feed_item['systemId'])
+            
+            if not existing_feed_entry:
+                item_instance = FeedItem(**feed_item)
+                await FeedItemOperations.add_feed_item(item_instance)
+            
+        return {"status": "complete"}
         
     
     
