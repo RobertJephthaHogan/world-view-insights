@@ -44,13 +44,6 @@
     margin-left: 3em;
 }
 
-.hc-menu-item {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    margin: 0 10px
-}
-
 .hc-mi-caret {
     margin-left: 10px;
     margin-top: 3px;
@@ -82,6 +75,57 @@
     margin-left: 20px
 }
 
+/* Keyframes for fade-in and scroll-up animation */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+  
+
+.hc-menu-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px;
+    position: relative;
+
+}
+
 .hc-menu-item:hover {
     cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%; /* Start the dropdown right below the menu item */
+    left: 0; /* Align it with the left edge of the menu item */
+    opacity: 0; /* Initialize with opacity 0 for fade-in effect */
+    /* Apply the animation */
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.hc-menu-item:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
 }
