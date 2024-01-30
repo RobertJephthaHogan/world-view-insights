@@ -35,6 +35,19 @@ export default function NotableQuotes() {
                 <div className='section-quote-container'>
 
                     {
+                        !quoteData?.marketLeaderQuotes &&
+                        [0,0,0,0,0]?.map((quote: any) => {
+                            return (
+                                <div className='quote-skeleton-row'>
+                                    <div className='quote-skeleton'>
+                                        
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+
+                    {
                         quoteData?.marketLeaderQuotes &&
                         quoteData?.marketLeaderQuotes?.map((quote: any) => {
                             return (
@@ -81,6 +94,19 @@ export default function NotableQuotes() {
                     />
                 </div>
                 <div className='section-quote-container'>
+
+                    {
+                        !quoteData?.gainerQuotes &&
+                        [0,0,0,0,0]?.map((quote: any) => {
+                            return (
+                                <div className='quote-skeleton-row'>
+                                    <div className='quote-skeleton'>
+                                        
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
                     {
                         quoteData?.gainerQuotes &&
@@ -130,6 +156,18 @@ export default function NotableQuotes() {
                 </div>
                 <div className='section-quote-container'>
 
+                    {
+                        !quoteData?.loserQuotes &&
+                        [0,0,0,0,0]?.map((quote: any) => {
+                            return (
+                                <div className='quote-skeleton-row'>
+                                    <div className='quote-skeleton'>
+                                        
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
 
                     {
                         quoteData?.loserQuotes &&

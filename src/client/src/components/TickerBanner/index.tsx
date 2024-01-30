@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { dataService } from '../../services/data.service'
+import { Skeleton } from 'antd'
 
 
 
@@ -41,6 +42,22 @@ export default function TickerBanner() {
                 */}
                 
                 {/* Set One */}
+
+                {/* {
+                    !bannerData && <Skeleton active className='ticker-skeleton'/>
+                } */}
+
+                {
+                    !bannerData &&
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]?.map((coData: any) => {
+                        
+                        return (
+                            <div className='banner-item item'>
+                                <div className='banner-skeleton'/>
+                            </div>
+                        )
+                    })
+                }
 
                 {
                     bannerData &&

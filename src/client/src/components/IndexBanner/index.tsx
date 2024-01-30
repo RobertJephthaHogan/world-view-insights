@@ -26,6 +26,15 @@ export default function IndexBanner() {
             <div className='index-card-container'>
 
                 {
+                    !bannerData &&
+                    [0,0,0,0,0]?.map((entry: any) => {
+                        return (
+                            <div className='index-card-skeleton'/>
+                        )
+                    })
+                }
+
+                {
                     bannerData &&
                     bannerData?.map((entry: any) => {
                         return (

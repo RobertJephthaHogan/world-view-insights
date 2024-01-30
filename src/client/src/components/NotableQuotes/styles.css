@@ -31,6 +31,21 @@
     padding: 0.4em
 }
 
+.quote-skeleton-row {
+    /* background-color: #f0f0f0; */
+    padding: 0.4em;
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.quote-skeleton {
+    background-color: #f0f0f0;
+    height: 20px;
+    border-radius: 5px;
+    width: 100%;
+    /* padding: 0.4em;
+    border-bottom: 1px solid #dfdfdf; */
+}
+
 .quote-row-symbol {
     color: #5C5C5C;
     font-size: 23px;
