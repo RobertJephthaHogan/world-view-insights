@@ -40,8 +40,21 @@ export default function TickerBanner() {
                     an illusion of an endless scroll. Thats why there are two sets.
                 */}
                 
-                {/* Set One */}
+                
+                {/* Loader Skeleton */}
+                {
+                    !bannerData &&
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]?.map((coData: any) => {
+                        
+                        return (
+                            <div className='banner-item item'>
+                                <div className='banner-skeleton'/>
+                            </div>
+                        )
+                    })
+                }
 
+                {/* Set One */}
                 {
                     bannerData &&
                     bannerData?.map((coData: any) => {
@@ -49,14 +62,14 @@ export default function TickerBanner() {
                         return (
                             <div className='banner-item item'>
                                 <span className='bi-info-text'>
-                                    {coData?.symbol ?? "err"} - ${coData?.price}
+                                    {coData?.symbol ?? "err"} - ${coData?.price?.toFixed(2)}
                                 </span>
                                 <span className={
                                     `bi-change-text
                                     ${ coData?.changesPercentage < 0 ? 'bi-change-down-text' : 'bi-change-up-text'}
                                     `
                                 }>
-                                    {coData?.changesPercentage}%
+                                    {coData?.changesPercentage?.toFixed(2)}%
                                 </span>
                             </div>
                         )

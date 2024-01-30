@@ -11,6 +11,16 @@
     width: 70%;
 }
 
+.hpb-l-title-container {
+    width: 70%;
+    margin-top: 20px;
+}
+
+.latest-news-title {
+    font-weight: 500;
+    font-size: 30px;
+}
+
 .hpb-r {
     width: 30%;
     border-left: 1px solid #dfdfdf;

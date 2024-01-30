@@ -14,3 +14,10 @@
     grid-template-columns: repeat(5, 1fr);
     column-gap: 40px;
 }
+
+.index-card-skeleton {
+    width: 250px;
+    max-width: 250px;
+    height: 75px;
+    background-color: #f0f0f0;
+}
