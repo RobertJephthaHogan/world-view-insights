@@ -74,7 +74,7 @@ export default function NotableQuotes() {
                                     </div>
                                     <div className='qrr'>
                                         <span className='quote-row-quote'>
-                                            ${quote?.price}
+                                            ${quote?.price?.toFixed(2)}
                                         </span>
                                     </div>
                                 </div>
@@ -135,7 +135,7 @@ export default function NotableQuotes() {
                                     </div>
                                     <div className='qrr'>
                                         <span className='quote-row-quote'>
-                                            ${quote?.price}
+                                            ${quote?.price?.toFixed(2)}
                                         </span>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@ export default function NotableQuotes() {
                                     </div>
                                     <div className='qrr'>
                                         <span className='quote-row-quote'>
-                                            ${quote?.price}
+                                            ${quote?.price?.toFixed(2)}
                                         </span>
                                     </div>
                                 </div>

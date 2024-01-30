@@ -5,8 +5,8 @@ import './styles.css'
 interface IndexDataCardProps {
     title?: string
     displayPrice?: string
-    grossChange?: string
-    percentChange?: string
+    grossChange: string
+    percentChange: string
     chartData?: Array<any>
 }
 
@@ -26,11 +26,11 @@ export default function IndexDataCard(props: IndexDataCardProps) {
                 <div className='idc-l-bottom'>
                     <span className={
                         `change-text 
-                        ${ props?.percentChange?.[0] === '+' && 'change-up'}
-                        ${ props?.percentChange?.[0] === '-' && 'change-down'}
+                        ${ parseFloat(props?.percentChange) > 0 && 'change-up'}
+                        ${ parseFloat(props?.percentChange) < 0 && 'change-down'}
                         `
                         }>
-                        {props?.grossChange} ({props.percentChange})
+                        {parseFloat(props?.grossChange)?.toFixed(2)} ({parseFloat(props?.percentChange)?.toFixed(2)}%)
                     </span>
                 </div>
             </div>
