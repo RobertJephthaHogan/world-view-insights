@@ -1,0 +1,11 @@
+:root {
+
+    --red-one: #F44949;
+    --red-two: #F9DCDC;
+
+    --green-one: #39BE6E;
+    --green-two: #DEF9DC;
+
+    --layout-header-height: 60px;
+    --layout-header-height-w-border: 61px;
+}

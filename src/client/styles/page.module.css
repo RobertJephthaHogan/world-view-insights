@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.homepage-body {
+  padding: 0 100px;
+  display: flex;
+  padding-top: 30px;
+}
+
+.hpb-l {
+  width: 70%;
+}
+
+.hpb-l-title-container {
+  width: 70%;
+  margin-top: 20px;
+}
+
+.latest-news-title {
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.hpb-r {
+  width: 30%;
+  border-left: 1px solid #dfdfdf;
+  padding-left: 2em;
+  padding-top: 2em;
+}
