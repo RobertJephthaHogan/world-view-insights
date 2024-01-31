@@ -1,0 +1,15 @@
+version: '3'
+services:
+  wvi_server:
+    build:
+      context: ./server
+    ports:
+      - "8008:8008"
+    container_name: wvi_server
+
+  wvi_client:
+    build:
+      context: ./client
+    ports:
+      - "3008:3008"
+    container_name: wvi_client
