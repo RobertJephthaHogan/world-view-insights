@@ -39,9 +39,12 @@ export default function NotableQuotes() {
 
                     {
                         !quoteData?.marketLeaderQuotes &&
-                        [0,0,0,0,0]?.map((quote: any) => {
+                        [0,0,0,0,0]?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-skeleton-row']}>
+                                <div 
+                                    className={styles['quote-skeleton-row']}
+                                    key={`market-quote-skeleton-${i}`}
+                                >
                                     <div className={styles['quote-skeleton']}>
                                         
                                     </div>
@@ -52,9 +55,12 @@ export default function NotableQuotes() {
 
                     {
                         quoteData?.marketLeaderQuotes &&
-                        quoteData?.marketLeaderQuotes?.map((quote: any) => {
+                        quoteData?.marketLeaderQuotes?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-row']}>
+                                <div 
+                                    className={styles['quote-row']}
+                                    key={`market-quote-row-${i}`}
+                                >
                                     <div className={styles['qrl']}>
                                         <span className={styles['quote-row-symbol']}>
                                             {quote?.symbol}
@@ -102,9 +108,12 @@ export default function NotableQuotes() {
 
                     {
                         !quoteData?.gainerQuotes &&
-                        [0,0,0,0,0]?.map((quote: any) => {
+                        [0,0,0,0,0]?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-skeleton-row']}>
+                                <div 
+                                    className={styles['quote-skeleton-row']}
+                                    key={`gainer-quote-skeleton-${i}`}
+                                >
                                     <div className={styles['quote-skeleton']}>
                                         
                                     </div>
@@ -115,9 +124,12 @@ export default function NotableQuotes() {
 
                     {
                         quoteData?.gainerQuotes &&
-                        quoteData?.gainerQuotes?.map((quote: any) => {
+                        quoteData?.gainerQuotes?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-row']}>
+                                <div 
+                                    className={styles['quote-row']}
+                                    key={`gainer-quote-row-${i}`}
+                                >
                                     <div className={styles['qrl']}>
                                         <span className={styles['quote-row-symbol']}>
                                             {quote?.symbol}
@@ -165,9 +177,12 @@ export default function NotableQuotes() {
 
                     {
                         !quoteData?.loserQuotes &&
-                        [0,0,0,0,0]?.map((quote: any) => {
+                        [0,0,0,0,0]?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-skeleton-row']}>
+                                <div 
+                                    className={styles['quote-skeleton-row']}
+                                    key={`loser-quote-skeleton-${i}`}
+                                >
                                     <div className={styles['quote-skeleton']}>
                                         
                                     </div>
@@ -178,9 +193,12 @@ export default function NotableQuotes() {
 
                     {
                         quoteData?.loserQuotes &&
-                        quoteData?.loserQuotes?.map((quote: any) => {
+                        quoteData?.loserQuotes?.map((quote: any, i: number) => {
                             return (
-                                <div className={styles['quote-row']}>
+                                <div 
+                                    className={styles['quote-row']}
+                                    key={`loser-quote-row-${i}`}
+                                >
                                     <div className={styles['qrl']}>
                                         <span className={styles['quote-row-symbol']}>
                                             {quote?.symbol}
