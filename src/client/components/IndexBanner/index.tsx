@@ -29,16 +29,19 @@ export default function IndexBanner() {
 
                 {
                     !bannerData &&
-                    [0,0,0,0,0]?.map((entry: any) => {
+                    [0,0,0,0,0]?.map((entry: any, i: number) => {
                         return (
-                            <div className={styles['index-card-skeleton']}/>
+                            <div 
+                                className={styles['index-card-skeleton']}
+                                key={`index-skeleton-${i}`}
+                            />
                         )
                     })
                 }
 
                 {
                     bannerData &&
-                    bannerData?.map((entry: any) => {
+                    bannerData?.map((entry: any, i: number) => {
                         return (
                             <IndexDataCard
                                 title={entry?.title}
@@ -46,6 +49,7 @@ export default function IndexBanner() {
                                 grossChange={entry?.price_change_24h}
                                 percentChange={entry?.price_change_percentage_24h}
                                 chartData={entry?.intraday_price_history}
+                                key={`index-card-${i}`}
                             />
                         )
                     })
