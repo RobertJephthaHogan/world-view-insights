@@ -1,0 +1,131 @@
+
+
+.header {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 0 100px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.hc-left {
+    display: flex;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.wvi-icon-dark {
+    background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+    background-size: cover;
+    height: 50px;
+    width: 90px;
+}
+
+.wvi-logo-text {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    margin-left: 3em;
+}
+
+.hc-mi-caret {
+    margin-left: 10px;
+    margin-top: 3px;
+}
+
+.hc-right {
+    display: flex;
+}
+
+.login-btn {
+    all: unset;
+    border: 1px solid #1890FF;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.login-btn:hover {
+    cursor: pointer;
+}
+
+.login-btn-text {
+    font-size: 12px;
+}
+
+.hc-login-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin-left: 20px
+}
+
+/* Keyframes for fade-in and scroll-up animation */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+  
+
+.hc-menu-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0 10px;
+    position: relative;
+
+}
+
+.hc-menu-item:hover {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%; /* Start the dropdown right below the menu item */
+    left: 0; /* Align it with the left edge of the menu item */
+    opacity: 0; /* Initialize with opacity 0 for fade-in effect */
+    /* Apply the animation */
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.hc-menu-item:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
