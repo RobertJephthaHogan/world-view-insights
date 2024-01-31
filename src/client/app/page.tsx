@@ -1,5 +1,5 @@
 import Header from '../components/Header'
-// import TickerBanner from '../../components/TickerBanner'
+import TickerBanner from '../components/TickerBanner'
 // import IndexBanner from '../../components/IndexBanner'
 // import NotableQuotes from '../../components/NotableQuotes'
 // import NewsSection from '../../components/NewsSection'
@@ -12,8 +12,8 @@ export default function Homepage() {
     return (
         <div>
             <Header/>
-            {/* <TickerBanner/>
-            <IndexBanner/>
+            <TickerBanner/>
+            {/* <IndexBanner/>
             <div className={styles['homepage-body']}>
                 <div className={styles['hpb-l']}>
                     <div className={styles['hpb-l-title-container']}>

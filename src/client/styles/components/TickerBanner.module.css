@@ -1,0 +1,84 @@
+
+
+
+.ticker-banner {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+}
+
+.banner-rail {
+    display: flex;
+}
+
+.ticker-skeleton {
+    /* width: 100%; */
+    all: unset
+}
+
+.banner-skeleton {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    height: 20px;
+    width: 100px;
+}
+
+.banner-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    padding: 0 10px;
+    flex: none; /* Prevents flex items from growing or shrinking */
+    margin-right: 20px; /* Space between items */
+}
+
+.bi-info-text {
+    font-weight: 500;
+    color: #787878;
+    white-space: nowrap;
+}
+
+.bi-change-down-text {
+    font-weight: 500;
+    color: var(--red-one);
+    margin-left: 10px
+}
+
+.bi-change-text {
+    font-weight: 500;
+    margin-left: 10px
+}
+
+.bi-change-up-text {
+    font-weight: 500;
+    color: var(--green-one);
+    margin-left: 10px
+}
+
+
+#scroll-container {
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+#scroll-text {
+    display: flex;
+    animation: moveItems 100s linear infinite;
+}
+
+.item {
+    flex: none; /* Prevents flex items from growing or shrinking */
+    margin-right: 20px; /* Space between items */
+    /* Add more styling as needed */
+}
+
+@keyframes moveItems {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
