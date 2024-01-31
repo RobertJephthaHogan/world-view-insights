@@ -5,6 +5,7 @@ import { Button, Input } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
 import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
+import { useRouter } from 'next/navigation'
 
 
 const { Search } = Input;
@@ -13,6 +14,11 @@ const { Search } = Input;
 export default function Header() {
 
     const [searchText, setSearchText] = useState<string>('')
+    const router = useRouter()
+
+    const handleNavigationClick = (path: string) => {
+        router.push(path);
+    };
 
     function onSearch() {
         console.log('onSearch!', searchText)
@@ -48,10 +54,18 @@ export default function Header() {
                     <span>News</span>
                     <CaretDownOutlined className={styles['hc-mi-caret']}/>
                     <div className={styles["dropdown-content"]}>
-                        <a href="#news1">Latest News</a>
-                        <a href="#news2">Business News</a>
-                        <a href="#news3">Political News</a>
-                        <a href="#news4">Tech News</a>
+                        <a onClick={() => handleNavigationClick('/news/latest')}>
+                            Latest News
+                        </a>
+                        <a onClick={() => handleNavigationClick('/news/business')}>
+                            Business News
+                        </a>
+                        <a onClick={() => handleNavigationClick('/news/politics')}>
+                            Political News
+                        </a>
+                        <a onClick={() => handleNavigationClick('/news/tech')}>
+                            Tech News
+                        </a>
                     </div>
                 </div>
                     <div className={styles['hc-menu-item']}>
@@ -60,12 +74,27 @@ export default function Header() {
                         </span>
                         <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
-                            <a href="#markets1">Overview</a>
-                            <a href="#markets1">Currencies</a>
-                            <a href="#markets1">Stocks</a>
-                            <a href="#markets1">Sectors</a>
-                            <a href="#markets1">Interest Rates</a>
-                            <a href="#markets1">Market Updates</a>
+                            <a onClick={() => handleNavigationClick('/markets/overview')}>
+                                Overview
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/currencies')}>
+                                Currencies
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/stocks')}>
+                                Stocks
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/sectors')}>
+                                Sectors
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/interest-rates')}>
+                                Interest Rates
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/insider-tx')}>
+                                Insider Tx Viewer
+                            </a>
+                            <a onClick={() => handleNavigationClick('/markets/updates')}>
+                                Market Updates
+                            </a>
                             <a href="#markets1">Mortgage Data</a>
                         </div>
                     </div>
@@ -75,7 +104,6 @@ export default function Header() {
                         </span>
                         <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
-                            <a href="#markets1">Insider Tx Viewer</a>
                             <a href="#markets1">Calculators</a>
                         </div>
                     </div>
