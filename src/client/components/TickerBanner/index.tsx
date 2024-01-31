@@ -3,9 +3,6 @@
 import React, { useEffect, useState } from 'react'
 import { dataService } from '../../services/data.service'
 import styles from '../../styles/components/TickerBanner.module.css'
-//import './styles.css'
-
-
 
 
 

@@ -1,0 +1,23 @@
+
+
+.index-banner {
+    height: 85px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    padding: 0 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 40px;
+}
+
+.index-card-skeleton {
+    width: 250px;
+    max-width: 250px;
+    height: 75px;
+    background-color: #f0f0f0;
+}
