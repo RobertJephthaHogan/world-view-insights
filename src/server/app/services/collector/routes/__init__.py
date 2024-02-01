@@ -12,5 +12,5 @@ class CollectorController:
     # Get Market Leader Quotes (populates ticker banner component)
     @router.get("/test_collector/")
     async def test_rss():
-        data = await Collector.LeadersSnapshotCollector().collect_leaders_snapshot()
+        data = await Collector.IndexSnapshotCollector().collect_index_snapshots()
         return data

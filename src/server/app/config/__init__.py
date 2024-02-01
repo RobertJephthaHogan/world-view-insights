@@ -9,6 +9,7 @@ from app.models.User import User
 from app.models.FeedItem import FeedItem
 from app.models.ScheduledService import ScheduledService
 from app.models.LeadersSnapshot import LeadersSnapshot
+from app.models.IndexSnapshot import IndexSnapshot
 
 # Load the environment variables
 load_dotenv()
@@ -43,5 +44,6 @@ async def initiate_database():
                                             User,
                                             FeedItem,
                                             ScheduledService,
-                                            LeadersSnapshot
+                                            LeadersSnapshot,
+                                            IndexSnapshot
                                         ])

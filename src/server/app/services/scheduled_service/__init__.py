@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 from app.database.scheduled_service_operations import ScheduledServiceOperations
 from app.services.collector.rss_collector import RSSCollector
 from app.services.collector.leaders_snapshot_collector import LeadersSnapshotCollector
+from app.services.collector.index_snapshot_collector import IndexSnapshotCollector
 import pytz
 
 
@@ -46,6 +47,27 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         if after_start_time and before_end_time:
             print('Collecting Leaders Snapshot...')
             await LeadersSnapshotCollector().collect_leaders_snapshot()    
+        else:
+            pass # do not collect if not in collection time range
+        
+        
+    async def collect_index_snapshots(self):
+        eastern = pytz.timezone('US/Eastern') # set tz eastern
+        current_time_eastern = datetime.now(eastern) # current time in Eastern tz
+
+        # Define the target time to start and stop collecting (8:00 AM , 5:15PM) 
+        start_time = current_time_eastern.replace(hour=8, minute=0, second=0, microsecond=0)
+        end_time = current_time_eastern.replace(hour=17, minute=15, second=0, microsecond=0)
+
+
+        # Check if the current time is after the start_time and before end_time
+        after_start_time = current_time_eastern > start_time
+        before_end_time = current_time_eastern < end_time
+        
+        # if so, collect the current leaders snapshot
+        if after_start_time and before_end_time:
+            print('Collecting Leaders Snapshot...')
+            await IndexSnapshotCollector().collect_index_snapshots()    
         else:
             pass # do not collect if not in collection time range
 
