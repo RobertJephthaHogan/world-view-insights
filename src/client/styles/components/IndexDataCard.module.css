@@ -53,7 +53,7 @@
 .chart {
     height: 60px;
     width: 60px;
-    border: 1px solid #dfdfdf;
+    /* border: 1px solid #dfdfdf; */
     margin: 5px
 }
 
