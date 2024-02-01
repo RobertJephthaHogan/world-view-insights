@@ -10,6 +10,7 @@ export default function IndexBanner() {
     
     const [bannerData, setBannerData] = useState<Array<any>|null>(null)
 
+
     useEffect(() => {
         
         dataService.getMajorIndicesOverview()

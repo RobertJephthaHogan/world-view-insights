@@ -37,15 +37,30 @@ interface IndexDataCardProps {
 export default function IndexDataCard(props: IndexDataCardProps) {
 
 
-    const chartData = {
-        labels: ['1', '2', '3', '4', '5', '6'],
+    const defaultLabels = ['1', '2', '3', '4', '5', '6']
+    const defaultChartData = [65, 59, 80, 81, 56, 55, 40]
+    const dateLabels = props.chartData ? props.chartData?.map(item => item.date) : []
+    const closingPrices = props.chartData ? props.chartData?.map(item => item.close) : []
+    dateLabels.reverse() // correct direction
+    closingPrices.reverse() // correct direction
+
+    const closeIsLower = closingPrices[0] < closingPrices[-1]
+    const closeIsHigher = closingPrices[0] > closingPrices[-1]
+
+    const darkRed = '#F44949'
+    const lightRed = '#F9DCDC'
+    const darkGreen = '#39BE6E'
+    const lightGreen = '#DEF9DC'
+
+    const chartJsData = {
+        labels: dateLabels?.length ? dateLabels : defaultLabels,
         datasets: [
             {
                 label: 'Price',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: closeIsLower ? lightRed : lightGreen,
+                borderColor: closeIsLower ? darkRed : darkGreen,
                 borderWidth: 1,
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: closingPrices?.length ? closingPrices : defaultChartData,
                 fill: true, // Enables area fill
                 pointRadius: 0, // Removes the dots on each datapoint
             },
@@ -99,7 +114,7 @@ export default function IndexDataCard(props: IndexDataCardProps) {
             <div className={styles['idc-right']}>
                 <div className={styles['chart']}>
                     <Line 
-                        data={chartData} 
+                        data={chartJsData} 
                         options={chartOptions}
                         height={60}
                         width={60}
