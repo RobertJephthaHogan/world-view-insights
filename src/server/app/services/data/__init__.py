@@ -5,6 +5,7 @@
 import json
 from app.services.fmp import FmpService
 from app.services.dfs import DataFetcherService as DFS
+from datetime import datetime
 
 class DataService:
     
@@ -48,10 +49,22 @@ class DataService:
     
     async def get_major_index_overview():
         
+        # Get today's date
+        today_date = datetime.now()
+
+        # Format the date for start and end times
+        formatted_date = today_date.strftime('%Y-%m-%d')
+        
         # get major equity market index data
         data = await FmpService.MarketIndexes.get_all_major_indexes()
         objects = data.json()
         indexes_needed = ['^DJI', '^GSPC', '^NDX', '^W5000']
+        index_to_etf_map = {
+            '^DJI': 'DIA', 
+            '^GSPC': 'SPY', 
+            '^NDX': 'QQQ', 
+            '^W5000': 'VTI',
+        }
         matches = [obj for obj in objects if obj['symbol'] in indexes_needed]
 
         # get Bitcoin data        
@@ -62,6 +75,10 @@ class DataService:
         btc_dto['price_change_24h'] = btc_data['market_data']['price_change_24h']
         btc_dto['price_change_percentage_24h'] = btc_data['market_data']['price_change_percentage_24h']
         btc_dto['current_price'] = btc_data['market_data']['current_price']['usd']
+        
+        # add btc price history to the dto
+        btc_price_data = await FmpService.StockPrices.get_company_historical_daily_prices('BTCUSD', formatted_date, formatted_date)
+        btc_dto['intraday_price_history'] = btc_price_data
                 
         # construct dto list        
         dto_list = []
@@ -69,12 +86,18 @@ class DataService:
                 
         # standardize equity market index data
         for match in matches:
+            
+            price_symbol = match['symbol'] if not '^W5000' else index_to_etf_map[match['symbol']]
+            
+            # add index's price data to dto entry
+            price_data = await FmpService.StockPrices.get_company_historical_daily_prices(price_symbol, formatted_date, formatted_date)
+            
             dta = {
                 "title": match['name'],
                 "price_change_24h": match['change'],
                 "price_change_percentage_24h": match['changesPercentage'],
                 "current_price": match['price'],
-                "intraday_price_history": [],
+                "intraday_price_history": price_data.json(),
             }
             dto_list.append(dta)
                     
