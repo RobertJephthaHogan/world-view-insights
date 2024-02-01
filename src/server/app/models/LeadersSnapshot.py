@@ -6,7 +6,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 class LeadersSnapshot(Document):
     id: Optional[str] = Field(...)
-    data: Dict[Any, Any] = Field(...)
+    data: List[Any] = Field(...)
     creationDate: Union[str, datetime.datetime] = Field(...)
     
     class Settings:
@@ -24,7 +24,7 @@ class LeadersSnapshot(Document):
 
 class UpdateLeadersSnapshotModel(BaseModel):
     id: Optional[str]
-    title: Optional[Dict[Any, Any]]
+    title: Optional[List[Any]]
     creationDate: Optional[Union[str, datetime.datetime]]
 
     class Config:

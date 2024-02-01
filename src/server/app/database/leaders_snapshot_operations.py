@@ -32,10 +32,6 @@ class LeadersSnapshotOperations:
         if leaders_snapshot:
             return leaders_snapshot
         
-    async def retrieve_leaders_snapshot_by_system_id(system_id: str) -> LeadersSnapshot:
-        leaders_snapshot = await leaders_snapshot_collection.find({'systemId': system_id}).to_list()
-        if leaders_snapshot:
-            return leaders_snapshot
 
     async def delete_leaders_snapshot(id: PydanticObjectId) -> bool:
         try:
