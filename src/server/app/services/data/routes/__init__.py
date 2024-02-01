@@ -21,7 +21,6 @@ class DataController:
         data = await DataService.get_major_index_overview()
         return data
     
-        
     # Get Notable Quotes (populates notable quote component)
     @router.get("/get_notable_quotes/")
     async def get_notable_quotes():
