@@ -1,14 +1,32 @@
 'use client'
 
 import React, { useState } from 'react'
-import { Button, Input } from 'antd'
+import dynamic from 'next/dynamic';
+//import { Button, Input } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
 import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
 import { useRouter } from 'next/navigation'
 
 
-const { Search } = Input;
+const Button = dynamic(
+    () => import('antd').then(mod => mod.Button),
+    { ssr: false }
+);
+
+const Input = dynamic(
+    () => import('antd').then(mod => mod.Input),
+    { ssr: false }
+);
+
+const Search = dynamic(
+    () => import('antd').then(mod => mod.Input.Search),
+    { ssr: false }
+);
+
+// const { Search } = Input;
+
+
 
 
 export default function Header() {
