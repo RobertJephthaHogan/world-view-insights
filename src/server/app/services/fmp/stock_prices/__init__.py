@@ -41,3 +41,8 @@ class StockPrices:
     async def get_company_historical_daily_prices(symbol):
         url = f'https://financialmodelingprep.com/api/v3/historical-price-full/{symbol}?apikey={fmp_key}'
         return requests.get(url)
+    
+    async def get_company_historical_daily_prices(symbol, start_date, end_date, time_frame=1):
+        # time_frame can be either 1, 5, 15, or 60 min candles
+        url = f'https://financialmodelingprep.com/api/v3/historical-chart/{time_frame}min/{symbol}?from={start_date}&to={end_date}&apikey={fmp_key}'
+        return requests.get(url)

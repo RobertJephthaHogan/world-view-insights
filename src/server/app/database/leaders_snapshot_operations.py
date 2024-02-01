@@ -20,6 +20,13 @@ class LeadersSnapshotOperations:
     async def retrieve_all_leaders_snapshots() -> List[LeadersSnapshot]:
         leaders_snapshots = await leaders_snapshot_collection.all().to_list()
         return leaders_snapshots
+    
+    
+    async def retrieve_most_recent_leaders_snapshot(self) -> Union[LeadersSnapshot, None]:
+        most_recent_snapshot = await leaders_snapshot_collection.find().sort("-creationDate").limit(1).to_list()
+        if most_recent_snapshot:
+            return most_recent_snapshot[0]
+        return None
 
     
     async def retrieve_leaders_snapshots_for_user(user_id) -> List[LeadersSnapshot]:

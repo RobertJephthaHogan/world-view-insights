@@ -21,6 +21,13 @@ class NotableQuotesSnapshotOperations:
         notable_quotes_snapshots = await notable_quotes_snapshot_collection.all().to_list()
         return notable_quotes_snapshots
 
+
+    async def retrieve_most_recent_nc_snapshot(self) -> Union[NotableQuotesSnapshot, None]:
+        most_recent_snapshot = await notable_quotes_snapshot_collection.find().sort("-creationDate").limit(1).to_list()
+        if most_recent_snapshot:
+            return most_recent_snapshot[0]
+        return None
+
     
     async def retrieve_notable_quotes_snapshots_for_user(user_id) -> List[NotableQuotesSnapshot]:
         notable_quotes_snapshots = await notable_quotes_snapshot_collection.find(NotableQuotesSnapshot.createdByUserId == user_id).to_list()
