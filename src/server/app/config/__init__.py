@@ -8,7 +8,7 @@ from pydantic_settings import BaseSettings
 from app.models.User import User
 from app.models.FeedItem import FeedItem
 from app.models.ScheduledService import ScheduledService
-
+from app.models.LeadersSnapshot import LeadersSnapshot
 
 # Load the environment variables
 load_dotenv()
@@ -42,5 +42,6 @@ async def initiate_database():
                         document_models=[
                                             User,
                                             FeedItem,
-                                            ScheduledService
+                                            ScheduledService,
+                                            LeadersSnapshot
                                         ])
