@@ -21,6 +21,13 @@ class IndexSnapshotOperations:
         index_snapshots = await index_snapshot_collection.all().to_list()
         return index_snapshots
 
+
+    async def retrieve_most_recent_index_snapshot(self) -> Union[IndexSnapshot, None]:
+        most_recent_snapshot = await index_snapshot_collection.find().sort("-creationDate").limit(1).to_list()
+        if most_recent_snapshot:
+            return most_recent_snapshot[0]
+        return None
+
     
     async def retrieve_index_snapshots_for_user(user_id) -> List[IndexSnapshot]:
         index_snapshots = await index_snapshot_collection.find(IndexSnapshot.createdByUserId == user_id).to_list()

@@ -5,9 +5,13 @@
 import json
 from app.services.fmp import FmpService
 from app.services.dfs import DataFetcherService as DFS
+from .storage import Storage
 from datetime import datetime
 
 class DataService:
+    
+    class Storage(Storage):
+        pass
     
 
     async def get_market_leader_quotes(limit):
@@ -78,7 +82,7 @@ class DataService:
         
         # add btc price history to the dto
         btc_price_data = await FmpService.StockPrices.get_company_historical_daily_prices('BTCUSD', formatted_date, formatted_date)
-        btc_dto['intraday_price_history'] = btc_price_data
+        btc_dto['intraday_price_history'] = btc_price_data.json()
                 
         # construct dto list        
         dto_list = []
@@ -100,7 +104,7 @@ class DataService:
                 "intraday_price_history": price_data.json(),
             }
             dto_list.append(dta)
-                    
+        
         return dto_list
     
     
