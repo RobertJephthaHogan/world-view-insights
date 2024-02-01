@@ -7,6 +7,7 @@ from .fund_holdings import FundHoldings
 from .market_indexes import MarketIndexes
 from .price_targets import PriceTargets
 from .market_performance import MarketPerformance
+from .news import News
 from .stock_fundamental_analysis import FmpStockFundamentalAnalysis
 from .stock_prices import StockPrices
 from .symbols import Symbols
@@ -35,6 +36,9 @@ class FmpService:
         pass
     
     class MarketPerformance(MarketPerformance):
+        pass
+    
+    class News(News):
         pass
 
     class PriceTargets(PriceTargets):
