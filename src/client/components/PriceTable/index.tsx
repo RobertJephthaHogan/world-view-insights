@@ -1,7 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic';
 import styles from '../../styles/components/PriceTable.module.css'
-import { formatNumber, formatTimestampAsTime } from '@/lib/formatters';
+import { formatNumber, formatTimestampAsTime } from '@/utils/formatters';
 
 const Table = dynamic(() => import('antd').then(mod => mod.Table));
 
