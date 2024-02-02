@@ -4,17 +4,16 @@ import Head from 'next/head';
 
 
 
-
-export default function BusinessNews() {
+export default function Gainers() {
     return (
         <TrackingProvider>
             <Head>
                 <title>
-                    Business News | WorldView Insights
+                    WorldView Insights | Gainers
                 </title>
             </Head>
             <div>
-                Business News
+                Gainers 
             </div>
         </TrackingProvider>
     )

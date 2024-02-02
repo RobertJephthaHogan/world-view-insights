@@ -117,9 +117,10 @@
 
 .dropdown-content a {
     color: black;
-    padding: 12px 16px;
+    padding: 8px 12px;
     text-decoration: none;
     display: block;
+    white-space: nowrap;
 }
 
 .hc-menu-item:hover .dropdown-content {
@@ -128,4 +129,13 @@
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
+}
+
+.dropdown-panel {
+    display: flex;
+    flex-direction: row;
+}
+
+.dp-col {
+    border-left: 1px solid #dfdfdf
 }
