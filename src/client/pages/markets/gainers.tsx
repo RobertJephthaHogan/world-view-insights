@@ -152,19 +152,19 @@ export default function Gainers() {
                             {
                                 tableType == 'performance'
                                 ? (
-                                    'Performance Table'
+                                    'Coming Soon!'
                                 ) : null
                             }
                             {
                                 tableType == 'technical'
                                 ? (
-                                    'Technical Table'
+                                    'Coming Soon!'
                                 ) : null
                             }
                             {
                                 tableType == 'fundamental'
                                 ? (
-                                    'Fundamental Table'
+                                    'Coming Soon!'
                                 ) : null
                             }
                         </div>
