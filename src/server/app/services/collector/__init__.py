@@ -3,7 +3,7 @@ from .leaders_snapshot_collector import LeadersSnapshotCollector
 from .index_snapshot_collector import IndexSnapshotCollector
 from .notable_quotes_snapshot_collector import NotableQuotesSnapshotCollector
 from .gainers.price_snapshot_collector import GainerPriceSnapshotCollector
-
+from .losers.price_snapshot_collector import LoserPriceSnapshotCollector
 
 class CollectorService:
         
@@ -25,4 +25,7 @@ class CollectorService:
     ##########################
     
     class GainerPriceSnapshotCollector(GainerPriceSnapshotCollector):
+        pass
+    
+    class LoserPriceSnapshotCollector(LoserPriceSnapshotCollector):
         pass

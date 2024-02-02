@@ -18,6 +18,7 @@ class DataService:
     class Storage(Storage):
         pass
     
+    
     async def get_market_leader_quotes(limit):
 
         # get the largest {x} companies by market cap from nyse and nasdaq
@@ -166,6 +167,11 @@ class DataService:
         
         return dto
     
+    
+    ##################################
+    # Gainer Data Fetching Functions #
+    ##################################
+    
     @timer
     async def get_gainers_price_table():
         
@@ -195,3 +201,36 @@ class DataService:
         
         return gainer_price_snapshots
     
+    
+    #################################
+    # Loser Data Fetching Functions #
+    #################################
+    
+    @timer
+    async def get_losers_price_table():
+        
+        loser_data = await FmpService.MarketPerformance.get_largest_losers()
+        loser_data = loser_data.json()
+        
+        gainer_price_snapshots = []
+        
+        for gainer in loser_data:
+            quote_date = await FmpService.StockPrices.get_company_quote(gainer['symbol'])
+            quote_date = quote_date.json()[0]
+            price_snapshot = {
+                "name": gainer["name"],
+                "symbol": gainer["symbol"],
+                "change": gainer["change"],
+                "price": gainer["price"],
+                "changesPercentage": gainer["changesPercentage"],
+                "dayHigh": quote_date['dayHigh'],
+                "dayLow": quote_date['dayLow'],
+                "yearHigh": quote_date['yearHigh'],
+                "yearLow": quote_date['yearLow'],
+                "volume": quote_date['volume'],
+                "time": quote_date['timestamp'],
+                "avgVolume": quote_date['avgVolume'],
+            }
+            gainer_price_snapshots.append(price_snapshot)
+        
+        return gainer_price_snapshots

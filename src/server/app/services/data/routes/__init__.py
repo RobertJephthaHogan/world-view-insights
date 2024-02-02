@@ -32,3 +32,9 @@ class DataController:
     async def get_gainers_price_table():
         data = await DataService.Storage.get_stored_gainers_price_table()
         return data
+    
+    # Get Losers Price Table (populates gainers price table component)
+    @router.get("/losers_price_table/")
+    async def get_losers_price_table():
+        data = await DataService.Storage.get_stored_losers_price_table()
+        return data
