@@ -1,3 +1,4 @@
+import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 
 
@@ -5,8 +6,10 @@ import React from 'react'
 
 export default function Losers() {
     return (
-        <div>
-            Losers 
-        </div>
+        <TrackingProvider>
+            <div>
+                Losers 
+            </div>
+        </TrackingProvider>
     )
 }

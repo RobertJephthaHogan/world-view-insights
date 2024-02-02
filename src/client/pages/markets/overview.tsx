@@ -1,3 +1,4 @@
+import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 
 
@@ -5,8 +6,10 @@ import React from 'react'
 
 export default function MarketOverview() {
     return (
-        <div>
-            Market Overview
-        </div>
+        <TrackingProvider>
+            <div>
+                Market Overview
+            </div>
+        </TrackingProvider>
     )
 }

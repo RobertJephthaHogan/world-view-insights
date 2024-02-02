@@ -1,3 +1,4 @@
+import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 
 
@@ -5,8 +6,10 @@ import React from 'react'
 
 export default function InterestRates() {
     return (
-        <div>
-            Interest Rates 
-        </div>
+        <TrackingProvider>
+            <div>
+                Interest Rates 
+            </div>
+        </TrackingProvider>
     )
 }

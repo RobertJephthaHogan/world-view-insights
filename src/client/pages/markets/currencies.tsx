@@ -1,3 +1,4 @@
+import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 
 
@@ -5,8 +6,10 @@ import React from 'react'
 
 export default function Currencies() {
     return (
-        <div>
-            Currencies Overview
-        </div>
+        <TrackingProvider>
+            <div>
+                Currencies Overview
+            </div>
+        </TrackingProvider>
     )
 }
