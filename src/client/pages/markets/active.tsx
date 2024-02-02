@@ -7,17 +7,17 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function MarketLeaders() {
+export default function ActiveStocks() {
     return (
         <TrackingProvider>
             <Head>
                 <title>
-                    Market Leaders | WorldView Insights
+                    Active Stocks | WorldView Insights
                 </title>
             </Head>
             <div className={inter.className}>
                 <Header/>
-                Market Leaders 
+                Active Stocks
             </div>
         </TrackingProvider>
     )

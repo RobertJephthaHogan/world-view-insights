@@ -1,0 +1,19 @@
+
+
+.ti-name {
+    font-weight: 500;
+}
+
+.change-up {
+    color: #39BE6E;
+    font-weight: 500;
+}
+
+.change-down {
+    color: #F44949;
+    font-weight: 500;
+}
+
+.ti-time {
+    white-space: nowrap;
+}

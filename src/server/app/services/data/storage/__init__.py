@@ -1,6 +1,7 @@
 from app.database.leaders_snapshot_operations import LeadersSnapshotOperations
 from app.database.index_snapshot_operations import IndexSnapshotOperations
 from app.database.notable_quote_snapshot_operations import NotableQuotesSnapshotOperations
+from app.database.gainer_price_snapshot_operations import GainerPriceSnapshotOperations
 
 
 class Storage:
@@ -15,5 +16,9 @@ class Storage:
     
     async def get_stored_notable_quotes():
         current = await NotableQuotesSnapshotOperations().retrieve_most_recent_nc_snapshot()
+        return current.data
+    
+    async def get_stored_gainers_price_table():
+        current = await GainerPriceSnapshotOperations().retrieve_most_recent_gainer_price_snapshot()
         return current.data
         

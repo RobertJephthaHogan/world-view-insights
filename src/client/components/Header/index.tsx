@@ -50,7 +50,10 @@ export default function Header() {
         <div className={styles['header']}>
             <div className={styles['header-content']}>
             <div className={styles['hc-left']}>
-                <div className={styles['logo-container']}>
+                <div 
+                    className={styles['logo-container']}
+                    onClick={() => handleNavigationClick('/')}
+                >
                         <div className={styles['wvi-icon-dark']}/>
                         <div>
                             <span className={styles['wvi-logo-text']}>

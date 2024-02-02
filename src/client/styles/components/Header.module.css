@@ -25,6 +25,10 @@
     cursor: pointer;
 }
 
+.logo-container:hover {
+    cursor: pointer;
+}
+
 .wvi-icon-dark {
     background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
     background-size: cover;
