@@ -37,7 +37,7 @@ export default function Gainers() {
         // data for the new table.
 
 
-        //TODO: if tableType === 'price', get table data from /data/gainers_price_table
+        // if tableType === 'price', get table data from /data/gainers_price_table
         if (tableType === 'price') {
             dataService.getGainersPriceTable()
                 .then((resp: any) => {

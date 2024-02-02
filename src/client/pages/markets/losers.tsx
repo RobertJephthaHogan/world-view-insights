@@ -37,7 +37,7 @@ export default function Losers() {
         // data for the new table.
 
 
-        //TODO: if tableType === 'price', get table data from /data/gainers_price_table
+        //if tableType === 'price', get table data from /data/losers_price_table
         if (tableType === 'price') {
             dataService.getLosersPriceTable()
                 .then((resp: any) => {
