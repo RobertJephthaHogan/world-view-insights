@@ -1,9 +1,11 @@
 import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 import Head from 'next/head';
+import Header from '@/components/Header';
+import { Inter } from "next/font/google";
 
 
-
+const inter = Inter({ subsets: ["latin"] });
 
 export default function MarketLeaders() {
     return (
@@ -13,7 +15,8 @@ export default function MarketLeaders() {
                     Market Leaders | WorldView Insights
                 </title>
             </Head>
-            <div>
+            <div className={inter.className}>
+                <Header/>
                 Market Leaders 
             </div>
         </TrackingProvider>

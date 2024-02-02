@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
 import { dataService } from '../../services/data.service'
+import { useRouter } from 'next/navigation'
 import styles from '../../styles/components/NotableQuotes.module.css'
 
 
@@ -11,6 +12,8 @@ import styles from '../../styles/components/NotableQuotes.module.css'
 export default function NotableQuotes() {
 
     const [quoteData, setQuoteData] = useState<any|null>(null)
+    const router = useRouter()
+
 
     useEffect(() => {
         
@@ -24,10 +27,18 @@ export default function NotableQuotes() {
 
     }, [])
 
+    const handleNavigationClick = (path: string) => {
+        router.push(path);
+    };
+
+
     return (
         <div className={styles['notable-quotes']}>
             <div className={styles['quote-section']}>
-                <div className={styles['quote-section-title-bar']}>
+                <div 
+                    className={styles['quote-section-title-bar']}
+                    onClick={() => handleNavigationClick('/markets/leaders')}
+                >
                     <span className={styles['quote-section-title']}>
                         Market Leaders
                     </span>
@@ -96,7 +107,10 @@ export default function NotableQuotes() {
                 </div>
             </div>
             <div className={`${styles['quote-section']} ${styles['mts']}`}>
-                <div className={styles['quote-section-title-bar']}>
+                <div 
+                    className={styles['quote-section-title-bar']}
+                    onClick={() => handleNavigationClick('/markets/gainers')}
+                >
                     <span className={styles['quote-section-title']}>
                         Gainers
                     </span>
@@ -165,7 +179,10 @@ export default function NotableQuotes() {
                 </div>
             </div>
             <div className={`${styles['quote-section']} ${styles['mts']}`}>
-                <div className={styles['quote-section-title-bar']}>
+                <div 
+                    className={styles['quote-section-title-bar']}
+                    onClick={() => handleNavigationClick('/markets/losers')}
+                >
                     <span className={styles['quote-section-title']}>
                         Losers
                     </span>
