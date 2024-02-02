@@ -7,6 +7,7 @@ from app.services.collector.leaders_snapshot_collector import LeadersSnapshotCol
 from app.services.collector.index_snapshot_collector import IndexSnapshotCollector
 from app.services.collector.notable_quotes_snapshot_collector import NotableQuotesSnapshotCollector
 from app.services.collector.gainers.price_snapshot_collector import GainerPriceSnapshotCollector
+from app.services.collector.losers.price_snapshot_collector import LoserPriceSnapshotCollector
 import pytz
 import time
 
@@ -26,7 +27,8 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         time.sleep(5) # space out minute interval services
         scheduler.add_job(self.collect_notable_quote_snapshots, "interval", seconds=60)  # Check every 60 seconds
         time.sleep(5) # space out minute interval services
-        scheduler.add_job(self.collect_gainer_price_snapshots,  "interval", seconds=303) # Check every 303 seconds
+        scheduler.add_job(self.collect_gainer_price_snapshots,  "interval", seconds=290) # Check every 290 seconds
+        scheduler.add_job(self.collect_loser_price_snapshots,  "interval", seconds=310) # Check every 310 seconds
         scheduler.add_job(self.collect_all_rss_feeds, "interval", seconds=900)  # update rss feeds every 15 min
         scheduler.add_job(self.check_scheduled_tasks, "interval", seconds=10)  # Check every 10 seconds
         scheduler.start()
@@ -74,7 +76,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         after_start_time = current_time_eastern > start_time
         before_end_time = current_time_eastern < end_time
         
-        # if so, collect the current leaders snapshot
+        # if so, collect the index snapshot
         if after_start_time and before_end_time:
             print('Collecting Index Snapshot...')
             await IndexSnapshotCollector().collect_index_snapshots()    
@@ -94,7 +96,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         after_start_time = current_time_eastern > start_time
         before_end_time = current_time_eastern < end_time
         
-        # if so, collect the current leaders snapshot
+        # if so, collect the notable quotes snapshot
         if after_start_time and before_end_time:
             print('Collecting Notable Quote Snapshot...')
             await NotableQuotesSnapshotCollector().collect_notable_quotes_snapshots()    
@@ -114,10 +116,31 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         after_start_time = current_time_eastern > start_time
         before_end_time = current_time_eastern < end_time
         
-        # if so, collect the current leaders snapshot
+        # if so, collect the gainer prices snapshot
         if after_start_time and before_end_time:
             print('Collecting Gainers Prices Snapshot...')
             await GainerPriceSnapshotCollector().collect_gainer_price_snapshots()    
+        else:
+            pass # do not collect if not in collection time range
+        
+    
+            
+    async def collect_loser_price_snapshots(self):
+        eastern = pytz.timezone('US/Eastern') # set tz eastern
+        current_time_eastern = datetime.now(eastern) # current time in Eastern tz
+
+        # Define the target time to start and stop collecting (8:00 AM , 5:15PM) 
+        start_time = current_time_eastern.replace(hour=8, minute=0, second=0, microsecond=0)
+        end_time = current_time_eastern.replace(hour=17, minute=15, second=0, microsecond=0)
+
+        # Check if the current time is after the start_time and before end_time
+        after_start_time = current_time_eastern > start_time
+        before_end_time = current_time_eastern < end_time
+        
+        # if so, collect the loser prices snapshot
+        if after_start_time and before_end_time:
+            print('Collecting Losers Prices Snapshot...')
+            await LoserPriceSnapshotCollector().collect_loser_price_snapshots()    
         else:
             pass # do not collect if not in collection time range
         

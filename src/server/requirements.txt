@@ -17,6 +17,7 @@ httptools==0.6.1
 idna==3.6
 lazy-model==0.2.0
 motor==3.3.2
+numpy==1.26.3
 passlib==1.7.4
 pycoingecko==3.1.0
 pydantic==2.5.3
