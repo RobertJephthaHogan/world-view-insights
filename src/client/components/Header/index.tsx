@@ -92,28 +92,43 @@ export default function Header() {
                         </span>
                         <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
-                            <a onClick={() => handleNavigationClick('/markets/overview')}>
-                                Overview
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/currencies')}>
-                                Currencies
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/stocks')}>
-                                Stocks
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/sectors')}>
-                                Sectors
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/interest-rates')}>
-                                Interest Rates
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/insider-tx')}>
-                                Insider Tx Viewer
-                            </a>
-                            <a onClick={() => handleNavigationClick('/markets/updates')}>
-                                Market Updates
-                            </a>
-                            <a href="#markets1">Mortgage Data</a>
+                            <div className={styles['dropdown-panel']}>
+                                <div>
+                                    <a onClick={() => handleNavigationClick('/markets/overview')}>
+                                        Overview
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/currencies')}>
+                                        Currencies
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/stocks')}>
+                                        Stocks
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/sectors')}>
+                                        Sectors
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/interest-rates')}>
+                                        Interest Rates
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/insider-tx')}>
+                                        Insider Tx Viewer
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/updates')}>
+                                        Market Updates
+                                    </a>
+                                    <a href="#markets1">Mortgage Data</a>
+                                </div>
+                                <div className={styles['dp-col']}>
+                                    <a onClick={() => handleNavigationClick('/markets/leaders')}>
+                                        Market Leaders
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/gainers')}>
+                                        Gainers
+                                    </a>
+                                    <a onClick={() => handleNavigationClick('/markets/losers')}>
+                                        Losers
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className={styles['hc-menu-item']}>
