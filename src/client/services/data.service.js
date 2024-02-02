@@ -16,6 +16,7 @@ export const dataService = {
     getMarketLeaderQuotes,
     getMajorIndicesOverview,
     getNotableQuotes,
+    getGainersPriceTable
 }
 
 async function getMarketLeaderQuotes(limit) {
@@ -52,6 +53,21 @@ async function getNotableQuotes() {
     return new Promise((resolve, reject) => {
         apiInstance
             .get(`/data/get_notable_quotes/`)
+            .then((response) => {
+                const resp = response.data
+                return resolve(resp)
+            })
+            .catch((error) => {
+                console.error(error)
+                reject(error)
+            })
+    })
+}
+
+async function getGainersPriceTable() {
+    return new Promise((resolve, reject) => {
+        apiInstance
+            .get(`/data/gainers_price_table/`)
             .then((response) => {
                 const resp = response.data
                 return resolve(resp)

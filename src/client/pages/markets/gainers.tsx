@@ -1,11 +1,13 @@
 import { TrackingProvider } from '@/providers/TrackingProvider'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head';
 import { Inter } from "next/font/google";
 import Header from '@/components/Header';
 import { useRouter } from 'next/navigation'
 import dynamic from 'next/dynamic';
 import styles from '../../styles/pages/markets/gainers.module.css'
+import PriceTable from '@/components/PriceTable';
+import { dataService } from '@/services/data.service';
 // import { Radio } from 'antd';
 
 
@@ -18,6 +20,7 @@ const RadioGroup = dynamic(() => import('antd').then(mod => mod.Radio.Group));
 export default function Gainers() {
 
     const [tableType, setTableType] = useState<string>('price')
+    const [tableData, setTableData] = useState<any>([])
     const router = useRouter()
 
 
@@ -28,6 +31,34 @@ export default function Gainers() {
     const handleTableTypeChange = (e: any) => {
         setTableType(e?.target?.value)
     };
+
+
+    useEffect(() => {
+        // When the tableType changes we need to fetch the 
+        // data for the new table.
+
+
+        //TODO: if tableType === 'price', get table data from /data/gainers_price_table
+        if (tableType === 'price') {
+            dataService.getGainersPriceTable()
+                .then((resp: any) => {
+                    console.log(resp)
+                    setTableData(resp)
+                })
+                .catch((error: any) => {
+                    console.log('error', error)
+                })
+        }
+        
+
+        //TODO: if tableType === 'performance', get table data from /data/gainers_performance_table
+
+        //TODO: if tableType === 'technical', get table data from /data/gainers_technicals_table
+
+        //TODO: if tableType === 'fundamental', get table data from /data/gainers_fundamentals_table
+
+    }, [tableType])
+
 
     return (
         <TrackingProvider>
@@ -109,11 +140,13 @@ export default function Gainers() {
                                 <RadioButton value="fundamental">Fundamental</RadioButton>
                             </RadioGroup>
                         </div>
-                        <div>
+                        <div className={styles['table-container']}>
                             {
                                 tableType == 'price'
                                 ? (
-                                    'Price Table'
+                                    <PriceTable
+                                        tableData={tableData}
+                                    />
                                 ) : null
                             }
                             {
