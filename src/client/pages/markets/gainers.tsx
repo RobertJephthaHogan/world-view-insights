@@ -8,7 +8,6 @@ import dynamic from 'next/dynamic';
 import styles from '../../styles/pages/markets/gainers.module.css'
 import PriceTable from '@/components/PriceTable';
 import { dataService } from '@/services/data.service';
-// import { Radio } from 'antd';
 
 
 const inter = Inter({ subsets: ["latin"] });
