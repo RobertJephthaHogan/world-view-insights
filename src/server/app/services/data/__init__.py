@@ -5,8 +5,12 @@
 import json
 from app.services.fmp import FmpService
 from app.services.dfs import DataFetcherService as DFS
+from app.database.gainer_price_snapshot_operations import GainerPriceSnapshotOperations
+from app.models.GainerPriceSnapshot import GainerPriceSnapshot
 from .storage import Storage
 from datetime import datetime
+from bson import ObjectId
+
 
 class DataService:
     
@@ -162,4 +166,31 @@ class DataService:
         
         return dto
     
+    async def get_gainers_price_table():
+        
+        gainer_data = await FmpService.MarketPerformance.get_largest_gainers()
+        gainer_data = gainer_data.json()
+        
+        gainer_price_snapshots = []
+        
+        for gainer in gainer_data:
+            quote_date = await FmpService.StockPrices.get_company_quote(gainer['symbol'])
+            quote_date = quote_date.json()[0]
+            price_snapshot = {
+                "name": gainer["name"],
+                "symbol": gainer["symbol"],
+                "change": gainer["change"],
+                "price": gainer["price"],
+                "changesPercentage": gainer["changesPercentage"],
+                "dayHigh": quote_date['dayHigh'],
+                "dayLow": quote_date['dayLow'],
+                "yearHigh": quote_date['yearHigh'],
+                "yearLow": quote_date['yearLow'],
+                "volume": quote_date['volume'],
+                "time": quote_date['timestamp'],
+                "avgVolume": quote_date['avgVolume'],
+            }
+            gainer_price_snapshots.append(price_snapshot)
+        
+        return gainer_price_snapshots
     
