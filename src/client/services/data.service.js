@@ -17,7 +17,8 @@ export const dataService = {
     getMajorIndicesOverview,
     getNotableQuotes,
     getGainersPriceTable,
-    getLosersPriceTable
+    getLosersPriceTable,
+    getLeadersTable
 }
 
 async function getMarketLeaderQuotes(limit) {
@@ -84,6 +85,21 @@ async function getLosersPriceTable() {
     return new Promise((resolve, reject) => {
         apiInstance
             .get(`/data/losers_price_table/`)
+            .then((response) => {
+                const resp = response.data
+                return resolve(resp)
+            })
+            .catch((error) => {
+                console.error(error)
+                reject(error)
+            })
+    })
+}
+
+async function getLeadersTable() {
+    return new Promise((resolve, reject) => {
+        apiInstance
+            .get(`/data/leaders_table/`)
             .then((response) => {
                 const resp = response.data
                 return resolve(resp)
