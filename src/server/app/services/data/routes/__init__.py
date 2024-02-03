@@ -40,7 +40,7 @@ class DataController:
         return data
 
     # Get Leaders Price Table (populates leaders price table component)
-    @router.get("/leaders_price_table/")
+    @router.get("/leaders_table/")
     async def get_leaders_price_table():
-        data = await DataService.get_leaders_price_table()
+        data = await DataService.Storage.get_stored_leaders_table()
         return data
