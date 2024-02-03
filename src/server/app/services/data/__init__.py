@@ -234,3 +234,50 @@ class DataService:
             gainer_price_snapshots.append(price_snapshot)
         
         return gainer_price_snapshots
+    
+    
+    ###################################
+    # Leaders Data Fetching Functions #
+    ###################################
+    
+    async def get_leaders_price_table():
+        
+        # Get quotes for top market leaders
+        # get the largest {X} companies by market cap from nyse and nasdaq
+        nyseCompanies = FmpService.CompanyData.stock_screener(
+            {
+                'marketCapMoreThan': 100000000000, 
+                'limit': 30,
+                'isEtf' : False,
+                'exchange': 'nyse'
+            }
+        )
+        nyseCompanies = nyseCompanies.json()
+        
+        nasdaqCompanies = FmpService.CompanyData.stock_screener(
+            {
+                'marketCapMoreThan': 100000000000, 
+                'limit': 30,
+                'isEtf' : False,
+                'exchange': 'nasdaq'
+            }
+        )
+        nasdaqCompanies = nasdaqCompanies.json()
+
+        # Concatenate the company lists
+        companies = nyseCompanies + nasdaqCompanies
+        
+        # Filter out objects where 'sector' is null
+        companies = [obj for obj in companies if obj.get('sector') is not None]
+
+        # Get quote data for each company and add it to the company data
+        for co in companies:
+            quote_data = await FmpService.StockPrices.get_company_quote(co['symbol']) # get quote for entry
+            co.update(quote_data.json()[0]) # add quote data to company data
+            
+        # Sort the companies by 'marketCap' in descending order
+        sorted_data = sorted(companies, key=lambda x: x['marketCap'], reverse=True)        
+        
+        print('len', len(sorted_data))
+        
+        return sorted_data

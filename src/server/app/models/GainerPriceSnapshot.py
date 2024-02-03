@@ -16,7 +16,7 @@ class GainerPriceSnapshot(Document):
         json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "data": {},
+                "data": [],
                 "creationDate": "",
             }
         }
@@ -31,7 +31,7 @@ class UpdateGainerPriceSnapshotModel(BaseModel):
         json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "data": {},
+                "data": [],
                 "creationDate": "",
             }
         }
