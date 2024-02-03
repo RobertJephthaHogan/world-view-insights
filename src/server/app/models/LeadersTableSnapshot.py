@@ -4,13 +4,13 @@ from beanie import Document
 from pydantic import BaseModel, EmailStr, Field
 
 
-class LoserPriceSnapshot(Document):
+class LeadersTableSnapshot(Document):
     id: Optional[str] = Field(...)
     data: List[Any] = Field(...)
     creationDate: Union[str, datetime.datetime] = Field(...)
     
     class Settings:
-        name = "LoserPriceSnapshot"
+        name = "LeadersTableSnapshot"
 
     class Config:
         json_schema_extra = {
@@ -22,7 +22,7 @@ class LoserPriceSnapshot(Document):
         }
 
 
-class UpdateLoserPriceSnapshotModel(BaseModel):
+class UpdateLeadersTableSnapshotModel(BaseModel):
     id: Optional[str]
     title: Optional[List[Any]]
     creationDate: Optional[Union[str, datetime.datetime]]

@@ -4,6 +4,7 @@ from .index_snapshot_collector import IndexSnapshotCollector
 from .notable_quotes_snapshot_collector import NotableQuotesSnapshotCollector
 from .gainers.price_snapshot_collector import GainerPriceSnapshotCollector
 from .losers.price_snapshot_collector import LoserPriceSnapshotCollector
+from .leaders.leaders_table_snapshot_collector import LeadersTableSnapshotCollector
 
 class CollectorService:
         
@@ -27,5 +28,18 @@ class CollectorService:
     class GainerPriceSnapshotCollector(GainerPriceSnapshotCollector):
         pass
     
+    
+    #########################
+    # Loser Data Collection #
+    #########################
+    
     class LoserPriceSnapshotCollector(LoserPriceSnapshotCollector):
+        pass
+    
+    
+    ##########################
+    # Leader Data Collection #
+    ##########################
+    
+    class LeadersTableSnapshotCollector(LeadersTableSnapshotCollector):
         pass
