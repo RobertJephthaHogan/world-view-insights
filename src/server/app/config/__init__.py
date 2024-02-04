@@ -55,5 +55,5 @@ async def initiate_database():
                                             GainerPriceSnapshot,
                                             LoserPriceSnapshot,
                                             LeadersTableSnapshot,
-                                            MostActiveSnapshot,
+                                            MostActiveSnapshot
                                         ])

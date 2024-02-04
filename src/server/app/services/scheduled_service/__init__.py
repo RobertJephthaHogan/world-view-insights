@@ -187,7 +187,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             print('Collecting Most Active Stocks Prices Snapshot...')
             await MostActiveSnapshotCollector().collect_most_active_snapshots()    
         else:
-            pass # do not collect if not in collection time range 
+            pass # do not collect if not in collection time range
         
 
     async def check_scheduled_tasks(self):

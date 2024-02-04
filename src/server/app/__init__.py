@@ -10,7 +10,6 @@ from app.services.data.routes import router as DataRouter
 from app.services.rss.routes import router as RssRouter
 from app.services.collector.routes import router as CollectorRouter
 
-
 # Create the App
 app = FastAPI()
 
