@@ -24,6 +24,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
     
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
+        scheduler.add_job(self.collect_fmp_articles_snapshot, "interval", seconds=43200)  # Check every 12 hours
         scheduler.add_job(self.collect_leaders_snapshot, "interval", seconds=60)  # Check every 60 seconds
         time.sleep(5) # space out minute interval services
         scheduler.add_job(self.collect_index_snapshots, "interval", seconds=60)  # Check every 60 seconds
@@ -188,6 +189,11 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             await MostActiveSnapshotCollector().collect_most_active_snapshots()    
         else:
             pass # do not collect if not in collection time range
+        
+                
+    async def collect_fmp_articles_snapshot(self):
+        print('Collecting Most Active Stocks Prices Snapshot...')
+        await MostActiveSnapshotCollector().collect_most_active_snapshots()    
         
 
     async def check_scheduled_tasks(self):

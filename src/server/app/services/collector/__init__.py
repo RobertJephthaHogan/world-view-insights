@@ -6,6 +6,7 @@ from .gainers.price_snapshot_collector import GainerPriceSnapshotCollector
 from .losers.price_snapshot_collector import LoserPriceSnapshotCollector
 from .leaders.leaders_table_snapshot_collector import LeadersTableSnapshotCollector
 from .active.price_snapshot_collector import MostActiveSnapshotCollector
+from .news import NewsSnapshotCollector
 
 class CollectorService:
         
@@ -51,4 +52,12 @@ class CollectorService:
     ###############################
     
     class MostActiveSnapshotCollector(MostActiveSnapshotCollector):
+        pass
+    
+    
+    ###################
+    # News Collection #
+    ###################
+    
+    class NewsSnapshotCollector(NewsSnapshotCollector):
         pass

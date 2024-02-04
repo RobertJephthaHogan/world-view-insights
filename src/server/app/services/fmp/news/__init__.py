@@ -7,7 +7,7 @@ fmp_key = Settings().FMP_API_KEY
 class News:
 
     async def get_fmp_articles(page=0):
-        url = f'https://financialmodelingprep.com/api/v3/fmp/articles?page={page}&size=5&apikey={fmp_key}'
+        url = f'https://financialmodelingprep.com/api/v3/fmp/articles?page={page}&size=20&apikey={fmp_key}'
         return requests.get(url)
     
     async def get_general_news(page=0):

@@ -14,8 +14,6 @@ class LeadersTableSnapshotCollector:
         # get the data for the snapshot
         data = await DataService.get_leaders_price_table()
         
-        print('data', data)
-
         # store the data        
         dto = {
             'id': str(ObjectId()),
