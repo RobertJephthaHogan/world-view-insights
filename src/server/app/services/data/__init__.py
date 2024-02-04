@@ -236,6 +236,41 @@ class DataService:
         return gainer_price_snapshots
     
     
+    
+    ##################################
+    # Most Active Fetching Functions #
+    ##################################
+    
+    @timer
+    async def get_most_active():
+        
+        most_active = await FmpService.MarketPerformance.get_most_active()
+        most_active = most_active.json()
+        
+        snapshots = []
+        
+        for stock in most_active:
+            quote_date = await FmpService.StockPrices.get_company_quote(stock['symbol'])
+            quote_date = quote_date.json()[0]
+            price_snapshot = {
+                "name": stock["name"],
+                "symbol": stock["symbol"],
+                "change": stock["change"],
+                "price": stock["price"],
+                "changesPercentage": stock["changesPercentage"],
+                "dayHigh": quote_date['dayHigh'],
+                "dayLow": quote_date['dayLow'],
+                "yearHigh": quote_date['yearHigh'],
+                "yearLow": quote_date['yearLow'],
+                "volume": quote_date['volume'],
+                "time": quote_date['timestamp'],
+                "avgVolume": quote_date['avgVolume'],
+            }
+            snapshots.append(price_snapshot)
+        
+        return snapshots
+    
+    
     ###################################
     # Leaders Data Fetching Functions #
     ###################################

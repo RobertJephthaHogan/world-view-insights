@@ -130,6 +130,9 @@ export default function Header() {
                                     <a onClick={() => handleNavigationClick('/markets/losers')}>
                                         Losers
                                     </a>
+                                    <a onClick={() => handleNavigationClick('/markets/active')}>
+                                        Most Active
+                                    </a>
                                 </div>
                             </div>
                         </div>

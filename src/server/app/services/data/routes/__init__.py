@@ -44,3 +44,10 @@ class DataController:
     async def get_leaders_price_table():
         data = await DataService.Storage.get_stored_leaders_table()
         return data
+    
+    # Get Leaders Price Table (populates leaders price table component)
+    @router.get("/most_active_table/")
+    async def get_most_active_price_table():
+        data = await DataService.get_most_active()
+        return data
+
