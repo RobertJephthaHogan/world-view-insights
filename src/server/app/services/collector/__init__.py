@@ -5,6 +5,7 @@ from .notable_quotes_snapshot_collector import NotableQuotesSnapshotCollector
 from .gainers.price_snapshot_collector import GainerPriceSnapshotCollector
 from .losers.price_snapshot_collector import LoserPriceSnapshotCollector
 from .leaders.leaders_table_snapshot_collector import LeadersTableSnapshotCollector
+from .active.price_snapshot_collector import MostActiveSnapshotCollector
 
 class CollectorService:
         
@@ -42,4 +43,12 @@ class CollectorService:
     ##########################
     
     class LeadersTableSnapshotCollector(LeadersTableSnapshotCollector):
+        pass
+    
+        
+    ###############################
+    # Most Active Data Collection #
+    ###############################
+    
+    class MostActiveSnapshotCollector(MostActiveSnapshotCollector):
         pass

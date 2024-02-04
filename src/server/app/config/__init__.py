@@ -14,6 +14,7 @@ from app.models.NotableQuotesSnapshot import NotableQuotesSnapshot
 from app.models.GainerPriceSnapshot import GainerPriceSnapshot
 from app.models.LoserPriceSnapshot import LoserPriceSnapshot
 from app.models.LeadersTableSnapshot import LeadersTableSnapshot
+from app.models.MostActiveSnapshot import MostActiveSnapshot
 
 # Load the environment variables
 load_dotenv()
@@ -53,5 +54,6 @@ async def initiate_database():
                                             NotableQuotesSnapshot,
                                             GainerPriceSnapshot,
                                             LoserPriceSnapshot,
-                                            LeadersTableSnapshot
+                                            LeadersTableSnapshot,
+                                            MostActiveSnapshot
                                         ])
