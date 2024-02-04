@@ -102,10 +102,10 @@ export default function MarketLeaders() {
                             </div>
                             <div 
                                 className={styles['lc-menu-item']}
-                                onClick={() => handleNavigationClick('/markets/leaders')}
+                                onClick={() => handleNavigationClick('/markets/losers')}
                             >
                                 <span className={styles['lc-mi-title']}>
-                                    Top Leaders
+                                    Top Losers
                                 </span>
                             </div>
                             <div 

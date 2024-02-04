@@ -1,0 +1,90 @@
+
+
+
+.active-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+    height: 90vh;
+    
+}
+
+.lc-left {
+    /* background-color: #eeeeee; */
+}
+
+.lc-center {
+
+}
+
+.lc-right {
+    /* background-color: #eeeeee; */
+}
+
+.top-active-title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.tlt-container {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.tl-divider {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.tld-container {
+    margin: 1em 0;
+}
+
+.lc-menu-bar {
+    margin-top: 100px;
+    display: flex;
+    
+}
+
+.lc-menu-item {
+    padding: 1em 0;
+    padding-right: 2em;
+    border-bottom: 2px solid #dfdfdf;
+}
+
+.lc-menu-item-active {
+    padding: 1em 0;
+    padding-right: 2em;
+    border-bottom: 2px solid #1890ff;
+    color: #1890ff;
+}
+
+.lc-menu-fill {
+    border-bottom: 2px solid #dfdfdf;
+    flex-grow: 1;
+}
+
+.lc-menu-item:hover {
+    cursor: pointer;
+    color: #1890ff;
+    border-bottom: 2px solid #1890ff;
+}
+
+.lc-menu-item-active:hover {
+    cursor: pointer;
+    color: #1890ff;
+    border-bottom: 2px solid #1890ff;
+}
+
+.lc-mi-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.table-type-selection-container {
+    margin: 1em 0;
+}
+
+.table-container {
+    margin-top: 2em
+}
