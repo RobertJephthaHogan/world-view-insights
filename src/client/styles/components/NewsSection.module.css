@@ -29,6 +29,10 @@
     width: 100%;
 }
 
+.ns-main-story-anchor {
+    all:unset
+}
+
 .ns-main-story {
     display: flex;
     padding: 1em 1em;
@@ -42,7 +46,11 @@
 .ns-ms-image {
     width: 300px;
     height: 250px;
-    background-color: #f1f1f1;
+    /* background-color: #f1f1f1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dfdfdf
 }
 
 .ns-ms-r {
@@ -112,9 +120,13 @@
 }
 
 .sr-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100px;
     width: 100px;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    border: 1px solid #dfdfdf;
 }
 
 .story-row {
@@ -127,6 +139,10 @@
 .story-row:hover {
     cursor: pointer;
     background-color: #efefef4e;
+}
+
+.story-row-anchor {
+    all: unset;
 }
 
 .sr-l {
@@ -167,6 +183,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* Number of lines after which text should be truncated */
-
+    -webkit-line-clamp: 3; 
 }
+
