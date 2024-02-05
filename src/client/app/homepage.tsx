@@ -40,9 +40,9 @@ export default function Homepage() {
                             Latest News
                         </span>
                     </div>
+                    {/* <NewsSection/>
                     <NewsSection/>
-                    <NewsSection/>
-                    <NewsSection/>
+                    <NewsSection/> */}
                 </div>
                 <div className={styles['hpb-r']}>
                     <NotableQuotes/>
