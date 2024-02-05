@@ -29,6 +29,11 @@ class NewsArticleOperations:
         return None
 
 
+    async def retrieve_news_article_by_title(self, title: str) -> Union[NewsArticle, None]:
+            news_article = await news_article_collection.find_one(NewsArticle.title == title)
+            return news_article
+        
+
     async def retrieve_news_article(id: NewsArticle) -> NewsArticle:
         news_article = await news_article_collection.get(str(id))
         if news_article:

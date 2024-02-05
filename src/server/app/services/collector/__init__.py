@@ -6,6 +6,7 @@ from .gainers.price_snapshot_collector import GainerPriceSnapshotCollector
 from .losers.price_snapshot_collector import LoserPriceSnapshotCollector
 from .leaders.leaders_table_snapshot_collector import LeadersTableSnapshotCollector
 from .active.price_snapshot_collector import MostActiveSnapshotCollector
+from .news_article_collector import NewsArticleCollector
 
 class CollectorService:
         
@@ -19,6 +20,9 @@ class CollectorService:
         pass
     
     class NotableQuotesSnapshotCollector(NotableQuotesSnapshotCollector):
+        pass
+    
+    class NewsArticleCollector(NewsArticleCollector):
         pass
     
     
