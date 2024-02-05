@@ -10,6 +10,7 @@ from app.services.collector.gainers.price_snapshot_collector import GainerPriceS
 from app.services.collector.losers.price_snapshot_collector import LoserPriceSnapshotCollector
 from app.services.collector.leaders.leaders_table_snapshot_collector import LeadersTableSnapshotCollector
 from app.services.collector.active.price_snapshot_collector import MostActiveSnapshotCollector
+from app.services.collector.news_article_collector import NewsArticleCollector
 import pytz
 import time
 
@@ -21,9 +22,10 @@ import time
 
 class ScheduledServiceService: # as agonizing as this class name is, I'll continue to follow the convention I have been 
     
-    
+    #collect_business_news_articles
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
+        scheduler.add_job(self.collect_business_news_articles, "interval", seconds=43200)  # Check every 12 hours
         scheduler.add_job(self.collect_leaders_snapshot, "interval", seconds=60)  # Check every 60 seconds
         time.sleep(5) # space out minute interval services
         scheduler.add_job(self.collect_index_snapshots, "interval", seconds=60)  # Check every 60 seconds
@@ -188,6 +190,12 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
             await MostActiveSnapshotCollector().collect_most_active_snapshots()    
         else:
             pass # do not collect if not in collection time range
+        
+        
+    async def collect_business_news_articles(self):
+
+        print('Collecting Business News Articles...')
+        await NewsArticleCollector().collect_business_news_articles() 
         
 
     async def check_scheduled_tasks(self):
