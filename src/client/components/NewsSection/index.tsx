@@ -67,7 +67,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                 props.articles?.[0]?.title
                                 ? props.articles?.[0]?.title
                                 : (
-                                    "Error Loading Article Title"
+                                    "Loading Article Title..."
                                 )
                             }
                             
@@ -79,7 +79,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                 props.articles?.[0]?.content
                                 ? props.articles?.[0]?.content
                                 : (
-                                    "Error Loading Article Content"
+                                    "Loading Article Content..."
                                 )
                             }
                         </span>
@@ -90,7 +90,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                 props.articles?.[0]?.tickers
                                 ? props.articles?.[0]?.tickers
                                 : (
-                                    "Ticker Error"
+                                    "Ticker Loading..."
                                 )
                             } - 
                             {
@@ -99,7 +99,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                     new Date(props.articles?.[0]?.datePosted)
                                 )}`
                                 : (
-                                    "Error Loading Date Posted"
+                                    "Loading Date Posted..."
                                 )
                             }
                         </span>
@@ -131,7 +131,6 @@ export default function NewsSection(props: NewsSectionProps) {
                                             style={{ 
                                                 width: '100%', 
                                                 //height: '100%', 
-                                                alignContent: "center",
                                                 objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
                                             }} 
                                         />
@@ -147,7 +146,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                                 article?.title
                                                 ? article?.title
                                                 : (
-                                                    "Error Loading Article Title"
+                                                    "Loading Article Title"
                                                 )
                                             }
                                         </span>
@@ -156,7 +155,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                                 article?.tickers
                                                 ? article?.tickers
                                                 : (
-                                                    "Ticker Error"
+                                                    "Ticker Loading"
                                                 )
                                             } - 
                                             {
@@ -165,7 +164,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                                     new Date(article?.datePosted)
                                                 )}`
                                                 : (
-                                                    "Error Loading Date Posted"
+                                                    "Loading Date Posted"
                                                 )
                                             }
                                         </span>
@@ -176,7 +175,7 @@ export default function NewsSection(props: NewsSectionProps) {
                                                 article?.content
                                                 ? article?.content
                                                 : (
-                                                    "Error Loading Article Content"
+                                                    "Loading Article Content"
                                                 )
                                             }
                                             {/* Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
