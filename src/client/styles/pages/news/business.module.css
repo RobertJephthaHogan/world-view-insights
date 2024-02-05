@@ -1,0 +1,22 @@
+
+
+
+
+.business-news-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+}
+
+.business-news-title {
+    font-size: 30px;
+}
+
+.bn-title-row {
+    margin-top: 2em
+}
+
+.business-news-container {
+    
+}

@@ -44,8 +44,10 @@ export default function IndexDataCard(props: IndexDataCardProps) {
     dateLabels.reverse() // correct direction
     closingPrices.reverse() // correct direction
 
-    const closeIsLower = closingPrices[0] < closingPrices[-1]
-    const closeIsHigher = closingPrices[0] > closingPrices[-1]
+    const startPrice = closingPrices[0]
+    const endPrice = closingPrices[closingPrices.length - 1]
+
+    const closeIsLower = startPrice > endPrice
 
     const darkRed = '#F44949'
     const lightRed = '#F9DCDC'

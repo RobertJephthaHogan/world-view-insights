@@ -1,0 +1,22 @@
+
+
+
+
+.latest-news-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+}
+
+.latest-news-title {
+    font-size: 30px;
+}
+
+.ln-title-row {
+    margin-top: 2em
+}
+
+.news-container {
+    
+}
