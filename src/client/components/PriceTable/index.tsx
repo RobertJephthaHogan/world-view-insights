@@ -13,7 +13,6 @@ interface PriceTableProps {
 
 export default function PriceTable(props: PriceTableProps) {
 
-    console.log('props.tableData', props.tableData)
 
     const tableData = props.tableData.map((item: any) => {
         return { ...item, key: item.symbol };
