@@ -20,6 +20,10 @@ export default function LatestNews() {
                 <title>
                     Latest News | WorldView Insights
                 </title>
+                <meta
+                    name="description"
+                    content="Top Latest News Stories - WorldView Insights"
+                />
             </Head>
             <div className={inter.className}>
                 <Header/>
