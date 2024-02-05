@@ -43,7 +43,6 @@ export default function ActiveStocks() {
         if (tableType === 'price') {
             dataService.getMostActiveTable()
                 .then((resp: any) => {
-                    console.log(resp)
                     setTableData(resp)
                 })
                 .catch((error: any) => {

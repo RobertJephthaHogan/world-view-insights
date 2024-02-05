@@ -41,7 +41,6 @@ export default function Losers() {
         if (tableType === 'price') {
             dataService.getLosersPriceTable()
                 .then((resp: any) => {
-                    console.log(resp)
                     setTableData(resp)
                 })
                 .catch((error: any) => {

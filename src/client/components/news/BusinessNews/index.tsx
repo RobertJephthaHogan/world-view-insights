@@ -19,7 +19,6 @@ export default function BusinessNew(props: BusinessNewsProps) {
 
         newsService.getBusinessNewsArticles(20)
             .then((resp: any) => {
-                console.log('resp', resp)
                 const thisSet = paginateArray(resp, props.page, 4)
                 setArticleSet(thisSet)
             })

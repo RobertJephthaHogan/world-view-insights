@@ -90,7 +90,10 @@ export default function NewsSection(props: NewsSectionProps) {
                 {
                     props.articles?.slice(1,4)?.map((article: any, i: number) => {
                         return (
-                            <div className={styles['story-row']}>
+                            <div 
+                                className={styles['story-row']}
+                                key={`story-row-${i}`}
+                            >
                                 <div className={styles['sr-l']}>
                                     <div className={styles['sr-image']}></div>
                                 </div>

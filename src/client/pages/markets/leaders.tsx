@@ -41,7 +41,6 @@ export default function MarketLeaders() {
         if (tableType === 'price') {
             dataService.getLeadersTable()
                 .then((resp: any) => {
-                    console.log(resp)
                     setTableData(resp)
                 })
                 .catch((error: any) => {

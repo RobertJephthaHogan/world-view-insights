@@ -41,7 +41,6 @@ export default function Gainers() {
         if (tableType === 'price') {
             dataService.getGainersPriceTable()
                 .then((resp: any) => {
-                    console.log(resp)
                     setTableData(resp)
                 })
                 .catch((error: any) => {
