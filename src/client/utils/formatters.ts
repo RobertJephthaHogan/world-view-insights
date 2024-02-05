@@ -21,13 +21,19 @@ export function formatNumber(num: number) {
     }
 }
 
+
 export function formatTimestampAsTime(timestamp: number) {
+    // Convert to milliseconds to create a Date object
+    const date = new Date(timestamp * 1000);
 
-	// Convert to milliseconds to create a Date object
-	const date = new Date(timestamp * 1000);
+    // Convert to Eastern Time
+    const easternTime = date.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
-	// Convert to Eastern Time
-	const easternTime = date.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    return easternTime
+}
 
-	return easternTime
+
+export function formatEasyReadDate (date: any) {
+    const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+    return new Intl.DateTimeFormat('en-US', options).format(date);
 }

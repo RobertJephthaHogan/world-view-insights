@@ -1,4 +1,5 @@
 from app.services.fmp import FmpService
+from app.database.news_article_operations import NewsArticleOperations
 from .storage import Storage
 from bson import ObjectId
 from datetime import datetime
@@ -11,6 +12,11 @@ class NewsService:
     
     class Storage(Storage):
         pass
+    
+    
+    async def get_article_by_id(id):
+        article = await NewsArticleOperations.retrieve_news_article(id)
+        return article
     
     async def get_business_news_articles():
         # TODO: Get Business News Articles

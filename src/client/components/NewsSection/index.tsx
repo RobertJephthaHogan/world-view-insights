@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../styles/components/NewsSection.module.css';
+import { useRouter } from 'next/navigation'
 
 
 
@@ -10,6 +11,12 @@ interface NewsSectionProps {
 }
 
 export default function NewsSection(props: NewsSectionProps) {
+
+    const router = useRouter()
+
+    const handleNavigationClick = (path: string) => {
+        router.push(path);
+    };
 
     function formatEasyReadDate (date: any) {
         const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -29,7 +36,10 @@ export default function NewsSection(props: NewsSectionProps) {
                     <div className={styles['nsc-divider']}></div>
                 </div>
             </div>
-            <div className={styles['ns-main-story']}>
+            <div 
+                className={styles['ns-main-story']}
+                onClick={() => handleNavigationClick(`/article/${props.articles?.[0]?._id}`)}
+            >
                 <div className={styles['ns-ms-l']}>
                     <div className={styles['ns-ms-image']}></div>
                 </div>
@@ -93,6 +103,7 @@ export default function NewsSection(props: NewsSectionProps) {
                             <div 
                                 className={styles['story-row']}
                                 key={`story-row-${i}`}
+                                onClick={() => handleNavigationClick(`/article/${article?._id}`)}
                             >
                                 <div className={styles['sr-l']}>
                                     <div className={styles['sr-image']}></div>

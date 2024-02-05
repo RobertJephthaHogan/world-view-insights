@@ -1,0 +1,44 @@
+
+
+.article-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+    height: 90vh;
+}
+
+.ticker-wrapper {
+    border: 1px solid #31607c87;
+    border-radius: 5px;
+    background-color: #C6EAFA;
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+.ac-center {
+    padding-top: 2em;
+}
+
+.article-title {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.article-title-container {
+    padding: 1em 0;
+}
+
+.article-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-info-text {
+    font-weight: 500;
+}
+
+.article-content {
+    font-size: 20px;
+    font-weight: 300;
+}
