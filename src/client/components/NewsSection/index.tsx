@@ -27,6 +27,18 @@ export default function NewsSection(props: NewsSectionProps) {
     }
 
 
+    function handleArticleClick(event: any, url: string) {
+        console.log('Handling Article Click')
+        // Prevent the default href link behavior 
+        event.preventDefault();
+    
+        // TODO: Implement tracking logic here
+    
+        // Navigate to the URL after tracking
+        window.location.href = url;
+    }
+
+
     return (
         <div className={styles['news-section']}>
             <div className={styles['news-section-category-bar']}>
@@ -39,73 +51,79 @@ export default function NewsSection(props: NewsSectionProps) {
                     <div className={styles['nsc-divider']}></div>
                 </div>
             </div>
-            <div 
-                className={styles['ns-main-story']}
-                onClick={() => handleNavigationClick(`/article/${props.articles?.[0]?._id}`)}
+            <a
+                className={styles['ns-main-story-anchor']}
+                onClick={(event) => handleArticleClick(event, `https://worldviewinsights.com/article/${props.articles?.[0]?._id}`)}
+                href={`https://worldviewinsights.com/article/${props.articles?.[0]?._id}`}
             >
-                <div className={styles['ns-ms-l']}>
-                    <div className={styles['ns-ms-image']}>
-                    {firstArticleImage ? (
-                        <img 
-                            src={firstArticleImage} 
-                            alt="Image" 
-                            style={{ 
-                                width: '100%', 
-                                //height: '100%', 
-                                objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
-                            }} 
-                        />
-                    ) : (
-                        <p>No image available</p>
-                    )}
+                <div 
+                    className={styles['ns-main-story']}
+                    onClick={() => handleNavigationClick(`/article/${props.articles?.[0]?._id}`)}
+                >
+                    <div className={styles['ns-ms-l']}>
+                        <div className={styles['ns-ms-image']}>
+                        {firstArticleImage ? (
+                            <img 
+                                src={firstArticleImage} 
+                                alt="Image" 
+                                style={{ 
+                                    width: '100%', 
+                                    //height: '100%', 
+                                    objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
+                                }} 
+                            />
+                        ) : (
+                            <p>No image available</p>
+                        )}
+                        </div>
+                    </div>
+                    <div className={styles['ns-ms-r']}>
+                        <div className={styles['main-story-title-container']}>
+                            <span className={styles['ms-title']}>
+                                {
+                                    props.articles?.[0]?.title
+                                    ? props.articles?.[0]?.title
+                                    : (
+                                        "Loading Article Title..."
+                                    )
+                                }
+                                
+                            </span>
+                        </div>
+                        <div className={styles['main-story-description-container']}>
+                            <span className={styles['ms-description']}>
+                                {
+                                    props.articles?.[0]?.content
+                                    ? props.articles?.[0]?.content
+                                    : (
+                                        "Loading Article Content..."
+                                    )
+                                }
+                            </span>
+                        </div>
+                        <div className={styles['main-story-date-container']}>
+                            <span className={styles['ms-date-text']}>
+                                {
+                                    props.articles?.[0]?.tickers
+                                    ? props.articles?.[0]?.tickers
+                                    : (
+                                        "Ticker Loading..."
+                                    )
+                                } - 
+                                {
+                                    props.articles?.[0]?.datePosted
+                                    ? ` ${formatEasyReadDate(
+                                        new Date(props.articles?.[0]?.datePosted)
+                                    )}`
+                                    : (
+                                        "Loading Date Posted..."
+                                    )
+                                }
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div className={styles['ns-ms-r']}>
-                    <div className={styles['main-story-title-container']}>
-                        <span className={styles['ms-title']}>
-                            {
-                                props.articles?.[0]?.title
-                                ? props.articles?.[0]?.title
-                                : (
-                                    "Loading Article Title..."
-                                )
-                            }
-                            
-                        </span>
-                    </div>
-                    <div className={styles['main-story-description-container']}>
-                        <span className={styles['ms-description']}>
-                            {
-                                props.articles?.[0]?.content
-                                ? props.articles?.[0]?.content
-                                : (
-                                    "Loading Article Content..."
-                                )
-                            }
-                        </span>
-                    </div>
-                    <div className={styles['main-story-date-container']}>
-                        <span className={styles['ms-date-text']}>
-                            {
-                                props.articles?.[0]?.tickers
-                                ? props.articles?.[0]?.tickers
-                                : (
-                                    "Ticker Loading..."
-                                )
-                            } - 
-                            {
-                                props.articles?.[0]?.datePosted
-                                ? ` ${formatEasyReadDate(
-                                    new Date(props.articles?.[0]?.datePosted)
-                                )}`
-                                : (
-                                    "Loading Date Posted..."
-                                )
-                            }
-                        </span>
-                    </div>
-                </div>
-            </div>
+            </a>
             <div className={styles['more-news-title-container']}>
                 <span className={styles['more-news-title']}>
                     {props.moreNewsTitle ? props.moreNewsTitle : "More News"}
@@ -117,74 +135,81 @@ export default function NewsSection(props: NewsSectionProps) {
                 {
                     props.articles?.slice(1,4)?.map((article: any, i: number) => {
                         return (
-                            <div 
-                                className={styles['story-row']}
-                                key={`story-row-${i}`}
-                                onClick={() => handleNavigationClick(`/article/${article?._id}`)}
+                            <a
+                                className={styles['story-row-anchor']}
+                                key={`story-row-${article?._id}`} 
+                                onClick={(event) => handleArticleClick(event, `https://worldviewinsights.com/article/${article?._id}`)}
+                                href={`https://worldviewinsights.com/article/${article?._id}`}
                             >
-                                <div className={styles['sr-l']}>
-                                    <div className={styles['sr-image']}>
-                                    {firstArticleImage ? (
-                                        <img 
-                                            src={article?.image} 
-                                            alt="Image" 
-                                            style={{ 
-                                                width: '100%', 
-                                                //height: '100%', 
-                                                objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
-                                            }} 
-                                        />
-                                    ) : (
-                                        <p>No image available</p>
-                                    )}
+                                <div 
+                                    className={styles['story-row']}
+                                    key={`story-row-${article?._id}`}
+                                    onClick={() => handleNavigationClick(`/article/${article?._id}`)}
+                                >
+                                    <div className={styles['sr-l']}>
+                                        <div className={styles['sr-image']}>
+                                        {firstArticleImage ? (
+                                            <img 
+                                                src={article?.image} 
+                                                alt="Image" 
+                                                style={{ 
+                                                    width: '100%', 
+                                                    //height: '100%', 
+                                                    objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
+                                                }} 
+                                            />
+                                        ) : (
+                                            <p>No image available</p>
+                                        )}
+                                        </div>
+                                    </div>
+                                    <div className={styles['sr-r']}>
+                                        <div className={styles['sr-r-t']}>
+                                            <span className={styles['story-row-title']}>
+                                                {
+                                                    article?.title
+                                                    ? article?.title
+                                                    : (
+                                                        "Loading Article Title"
+                                                    )
+                                                }
+                                            </span>
+                                            <span className={styles['story-row-date']}>
+                                                {
+                                                    article?.tickers
+                                                    ? article?.tickers
+                                                    : (
+                                                        "Ticker Loading"
+                                                    )
+                                                } - 
+                                                {
+                                                    article?.datePosted
+                                                    ? ` ${formatEasyReadDate(
+                                                        new Date(article?.datePosted)
+                                                    )}`
+                                                    : (
+                                                        "Loading Date Posted"
+                                                    )
+                                                }
+                                            </span>
+                                        </div>   
+                                        <div className={styles['sr-r-b']}>
+                                            <span className={styles['story-row-description']}>
+                                                {
+                                                    article?.content
+                                                    ? article?.content
+                                                    : (
+                                                        "Loading Article Content"
+                                                    )
+                                                }
+                                                {/* Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
+                                                its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
+                                                quart... */}
+                                            </span>
+                                        </div>   
                                     </div>
                                 </div>
-                                <div className={styles['sr-r']}>
-                                    <div className={styles['sr-r-t']}>
-                                        <span className={styles['story-row-title']}>
-                                            {
-                                                article?.title
-                                                ? article?.title
-                                                : (
-                                                    "Loading Article Title"
-                                                )
-                                            }
-                                        </span>
-                                        <span className={styles['story-row-date']}>
-                                            {
-                                                article?.tickers
-                                                ? article?.tickers
-                                                : (
-                                                    "Ticker Loading"
-                                                )
-                                            } - 
-                                            {
-                                                article?.datePosted
-                                                ? ` ${formatEasyReadDate(
-                                                    new Date(article?.datePosted)
-                                                )}`
-                                                : (
-                                                    "Loading Date Posted"
-                                                )
-                                            }
-                                        </span>
-                                    </div>   
-                                    <div className={styles['sr-r-b']}>
-                                        <span className={styles['story-row-description']}>
-                                            {
-                                                article?.content
-                                                ? article?.content
-                                                : (
-                                                    "Loading Article Content"
-                                                )
-                                            }
-                                            {/* Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
-                                            its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
-                                            quart... */}
-                                        </span>
-                                    </div>   
-                                </div>
-                            </div>
+                            </a>
                         )
                     }) || []
                 }

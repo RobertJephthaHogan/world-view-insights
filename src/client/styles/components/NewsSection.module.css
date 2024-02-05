@@ -29,6 +29,10 @@
     width: 100%;
 }
 
+.ns-main-story-anchor {
+    all:unset
+}
+
 .ns-main-story {
     display: flex;
     padding: 1em 1em;
@@ -137,6 +141,10 @@
     background-color: #efefef4e;
 }
 
+.story-row-anchor {
+    all: unset;
+}
+
 .sr-l {
     padding: 0.5em 0;
 }
@@ -175,6 +183,6 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; /* Number of lines after which text should be truncated */
-
+    -webkit-line-clamp: 3; 
 }
+
