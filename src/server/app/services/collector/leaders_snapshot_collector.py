@@ -1,6 +1,4 @@
-from app.services.rss import RssService as RSS
 from app.database.leaders_snapshot_operations import LeadersSnapshotOperations
-from app.models.FeedItem import FeedItem
 from app.services.data import DataService
 from app.models.LeadersSnapshot import LeadersSnapshot
 from bson import ObjectId

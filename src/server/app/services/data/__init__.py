@@ -312,7 +312,5 @@ class DataService:
             
         # Sort the companies by 'marketCap' in descending order
         sorted_data = sorted(companies, key=lambda x: x['marketCap'], reverse=True)        
-        
-        print('len', len(sorted_data))
-        
+                
         return sorted_data
