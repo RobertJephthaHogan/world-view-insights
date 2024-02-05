@@ -14,6 +14,7 @@
 .ns-category-title {
     color: #686868;
     font-weight: 500;
+    white-space: nowrap;
 }
 
 .nsc-divider-container {
@@ -51,13 +52,32 @@
     font-weight: 500;
 }
 
+.main-story-title-container {
+    max-height: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Number of lines after which text should be truncated */
+}
+
 .main-story-description-container {
     flex-grow: 1;
+    max-height: 50%;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* Number of lines after which text should be truncated */
+
+
 }
 
 .ms-description {
     font-size: 15px;
     color: #656565;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .main-story-date-container {
@@ -68,6 +88,9 @@
 .ms-date-text {
     color: #515151;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .more-news-title {
@@ -93,15 +116,17 @@
 .story-row {
     display: flex;
     width: 100%;
+    max-width: 100%;
+    max-height: 120px;
 }
 
 .sr-l {
-    padding: 0.5em 0
+    padding: 0.5em 0;
 }
 
 .sr-r {
     padding: 0.5em;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .sr-r-t {
@@ -112,18 +137,27 @@
 .story-row-title {
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .story-row-date {
     font-size: 16px;
     font-weight: 500;
-    color: #515151
+    color: #515151;
 }
 
 .sr-r-b {
-    margin-top: 0.5em
+    margin-top: 0.5em;
 }
 
 .story-row-description {
     color: #616161;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Number of lines after which text should be truncated */
+
 }
