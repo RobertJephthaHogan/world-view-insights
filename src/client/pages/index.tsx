@@ -9,6 +9,7 @@ import styles from '../styles/page.module.css'
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import { TrackingProvider } from "@/providers/TrackingProvider";
+import BusinessNew from "@/components/news/BusinessNews";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -39,9 +40,17 @@ export default function Homepage() {
                                 Latest News
                             </span>
                         </div>
-                        <NewsSection/>
-                        <NewsSection/>
-                        <NewsSection/>
+                        <BusinessNew
+                            page={1}
+                        />
+                        <BusinessNew
+                            page={2}
+                            sectionTitle={"More Business News"}
+                        />
+                        <BusinessNew
+                            page={3}
+                            sectionTitle={"More Business News"}
+                        />
                     </div>
                     <div className={styles['hpb-r']}>
                         <NotableQuotes/>

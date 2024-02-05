@@ -1,13 +1,28 @@
 import React from 'react';
 import styles from '../../styles/components/NewsSection.module.css';
 
-export default function NewsSection() {
+
+
+interface NewsSectionProps {
+    sectionTitle?: any
+    moreNewsTitle?: any
+    articles?: any[]
+}
+
+export default function NewsSection(props: NewsSectionProps) {
+
+    function formatEasyReadDate (date: any) {
+        const options: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'long', year: 'numeric' };
+        return new Intl.DateTimeFormat('en-US', options).format(date);
+    }
+
+
     return (
         <div className={styles['news-section']}>
             <div className={styles['news-section-category-bar']}>
                 <div>
                     <span className={styles['ns-category-title']}>
-                        Markets
+                        {props.sectionTitle ? props.sectionTitle : "News"}
                     </span>
                 </div>
                 <div className={styles['nsc-divider-container']}>
@@ -21,50 +36,158 @@ export default function NewsSection() {
                 <div className={styles['ns-ms-r']}>
                     <div className={styles['main-story-title-container']}>
                         <span className={styles['ms-title']}>
-                            Texas Instruments Shares Drops 3% 
-                            on Weak Q4 Results & Guidance
+                            {
+                                props.articles?.[0]?.title
+                                ? props.articles?.[0]?.title
+                                : (
+                                    "Error Loading Article Title"
+                                )
+                            }
+                            
                         </span>
                     </div>
                     <div className={styles['main-story-description-container']}>
                         <span className={styles['ms-description']}>
-                            Texas Instruments (NASDAQ:TXN) saw its shares drop over 3% intra-day 
-                            today, following a Q4 report that fell short of analysts' revenue and 
-                            guidance expectations. The semiconductor manufacturer reported an 
-                            EPS of $1.49 for the fourth quarter, a decrease from $2.13 in the same 
-                            period last year. Its re...
+                            {
+                                props.articles?.[0]?.content
+                                ? props.articles?.[0]?.content
+                                : (
+                                    "Error Loading Article Content"
+                                )
+                            }
                         </span>
                     </div>
                     <div className={styles['main-story-date-container']}>
                         <span className={styles['ms-date-text']}>
-                            TXN - 24 January 2024
+                            {
+                                props.articles?.[0]?.tickers
+                                ? props.articles?.[0]?.tickers
+                                : (
+                                    "Ticker Error"
+                                )
+                            } - 
+                            {
+                                props.articles?.[0]?.datePosted
+                                ? ` ${formatEasyReadDate(
+                                    new Date(props.articles?.[0]?.datePosted)
+                                )}`
+                                : (
+                                    "Error Loading Date Posted"
+                                )
+                            }
                         </span>
                     </div>
                 </div>
             </div>
             <div className={styles['more-news-title-container']}>
                 <span className={styles['more-news-title']}>
-                    More Market News
+                    {props.moreNewsTitle ? props.moreNewsTitle : "More News"}
                 </span>
             </div>
             <div className={styles['more-stories-container']}>
-                <div className={styles['story-row']}>
+
+
+                {
+                    props.articles?.slice(1,4)?.map((article: any, i: number) => {
+                        return (
+                            <div className={styles['story-row']}>
+                                <div className={styles['sr-l']}>
+                                    <div className={styles['sr-image']}></div>
+                                </div>
+                                <div className={styles['sr-r']}>
+                                    <div className={styles['sr-r-t']}>
+                                        <span className={styles['story-row-title']}>
+                                            {
+                                                article?.title
+                                                ? article?.title
+                                                : (
+                                                    "Error Loading Article Title"
+                                                )
+                                            }
+                                        </span>
+                                        <span className={styles['story-row-date']}>
+                                            {
+                                                article?.tickers
+                                                ? article?.tickers
+                                                : (
+                                                    "Ticker Error"
+                                                )
+                                            } - 
+                                            {
+                                                article?.datePosted
+                                                ? ` ${formatEasyReadDate(
+                                                    new Date(article?.datePosted)
+                                                )}`
+                                                : (
+                                                    "Error Loading Date Posted"
+                                                )
+                                            }
+                                        </span>
+                                    </div>   
+                                    <div className={styles['sr-r-b']}>
+                                        <span className={styles['story-row-description']}>
+                                            {
+                                                article?.content
+                                                ? article?.content
+                                                : (
+                                                    "Error Loading Article Content"
+                                                )
+                                            }
+                                            {/* Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
+                                            its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
+                                            quart... */}
+                                        </span>
+                                    </div>   
+                                </div>
+                            </div>
+                        )
+                    }) || []
+                }
+
+
+                {/* <div className={styles['story-row']}>
                     <div className={styles['sr-l']}>
                         <div className={styles['sr-image']}></div>
                     </div>
                     <div className={styles['sr-r']}>
                         <div className={styles['sr-r-t']}>
                             <span className={styles['story-row-title']}>
-                                Intuitive Surgical Beats Q4 Expectations
+                                {
+                                    props.articles?.[1]?.title
+                                    ? props.articles?.[1]?.title
+                                    : (
+                                        "Error Loading Article Title"
+                                    )
+                                }
                             </span>
                             <span className={styles['story-row-date']}>
-                                ISRG - 24 January 2024
+                                {
+                                    props.articles?.[1]?.tickers
+                                    ? props.articles?.[1]?.tickers
+                                    : (
+                                        "Ticker Error"
+                                    )
+                                } - 
+                                {
+                                    props.articles?.[1]?.datePosted
+                                    ? ` ${formatEasyReadDate(
+                                        new Date(props.articles?.[1]?.datePosted)
+                                    )}`
+                                    : (
+                                        "Error Loading Date Posted"
+                                    )
+                                }
                             </span>
                         </div>   
                         <div className={styles['sr-r-b']}>
                             <span className={styles['story-row-description']}>
-                                Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
-                                its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
-                                quart...
+                                {
+                                    props.articles?.[1]?.content
+                                    ? props.articles?.[1]?.content
+                                    : (
+                                        "Error Loading Article Content"
+                                    )
+                                }
                             </span>
                         </div>   
                     </div>
@@ -76,17 +199,42 @@ export default function NewsSection() {
                     <div className={styles['sr-r']}>
                         <div className={styles['sr-r-t']}>
                             <span className={styles['story-row-title']}>
-                                Intuitive Surgical Beats Q4 Expectations
+                                {
+                                    props.articles?.[2]?.title
+                                    ? props.articles?.[2]?.title
+                                    : (
+                                        "Error Loading Article Title"
+                                    )
+                                }
                             </span>
                             <span className={styles['story-row-date']}>
-                                ISRG - 24 January 2024
+                                {
+                                    props.articles?.[2]?.tickers
+                                    ? props.articles?.[2]?.tickers
+                                    : (
+                                        "Ticker Error"
+                                    )
+                                } - 
+                                {
+                                    props.articles?.[2]?.datePosted
+                                    ? ` ${formatEasyReadDate(
+                                        new Date(props.articles?.[2]?.datePosted)
+                                    )}`
+                                    : (
+                                        "Error Loading Date Posted"
+                                    )
+                                }
                             </span>
                         </div>   
                         <div className={styles['sr-r-b']}>
                             <span className={styles['story-row-description']}>
-                                Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
-                                its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
-                                quart...
+                                {
+                                    props.articles?.[2]?.content
+                                    ? props.articles?.[2]?.content
+                                    : (
+                                        "Error Loading Article Content"
+                                    )
+                                }
                             </span>
                         </div>   
                     </div>
@@ -98,21 +246,48 @@ export default function NewsSection() {
                     <div className={styles['sr-r']}>
                         <div className={styles['sr-r-t']}>
                             <span className={styles['story-row-title']}>
-                                Intuitive Surgical Beats Q4 Expectations
+                                {
+                                    props.articles?.[3]?.title
+                                    ? props.articles?.[3]?.title
+                                    : (
+                                        "Error Loading Article Title"
+                                    )
+                                }
                             </span>
                             <span className={styles['story-row-date']}>
-                                ISRG - 24 January 2024
+                                {
+                                    props.articles?.[3]?.tickers
+                                    ? props.articles?.[3]?.tickers
+                                    : (
+                                        "Ticker Error"
+                                    )
+                                } - 
+                                {
+                                    props.articles?.[3]?.datePosted
+                                    ? ` ${formatEasyReadDate(
+                                        new Date(props.articles?.[3]?.datePosted)
+                                    )}`
+                                    : (
+                                        "Error Loading Date Posted"
+                                    )
+                                }
                             </span>
                         </div>   
                         <div className={styles['sr-r-b']}>
                             <span className={styles['story-row-description']}>
-                                Intuitive Surgical (NASDAQ:ISRG), renowned for its robotic-assisted surgical technology, reported 
-                                its fourth-quarter earnings, exceeding analyst expectations. The company's total revenue for the 
-                                quart...
+                                {
+                                    props.articles?.[3]?.content
+                                    ? props.articles?.[3]?.content
+                                    : (
+                                        "Error Loading Article Content"
+                                    )
+                                }
                             </span>
                         </div>   
                     </div>
-                </div>
+                </div> */}
+
+
             </div>
         </div>
     );
