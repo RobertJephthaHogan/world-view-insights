@@ -88,32 +88,38 @@ const ArticlePage: NextPage<any> = ({ article }) => {
 								otherArticles?.map((ona: any, i: number) => {
 
 									return (
-										<div 
-											className={styles['other-news-card']}
-											key={`other-news-card-${i}`}
+										<a
+											className={styles['other-news-card-anchor']}
+											key={`other-news-card-anchor-${i}`}
+											href={`https://worldviewinsights.com/article/${ona?._id}`}
 										>
-											<div className={styles['onc-img-container']}>
-												<img 
-													src={ona?.image} 
-													alt="Image" 
-													style={{ 
-														width: '100%', 
-														//height: '100%', 
-														objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
-													}} 
-												/>
-											</div>
-											<div className={styles['onc-text-container']}>
-												<div className={styles['onc-txt']}>
-													<span className={styles['onc-txt-title']}>
-														{ona?.title}
-													</span>
-													<span className={styles['onc-txt-date']}>
-														{ona?.datePosted}
-													</span>
+											<div 
+												className={styles['other-news-card']}
+												key={`other-news-card-${i}`}
+											>
+												<div className={styles['onc-img-container']}>
+													<img 
+														src={ona?.image} 
+														alt="Image" 
+														style={{ 
+															width: '100%', 
+															//height: '100%', 
+															objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
+														}} 
+													/>
 												</div>
-											</div>	
-										</div>
+												<div className={styles['onc-text-container']}>
+													<div className={styles['onc-txt']}>
+														<span className={styles['onc-txt-title']}>
+															{ona?.title}
+														</span>
+														<span className={styles['onc-txt-date']}>
+															{ona?.datePosted}
+														</span>
+													</div>
+												</div>	
+											</div>
+										</a>
 									)
 								}) || []
 							}
