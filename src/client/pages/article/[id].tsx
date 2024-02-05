@@ -17,8 +17,12 @@ const ArticlePage: NextPage<any> = ({ article }) => {
 	<TrackingProvider>
 		<Head>
 			<title>
-				Article | WorldView Insights
+				{article?.title}
 			</title>
+			<meta
+				name="description"
+				content={article?.title}
+			/>
 		</Head>
 		<div className={inter.className}>
 			<Header/>

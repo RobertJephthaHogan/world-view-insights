@@ -7,12 +7,15 @@ import { useRouter } from 'next/navigation'
 interface NewsSectionProps {
     sectionTitle?: any
     moreNewsTitle?: any
-    articles?: any[]
+    articles: any[]
 }
 
 export default function NewsSection(props: NewsSectionProps) {
 
     const router = useRouter()
+
+    const firstArticleImage = props.articles?.length > 0 ? props.articles[0].image : null;
+
 
     const handleNavigationClick = (path: string) => {
         router.push(path);
@@ -41,7 +44,21 @@ export default function NewsSection(props: NewsSectionProps) {
                 onClick={() => handleNavigationClick(`/article/${props.articles?.[0]?._id}`)}
             >
                 <div className={styles['ns-ms-l']}>
-                    <div className={styles['ns-ms-image']}></div>
+                    <div className={styles['ns-ms-image']}>
+                    {firstArticleImage ? (
+                        <img 
+                            src={firstArticleImage} 
+                            alt="Image" 
+                            style={{ 
+                                width: '100%', 
+                                //height: '100%', 
+                                objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
+                            }} 
+                        />
+                    ) : (
+                        <p>No image available</p>
+                    )}
+                    </div>
                 </div>
                 <div className={styles['ns-ms-r']}>
                     <div className={styles['main-story-title-container']}>
@@ -106,7 +123,22 @@ export default function NewsSection(props: NewsSectionProps) {
                                 onClick={() => handleNavigationClick(`/article/${article?._id}`)}
                             >
                                 <div className={styles['sr-l']}>
-                                    <div className={styles['sr-image']}></div>
+                                    <div className={styles['sr-image']}>
+                                    {firstArticleImage ? (
+                                        <img 
+                                            src={article?.image} 
+                                            alt="Image" 
+                                            style={{ 
+                                                width: '100%', 
+                                                //height: '100%', 
+                                                alignContent: "center",
+                                                objectFit: 'cover' // This makes the image cover the div without losing aspect ratio
+                                            }} 
+                                        />
+                                    ) : (
+                                        <p>No image available</p>
+                                    )}
+                                    </div>
                                 </div>
                                 <div className={styles['sr-r']}>
                                     <div className={styles['sr-r-t']}>
