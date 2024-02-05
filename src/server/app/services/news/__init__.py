@@ -1,4 +1,5 @@
 from app.services.fmp import FmpService
+from .storage import Storage
 from bson import ObjectId
 from datetime import datetime
 import re
@@ -8,6 +9,8 @@ import re
 
 class NewsService:
     
+    class Storage(Storage):
+        pass
     
     async def get_business_news_articles():
         # TODO: Get Business News Articles

@@ -1,6 +1,6 @@
 from beanie import PydanticObjectId
 from pydantic import ValidationError
-from typing import List, Union
+from typing import List, Union, Any
 from bson import ObjectId
 
 
@@ -32,6 +32,11 @@ class NewsArticleOperations:
     async def retrieve_news_article_by_title(self, title: str) -> Union[NewsArticle, None]:
             news_article = await news_article_collection.find_one(NewsArticle.title == title)
             return news_article
+        
+    
+    async def retrieve_recent_news_articles(self, limit: int) -> List[NewsArticle]:
+        recent_news_articles = await news_article_collection.find().sort("-datePosted").limit(limit).to_list()
+        return recent_news_articles
         
 
     async def retrieve_news_article(id: NewsArticle) -> NewsArticle:
