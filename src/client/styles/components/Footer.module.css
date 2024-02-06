@@ -1,0 +1,121 @@
+
+
+
+
+.homepage-footer {
+    height: 300px;
+    background-color: #fff;
+    padding: 0 6em;
+    margin-top: 100px;
+    border: 1px solid #dfdfdf;
+    box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+
+}
+
+.footer-divider {
+    border-bottom: 1px solid #616161
+}
+
+.footer-top {
+    height: calc(80% - 1px); /* -1px for divider height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: #000
+}
+
+.footer-top-content-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.ft-left {
+    width: 20%;
+}
+
+.ft-right {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.logo-container {
+    display: flex;
+    cursor: pointer;
+}
+
+.logo-img {
+    background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+    background-size: cover;
+    height: 50px;
+    width: 90px;
+}
+
+
+.logo-title-container {
+    margin-left: 10px;
+}
+
+.title-text-top {
+    color: #000;
+    font-weight: 700;
+}
+
+.title-text-bottom {
+    color: #000
+}
+
+
+.footer-bottom {
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-bottom-left {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-bottom-right {
+    
+}
+
+.fbl-cr-text {
+    color: #838383;
+    font-size: 16px;
+}
+
+.fbl-pp-text {
+    color: #838383;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ft-menu-option-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-menu-option {
+    font-size: 16px;
+    color: #838383;
+    margin: 3px 0;
+    cursor: pointer;
+}
+
+.ft-menu-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000
+}
+
+.white {
+    color: #fff
+}
