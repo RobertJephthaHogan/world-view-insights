@@ -39,6 +39,10 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
+.logo-container-anchor {
+    all: unset
+}
+
 .logo-container {
     display: flex;
     cursor: pointer;
@@ -97,6 +101,14 @@
     cursor: pointer;
 }
 
+.ft-mo-anchor {
+    all: unset;
+    font-size: 16px;
+    color: #838383;
+    margin: 3px 0;
+    cursor: pointer;
+}
+
 .ft-menu-option-container {
     margin-top: 10px;
     display: flex;
@@ -118,4 +130,8 @@
 
 .white {
     color: #fff
+}
+
+.ps-anchor {
+    all:unset;
 }
