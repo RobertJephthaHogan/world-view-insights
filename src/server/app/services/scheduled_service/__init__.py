@@ -18,6 +18,7 @@ import time
 
 
 
+eastern_timezone = pytz.timezone('America/New_York')
 
 
 
@@ -44,7 +45,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         scheduler.add_job(self.check_scheduled_tasks, "interval", seconds=10)  # Check every 10 seconds
         scheduler.add_job( # prune old collections every day at 11pm eastern
             self.prune_old_collections, 
-            trigger=CronTrigger(hour=23, minute=0, timezone=timezone('US/Eastern'))
+            trigger=CronTrigger(hour=23, minute=0, timezone=eastern_timezone)
         )
         
         scheduler.start()
