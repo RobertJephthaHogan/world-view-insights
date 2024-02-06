@@ -1,0 +1,17 @@
+
+
+
+
+
+
+.currencies-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+}
+
+.cc-center {
+    display: flex;
+    justify-content: center;
+}
