@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../../styles/components/NewsSection.module.css';
 import { useRouter } from 'next/navigation'
+import { getConfig } from '@/config/Constants';
 
 
 
@@ -13,6 +14,8 @@ interface NewsSectionProps {
 export default function NewsSection(props: NewsSectionProps) {
 
     const router = useRouter()
+    const config = getConfig()
+
 
     const firstArticleImage = props.articles?.length > 0 ? props.articles[0].image : null;
 
@@ -53,8 +56,8 @@ export default function NewsSection(props: NewsSectionProps) {
             </div>
             <a
                 className={styles['ns-main-story-anchor']}
-                onClick={(event) => handleArticleClick(event, `https://worldviewinsights.com/article/${props.articles?.[0]?._id}`)}
-                href={`https://worldviewinsights.com/article/${props.articles?.[0]?._id}`}
+                onClick={(event) => handleArticleClick(event, `${config.clientUrl}/article/${props.articles?.[0]?._id}`)}
+                href={`${config.clientUrl}/article/${props.articles?.[0]?._id}`}
             >
                 <div 
                     className={styles['ns-main-story']}
@@ -138,8 +141,8 @@ export default function NewsSection(props: NewsSectionProps) {
                             <a
                                 className={styles['story-row-anchor']}
                                 key={`story-row-${article?._id}`} 
-                                onClick={(event) => handleArticleClick(event, `https://worldviewinsights.com/article/${article?._id}`)}
-                                href={`https://worldviewinsights.com/article/${article?._id}`}
+                                onClick={(event) => handleArticleClick(event, `${config.clientUrl}/article/${article?._id}`)}
+                                href={`${config.clientUrl}/article/${article?._id}`}
                             >
                                 <div 
                                     className={styles['story-row']}
