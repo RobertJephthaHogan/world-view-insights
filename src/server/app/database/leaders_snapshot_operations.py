@@ -2,6 +2,7 @@ from beanie import PydanticObjectId
 from pydantic import ValidationError
 from typing import List, Union
 from bson import ObjectId
+from datetime import datetime, timedelta
 
 
 from app.models.LeadersSnapshot import LeadersSnapshot, UpdateLeadersSnapshotModel
@@ -48,6 +49,13 @@ class LeadersSnapshotOperations:
         if leaders_snapshot:
             await leaders_snapshot.delete()
             return True
+        
+    
+    async def delete_old_entries(cutoff_hours_ago) -> None:
+        # Calculate the threshold date: current time minus threshold
+        threshold_date = datetime.now() - timedelta(hours=cutoff_hours_ago)
+        # Delete documents older than threshold
+        await LeadersSnapshot.find(LeadersSnapshot.creationDate < threshold_date).delete()
 
 
     async def update_leaders_snapshot_data(id: PydanticObjectId, data: dict) -> Union[bool, LeadersSnapshot]:
