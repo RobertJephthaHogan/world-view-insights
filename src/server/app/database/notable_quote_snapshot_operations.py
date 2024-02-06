@@ -2,6 +2,7 @@ from beanie import PydanticObjectId
 from pydantic import ValidationError
 from typing import List, Union
 from bson import ObjectId
+from datetime import datetime, timedelta
 
 
 from app.models.NotableQuotesSnapshot import NotableQuotesSnapshot, UpdateNotableQuotesSnapshotModel
@@ -48,6 +49,13 @@ class NotableQuotesSnapshotOperations:
         if notable_quotes_snapshot:
             await notable_quotes_snapshot.delete()
             return True
+        
+    
+    async def delete_old_entries(cutoff_hours_ago) -> None:
+        # Calculate the threshold date: current time minus threshold
+        threshold_date = datetime.now() - timedelta(hours=cutoff_hours_ago)
+        # Delete documents older than threshold
+        await NotableQuotesSnapshot.find(NotableQuotesSnapshot.creationDate < threshold_date).delete()
 
 
     async def update_notable_quotes_snapshot_data(id: PydanticObjectId, data: dict) -> Union[bool, NotableQuotesSnapshot]:
