@@ -18,6 +18,10 @@ export default function PoliticalNews() {
                 <title>
                     Political News | WorldView Insights
                 </title>
+                <meta
+                    name="description"
+                    content="Top Political News Stories - WorldView Insights"
+                />
             </Head>
             <div className={inter.className}>
                 <Header/>
