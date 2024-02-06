@@ -10,6 +10,7 @@ import "../styles/globals.css";
 import { Inter } from "next/font/google";
 import { TrackingProvider } from "@/providers/TrackingProvider";
 import BusinessNew from "@/components/news/BusinessNews";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,6 +57,7 @@ export default function Homepage() {
                         <NotableQuotes/>
                     </div>
                 </div>
+                <Footer/>
             </div>
         </TrackingProvider>
     )

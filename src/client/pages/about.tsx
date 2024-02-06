@@ -1,23 +1,24 @@
 import { TrackingProvider } from '@/providers/TrackingProvider'
 import React from 'react'
 import type { Metadata } from "next";
+import Head from 'next/head';
 
 
 
-const keywordSearchTerms = [
-    "insights",
-];
-
-export const metadata: Metadata = {
-    title: "WorldView Insights",
-    description: "All in one source for news, market data, investing tools, overall insights",
-    keywords: keywordSearchTerms
-};
 
 export default function About() {
 
     return (
         <TrackingProvider>
+            <Head>
+                <title>
+                    About | WorldView Insights
+                </title>
+                <meta
+                    name="description"
+                    content="About WorldView Insights"
+                />
+            </Head>
             <div>
                 About
             </div>
