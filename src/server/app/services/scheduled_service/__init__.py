@@ -43,10 +43,12 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         scheduler.add_job(self.collect_most_active_price_snapshots,  "interval", seconds=350) # Check every 350 seconds
         scheduler.add_job(self.collect_all_rss_feeds, "interval", seconds=900)  # update rss feeds every 15 min
         scheduler.add_job(self.check_scheduled_tasks, "interval", seconds=10)  # Check every 10 seconds
-        scheduler.add_job( # prune old collections every day at 11pm eastern
-            self.prune_old_collections, 
-            trigger=CronTrigger(hour=23, minute=0, timezone=eastern_timezone)
-        )
+        scheduler.add_job(self.prune_old_collections, "interval", seconds=3600)
+
+        # scheduler.add_job( # prune old collections every hour
+        #     self.prune_old_collections, 
+        #     trigger=CronTrigger(hour=23, minute=0, timezone=eastern_timezone)
+        # )
         
         scheduler.start()
         
