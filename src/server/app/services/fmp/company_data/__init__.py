@@ -21,6 +21,11 @@ class CompanyData:
         url = f'https://financialmodelingprep.com/api/v4/company-core-information?symbol={ticker}&apikey={fmp_key}'
         return requests.get(url)
     
+    # Get Company Outlook
+    async def get_company_outlook(ticker):
+        url = f'https://financialmodelingprep.com/api/v4/company-outlook?symbol={ticker}&apikey={fmp_key}'
+        return requests.get(url)
+    
     # Stock Screener
     # def stock_screener():
     #     url = f'https://financialmodelingprep.com/api/v3/stock-screener?apikey={fmp_key}'
