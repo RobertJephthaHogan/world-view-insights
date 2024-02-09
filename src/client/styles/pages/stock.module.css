@@ -64,3 +64,45 @@
 .sit-action-btn {
     margin-right: 1em;
 }
+
+.company-pnc-container {
+    display: flex;
+}
+
+.company-profile-container {
+   width: 50%; 
+}
+
+.company-chart-container {
+    width: 50%;
+}
+
+.cp-title-bar {
+    background-color: #f6f6f6;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.cp-data-container {
+
+}
+
+.cp-data-row {
+    display: flex;
+    border-bottom: 1px solid #dfdfdf;
+    padding: 5px 0;
+}
+
+.cp-dr-l {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3px;
+    border-right: 1px solid #dfdfdf;
+}
+
+.cp-dr-l {
+    width: 50%;
+}

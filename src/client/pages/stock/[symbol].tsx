@@ -89,6 +89,33 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                             </Button>
                         </div>
                     </div>
+                    <div className={styles['company-pnc-container']}>
+                        <div className={styles['company-profile-container']}>
+                            <div className={styles['cp-title-bar']}>
+                                <span>
+                                    Company Profile
+                                </span>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span>
+                                            Symbol
+                                        </span>
+                                        <span>
+                                            {companyData?.profile?.symbol}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        right
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles['company-chart-container']}>
+                            Chart
+                        </div>
+                    </div>
 				</div>
 				<div>
 
