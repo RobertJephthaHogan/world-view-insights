@@ -10,3 +10,57 @@
 .sc-center {
     padding-top: 2em;
 }
+
+.stock-info-topbar {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 1em
+}
+
+.sit-logo {
+    /* background-color: #dfdfdf; */
+    height: 70px !important;
+    width: 70px !important;
+}
+
+.sit-tit-container {
+    padding: 0 1em;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.sit-tit-text {
+    font-size: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.sit-price-container {
+    padding-right: 1em;
+}
+
+.sit-price-text {
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.sit-change-container {
+    
+}
+
+.sit-change-text {
+    font-size: 16px;
+    /* color: #39BE6E; */
+    color: #888888;
+    font-weight: 700;
+}
+
+.sit-actions-container {
+    padding: 0 1em;
+    display: flex;
+}
+
+.sit-action-btn {
+    margin-right: 1em;
+}
