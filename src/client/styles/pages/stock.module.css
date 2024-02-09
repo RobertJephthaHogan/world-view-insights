@@ -67,6 +67,7 @@
 
 .company-pnc-container {
     display: flex;
+    margin-top: 2em;
 }
 
 .company-profile-container {
@@ -92,17 +93,32 @@
 .cp-data-row {
     display: flex;
     border-bottom: 1px solid #dfdfdf;
-    padding: 5px 0;
 }
 
 .cp-dr-l {
     width: 50%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 0 3px;
+    padding: 5px 5px;
     border-right: 1px solid #dfdfdf;
 }
 
-.cp-dr-l {
+.cp-dr-r {
     width: 50%;
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    justify-content: space-between;
+}
+
+.data-row-title {
+    color: #646373;
+    font-size: 12px;
+}
+
+.data-row-value {
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
 }

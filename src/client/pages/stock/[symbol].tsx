@@ -99,15 +99,140 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                             <div className={styles['cp-data-container']}>
                                 <div className={styles['cp-data-row']}>
                                     <div className={styles['cp-dr-l']}>
-                                        <span>
+                                        <span className={styles['data-row-title']}>
                                             Symbol
                                         </span>
-                                        <span>
+                                        <span className={styles['data-row-value']}>
                                             {companyData?.profile?.symbol}
                                         </span>
                                     </div>
                                     <div className={styles['cp-dr-r']}>
-                                        right
+                                        <span className={styles['data-row-title']}>
+                                            P/E
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.peRatioTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            Price
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            ${companyData?.profile?.price}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            P/B
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.priceToBookRatioTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            Beta
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.profile?.beta}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            Debt / Equity
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.debtEquityRatioTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            Avg Volume
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.profile?.volAvg}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            Operating Margin
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.operatingProfitMarginTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            Market Cap
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.profile?.mktCap}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            ROA
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.returnOnAssetsTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            Sector
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.profile?.sector}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            ROE
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.returnOnEquityTTM?.toFixed(2)}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['cp-data-container']}>
+                                <div className={styles['cp-data-row']}>
+                                    <div className={styles['cp-dr-l']}>
+                                        <span className={styles['data-row-title']}>
+                                            52 Week Range
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.profile?.range}
+                                        </span>
+                                    </div>
+                                    <div className={styles['cp-dr-r']}>
+                                        <span className={styles['data-row-title']}>
+                                            Cash Ratio
+                                        </span>
+                                        <span className={styles['data-row-value']}>
+                                            {companyData?.ratios?.[0]?.cashRatioTTM?.toFixed(2)}
+                                        </span>
                                     </div>
                                 </div>
                             </div>
