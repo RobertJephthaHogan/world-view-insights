@@ -92,7 +92,7 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                     <div className={styles['company-pnc-container']}>
                         <div className={styles['company-profile-container']}>
                             <div className={styles['cp-title-bar']}>
-                                <span>
+                                <span className={styles['cp-title']}>
                                     Company Profile
                                 </span>
                             </div>
@@ -239,6 +239,18 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                         </div>
                         <div className={styles['company-chart-container']}>
                             Chart
+                        </div>
+                    </div>
+                    <div className={styles['company-description-container']}>
+                        <div>
+                            <span className={styles['company-description-title']}>
+                                Company Description
+                            </span>
+                        </div>
+                        <div className={styles['company-description-body']}>
+                            <span className={styles['company-description']}>
+                                {companyData?.profile?.description}
+                            </span>
                         </div>
                     </div>
 				</div>

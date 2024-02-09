@@ -78,6 +78,10 @@
     width: 50%;
 }
 
+.cp-title {
+    font-weight: 500;
+}
+
 .cp-title-bar {
     background-color: #f6f6f6;
     min-height: 50px;
@@ -121,4 +125,22 @@
     color: #000;
     font-size: 12px;
     font-weight: 700;
+}
+
+.company-description-container {
+    margin-top: 2em
+}
+
+.company-description-title {
+    font-weight: 500;
+}
+
+.company-description-body {
+    margin-top: 1em;
+}
+
+.company-description {
+    font-size: 14px;
+    font-weight: 500;
+    color: #606060;
 }
