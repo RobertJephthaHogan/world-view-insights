@@ -67,6 +67,7 @@
 
 .company-pnc-container {
     display: flex;
+    margin-top: 2em;
 }
 
 .company-profile-container {
@@ -75,6 +76,11 @@
 
 .company-chart-container {
     width: 50%;
+}
+
+.cp-title {
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .cp-title-bar {
@@ -92,17 +98,117 @@
 .cp-data-row {
     display: flex;
     border-bottom: 1px solid #dfdfdf;
-    padding: 5px 0;
 }
 
 .cp-dr-l {
     width: 50%;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 0 3px;
+    padding: 5px 5px;
     border-right: 1px solid #dfdfdf;
 }
 
-.cp-dr-l {
+.cp-dr-r {
     width: 50%;
+    display: flex;
+    align-items: center;
+    padding: 5px 5px;
+    justify-content: space-between;
+}
+
+.data-row-title {
+    color: #646373;
+    font-size: 12px;
+}
+
+.data-row-value {
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.company-description-container {
+    margin-top: 2em
+}
+
+.company-description-title {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.company-description-body {
+    margin-top: 1em;
+}
+
+.company-description {
+    font-size: 14px;
+    font-weight: 500;
+    color: #606060;
+}
+
+.company-metrics-container {
+    margin-top: 2em
+
+}
+
+.company-metrics-title {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.cm-card-container {
+    margin-top: 2em
+
+}
+
+.company-metrics-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    margin-bottom: 50px;
+}
+
+.cmr-l {
+    width: 100%;
+}
+
+.cmr-r {
+    width: 100%;
+}
+
+.cm-card {
+    border: 1px solid #dfdfdf;
+}
+
+.cm-card-title-row {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+
+.cm-card-title {
+    font-weight: 500;
+}
+
+.cm-card-header-row {
+    height: 50px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em
+}
+
+.cm-card-metric-row {
+    height: 40px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em
 }

@@ -24,11 +24,20 @@
     margin-top: 20px;
 }
 
+.quote-row-anchor {
+    all: unset
+}
+
 .quote-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid #dfdfdf;
     padding: 0.4em
+}
+
+.quote-row:hover {
+    background-color: #ebebeb6d;
+    cursor: pointer;
 }
 
 .quote-skeleton-row {
@@ -121,4 +130,16 @@
 
 .mts {
     margin-top: 50px;
+}
+
+.market-leaders-title-anchor {
+    all: unset
+}
+
+.market-gainers-title-anchor {
+    all: unset
+}
+
+.market-losers-title-anchor {
+    all: unset
 }
