@@ -163,15 +163,18 @@
 }
 
 .company-metrics-row {
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+    margin-bottom: 50px;
 }
 
 .cmr-l {
-    width: 50%;
+    width: 100%;
 }
 
 .cmr-r {
-    width: 50%;
+    width: 100%;
 }
 
 .cm-card {

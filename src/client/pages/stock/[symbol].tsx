@@ -262,7 +262,6 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                         <div className={styles['cm-card-container']}>
                             <div className={styles['company-metrics-row']}>
                                 <div className={styles['cmr-l']}>
-
                                     <div className={styles['cm-card']}>
                                         <div className={styles['cm-card-title-row']}>
                                             <span className={styles['cm-card-title']}>
@@ -350,10 +349,275 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                                             </span>
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 <div className={styles['cmr-r']}>
-                                    
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Cash Flow Metrics
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Cash Flow to Debt
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.cashFlowToDebtRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Operating Cash Flow Per Share
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.operatingCashFlowPerShareTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Free Cash Flow Per Share
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.freeCashFlowPerShareTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Cash Per Share
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.cashPerShareTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Operating Cash Flow Sales Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.operatingCashFlowSalesRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                FCF to OCF Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.freeCashFlowOperatingCashFlowRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Cash Flow Coverage
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.cashFlowCoverageRatiosTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Capex Coverage
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.capitalExpenditureCoverageRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Dividend and Capex Coverage
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.dividendPaidAndCapexCoverageRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['company-metrics-row']}>
+                                <div className={styles['cmr-l']}>
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Credit Metrics
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Interest Coverage
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.interestCoverageTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Short Term Coverage
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.shortTermCoverageRatiosTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className={styles['cmr-r']}>
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Dividend Flow Metrics
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Dividend Yield
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.dividendYielPercentageTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Dividend Per Share
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.dividendPerShareTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={styles['company-metrics-row']}>
+                                <div className={styles['cmr-l']}>
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Leverage and Solvency
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Debt Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.debtRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Debt Equity Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.debtEquityRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                L/T Debt to Capitalization
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.longTermDebtToCapitalizationTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Total Debt to Capitalization
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.totalDebtToCapitalizationTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Equity Multiplier
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.companyEquityMultiplierTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div className={styles['cmr-r']}>
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Liquidity Metrics
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Current Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.currentRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Quick Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.quickRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Cash Ratio
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.cashRatioTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Cash Conversion Cycle
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.cashConversionCycleTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
