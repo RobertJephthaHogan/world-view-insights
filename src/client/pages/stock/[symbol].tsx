@@ -253,10 +253,113 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                             </span>
                         </div>
                     </div>
-				</div>
-				<div>
+                    <div className={styles['company-metrics-container']}>
+                        <div>
+                            <span className={styles['company-metrics-title']}>
+                                Metrics and Ratios
+                            </span>
+                        </div>
+                        <div className={styles['cm-card-container']}>
+                            <div className={styles['company-metrics-row']}>
+                                <div className={styles['cmr-l']}>
 
+                                    <div className={styles['cm-card']}>
+                                        <div className={styles['cm-card-title-row']}>
+                                            <span className={styles['cm-card-title']}>
+                                                Activity Metrics
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-header-row']}>
+                                            <span>
+                                                Metric
+                                            </span>
+                                            <span>
+                                                Value
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Inventory Turnover
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.inventoryTurnoverTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Days of Inventory Outstanding
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.daysOfInventoryOutstandingTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Receivables Turnover
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.receivablesTurnoverTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Days of Sales Outstanding
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.daysOfSalesOutstandingTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Days of Payables Outstanding
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.daysOfPayablesOutstandingTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Payables Turnover
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.payablesTurnoverTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Fixed Asset Turnover
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.fixedAssetTurnoverTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Total Asset Turnover
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.assetTurnoverTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                        <div className={styles['cm-card-metric-row']}>
+                                            <span>
+                                                Operating Cycle
+                                            </span>
+                                            <span>
+                                                {companyData?.ratios?.[0]?.operatingCycleTTM?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div className={styles['cmr-r']}>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 				</div>
+				
 			</div>
 			
 		</div>

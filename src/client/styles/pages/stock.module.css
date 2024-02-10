@@ -80,6 +80,7 @@
 
 .cp-title {
     font-weight: 500;
+    font-size: 20px;
 }
 
 .cp-title-bar {
@@ -133,6 +134,7 @@
 
 .company-description-title {
     font-weight: 500;
+    font-size: 20px;
 }
 
 .company-description-body {
@@ -143,4 +145,67 @@
     font-size: 14px;
     font-weight: 500;
     color: #606060;
+}
+
+.company-metrics-container {
+    margin-top: 2em
+
+}
+
+.company-metrics-title {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.cm-card-container {
+    margin-top: 2em
+
+}
+
+.company-metrics-row {
+
+}
+
+.cmr-l {
+    width: 50%;
+}
+
+.cmr-r {
+    width: 50%;
+}
+
+.cm-card {
+    border: 1px solid #dfdfdf;
+}
+
+.cm-card-title-row {
+    height: 60px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+
+.cm-card-title {
+    font-weight: 500;
+}
+
+.cm-card-header-row {
+    height: 50px;
+    border-bottom: 1px solid #dfdfdf;
+    background-color: #F6F6F6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em
+}
+
+.cm-card-metric-row {
+    height: 40px;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1em
 }
