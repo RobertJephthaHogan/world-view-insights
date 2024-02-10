@@ -127,17 +127,20 @@ export default function NotableQuotes() {
                 </div>
             </div>
             <div className={`${styles['quote-section']} ${styles['mts']}`}>
-                <div 
-                    className={styles['quote-section-title-bar']}
+                <a
+                    className={styles['market-gainers-title-anchor']}
+                    href={`${config.clientUrl}markets/gainers`}
                     onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
                 >
-                    <span className={styles['quote-section-title']}>
-                        Gainers
-                    </span>
-                    <CaretRightOutlined
-                         className={styles['quote-section-caret']}
-                    />
-                </div>
+                    <div className={styles['quote-section-title-bar']}>
+                        <span className={styles['quote-section-title']}>
+                            Gainers
+                        </span>
+                        <CaretRightOutlined
+                            className={styles['quote-section-caret']}
+                        />
+                    </div>
+                </a>
                 <div className={styles['section-quote-container']}>
 
                     {
@@ -160,38 +163,44 @@ export default function NotableQuotes() {
                         quoteData?.gainerQuotes &&
                         quoteData?.gainerQuotes?.map((quote: any, i: number) => {
                             return (
-                                <div 
-                                    className={styles['quote-row']}
-                                    key={`gainer-quote-row-${i}`}
+                                <a
+                                    className={styles['quote-row-anchor']}
+                                    href={`${config.clientUrl}stock/${quote?.symbol}`}
+                                    onClick={(e) => handleNavigationClick(e, `/stock/${quote?.symbol}`)}
                                 >
-                                    <div className={styles['qrl']}>
-                                        <span className={styles['quote-row-symbol']}>
-                                            {quote?.symbol}
-                                        </span>
-                                    </div>
-                                    <div className={styles['qrc']}>
-                                        <div className={
-                                            `${styles['quote-change-chip']}
-                                            ${ quote?.changesPercentage < 0 ? styles['quote-change-down-chip'] : ''}
-                                            ${ quote?.changesPercentage > 0 ? styles['quote-change-up-chip'] : ''}
-                                            `
-                                        }>
-                                            <span className={
-                                                `${styles['quote-change-text']}
-                                                ${ quote?.changesPercentage < 0 ? styles['quote-change-down-text'] : ''}
-                                                ${ quote?.changesPercentage > 0 ? styles['quote-change-up-text'] : ''}
+                                    <div 
+                                        className={styles['quote-row']}
+                                        key={`gainer-quote-row-${i}`}
+                                    >
+                                        <div className={styles['qrl']}>
+                                            <span className={styles['quote-row-symbol']}>
+                                                {quote?.symbol}
+                                            </span>
+                                        </div>
+                                        <div className={styles['qrc']}>
+                                            <div className={
+                                                `${styles['quote-change-chip']}
+                                                ${ quote?.changesPercentage < 0 ? styles['quote-change-down-chip'] : ''}
+                                                ${ quote?.changesPercentage > 0 ? styles['quote-change-up-chip'] : ''}
                                                 `
                                             }>
-                                                {quote?.changesPercentage.toFixed(2)}%
+                                                <span className={
+                                                    `${styles['quote-change-text']}
+                                                    ${ quote?.changesPercentage < 0 ? styles['quote-change-down-text'] : ''}
+                                                    ${ quote?.changesPercentage > 0 ? styles['quote-change-up-text'] : ''}
+                                                    `
+                                                }>
+                                                    {quote?.changesPercentage.toFixed(2)}%
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className={styles['qrr']}>
+                                            <span className={styles['quote-row-quote']}>
+                                                ${quote?.price?.toFixed(2)}
                                             </span>
                                         </div>
                                     </div>
-                                    <div className={styles['qrr']}>
-                                        <span className={styles['quote-row-quote']}>
-                                            ${quote?.price?.toFixed(2)}
-                                        </span>
-                                    </div>
-                                </div>
+                                </a>
                             )
                         })
                     }
@@ -199,17 +208,20 @@ export default function NotableQuotes() {
                 </div>
             </div>
             <div className={`${styles['quote-section']} ${styles['mts']}`}>
-                <div 
-                    className={styles['quote-section-title-bar']}
+                <a
+                    className={styles['market-losers-title-anchor']}
+                    href={`${config.clientUrl}markets/losers`}
                     onClick={(e) => handleNavigationClick(e, '/markets/losers')}
                 >
-                    <span className={styles['quote-section-title']}>
-                        Losers
-                    </span>
-                    <CaretRightOutlined
-                         className={styles['quote-section-caret']}
-                    />
-                </div>
+                    <div className={styles['quote-section-title-bar']} >
+                        <span className={styles['quote-section-title']}>
+                            Losers
+                        </span>
+                        <CaretRightOutlined
+                            className={styles['quote-section-caret']}
+                        />
+                    </div>
+                </a>
                 <div className={styles['section-quote-container']}>
 
                     {
@@ -232,38 +244,44 @@ export default function NotableQuotes() {
                         quoteData?.loserQuotes &&
                         quoteData?.loserQuotes?.map((quote: any, i: number) => {
                             return (
-                                <div 
-                                    className={styles['quote-row']}
-                                    key={`loser-quote-row-${i}`}
+                                <a
+                                    className={styles['quote-row-anchor']}
+                                    href={`${config.clientUrl}stock/${quote?.symbol}`}
+                                    onClick={(e) => handleNavigationClick(e, `/stock/${quote?.symbol}`)}
                                 >
-                                    <div className={styles['qrl']}>
-                                        <span className={styles['quote-row-symbol']}>
-                                            {quote?.symbol}
-                                        </span>
-                                    </div>
-                                    <div className={styles['qrc']}>
-                                        <div className={
-                                            `${styles['quote-change-chip']}
-                                            ${ quote?.changesPercentage < 0 ? styles['quote-change-down-chip'] : ''}
-                                            ${ quote?.changesPercentage > 0 ? styles['quote-change-up-chip'] : ''}
-                                            `
-                                        }>
-                                            <span className={
-                                                `${styles['quote-change-text']}
-                                                ${ quote?.changesPercentage < 0 ? styles['quote-change-down-text'] : ''}
-                                                ${ quote?.changesPercentage > 0 ? styles['quote-change-up-text'] : ''}
+                                    <div 
+                                        className={styles['quote-row']}
+                                        key={`loser-quote-row-${i}`}
+                                    >
+                                        <div className={styles['qrl']}>
+                                            <span className={styles['quote-row-symbol']}>
+                                                {quote?.symbol}
+                                            </span>
+                                        </div>
+                                        <div className={styles['qrc']}>
+                                            <div className={
+                                                `${styles['quote-change-chip']}
+                                                ${ quote?.changesPercentage < 0 ? styles['quote-change-down-chip'] : ''}
+                                                ${ quote?.changesPercentage > 0 ? styles['quote-change-up-chip'] : ''}
                                                 `
                                             }>
-                                                {quote?.changesPercentage.toFixed(2)}%
+                                                <span className={
+                                                    `${styles['quote-change-text']}
+                                                    ${ quote?.changesPercentage < 0 ? styles['quote-change-down-text'] : ''}
+                                                    ${ quote?.changesPercentage > 0 ? styles['quote-change-up-text'] : ''}
+                                                    `
+                                                }>
+                                                    {quote?.changesPercentage.toFixed(2)}%
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className={styles['qrr']}>
+                                            <span className={styles['quote-row-quote']}>
+                                                ${quote?.price?.toFixed(2)}
                                             </span>
                                         </div>
                                     </div>
-                                    <div className={styles['qrr']}>
-                                        <span className={styles['quote-row-quote']}>
-                                            ${quote?.price?.toFixed(2)}
-                                        </span>
-                                    </div>
-                                </div>
+                                </a>
                             )
                         })
                     }
