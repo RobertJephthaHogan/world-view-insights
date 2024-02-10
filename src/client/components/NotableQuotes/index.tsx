@@ -86,11 +86,9 @@ export default function NotableQuotes() {
                                     className={styles['quote-row-anchor']}
                                     href={`${config.clientUrl}stock/${quote?.symbol}`}
                                     onClick={(e) => handleNavigationClick(e, `/stock/${quote?.symbol}`)}
+                                    key={`market-quote-row-${i}`}
                                 >
-                                    <div 
-                                        className={styles['quote-row']}
-                                        key={`market-quote-row-${i}`}
-                                    >
+                                    <div className={styles['quote-row']} >
                                         <div className={styles['qrl']}>
                                             <span className={styles['quote-row-symbol']}>
                                                 {quote?.symbol}
@@ -167,11 +165,9 @@ export default function NotableQuotes() {
                                     className={styles['quote-row-anchor']}
                                     href={`${config.clientUrl}stock/${quote?.symbol}`}
                                     onClick={(e) => handleNavigationClick(e, `/stock/${quote?.symbol}`)}
+                                    key={`gainer-quote-row-${i}`}
                                 >
-                                    <div 
-                                        className={styles['quote-row']}
-                                        key={`gainer-quote-row-${i}`}
-                                    >
+                                    <div className={styles['quote-row']} >
                                         <div className={styles['qrl']}>
                                             <span className={styles['quote-row-symbol']}>
                                                 {quote?.symbol}
@@ -248,11 +244,9 @@ export default function NotableQuotes() {
                                     className={styles['quote-row-anchor']}
                                     href={`${config.clientUrl}stock/${quote?.symbol}`}
                                     onClick={(e) => handleNavigationClick(e, `/stock/${quote?.symbol}`)}
+                                    key={`loser-quote-row-${i}`}
                                 >
-                                    <div 
-                                        className={styles['quote-row']}
-                                        key={`loser-quote-row-${i}`}
-                                    >
+                                    <div className={styles['quote-row']}>
                                         <div className={styles['qrl']}>
                                             <span className={styles['quote-row-symbol']}>
                                                 {quote?.symbol}
