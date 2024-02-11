@@ -227,7 +227,7 @@ class ScheduledServiceService: # as agonizing as this class name is, I'll contin
         
     async def collect_business_news_articles(self):
         print('Collecting Business News Articles...')
-        await NewsArticleCollector().collect_business_news_articles() 
+        await NewsArticleCollector.collect_business_news_articles() 
         
         
     async def prune_old_collections(self):
