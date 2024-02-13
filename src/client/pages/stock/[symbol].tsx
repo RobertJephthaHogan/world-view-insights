@@ -9,9 +9,7 @@ import { stockService } from '@/services/stock.service';
 import styles from '../../styles/pages/stock.module.css'
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-// import { PlusOutlined, StarOutlined } from '@ant-design/icons';
-// import PlusOutlined from '@ant-design/icons/PlusOutlined'
-// import StarOutlined from '@ant-design/icons/StarOutlined'
+import { formatNumber } from '@/utils/formatters';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,12 +29,12 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
 	<TrackingProvider>
 		<Head>
 			<title>
-				Stock Data Page | WorldView Insights
+                {companyData?.profile?.companyName}  ({companyData?.profile?.symbol}) Stock Data
 			</title>
-			{/* <meta
+			<meta
 				name="description"
-				content={companyData?.title}
-			/> */}
+				content={`${companyData?.profile?.companyName}  (${companyData?.profile?.symbol}) Stock Data`}
+			/>
 		</Head>
 		<div className={inter.className}>
 			<Header/>
@@ -61,7 +59,7 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                         </div>
                         <div className={styles['sit-tit-container']}>
                             <span className={styles['sit-tit-text']}>
-                                {companyData?.profile?.companyName}  ({companyData?.profile?.symbol} )
+                                {companyData?.profile?.companyName}  ({companyData?.profile?.symbol})
                             </span>
                         </div>
                         <div className={styles['sit-price-container']}>
@@ -163,7 +161,7 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                                             Avg Volume
                                         </span>
                                         <span className={styles['data-row-value']}>
-                                            {companyData?.profile?.volAvg}
+                                            {formatNumber(companyData?.profile?.volAvg)}
                                         </span>
                                     </div>
                                     <div className={styles['cp-dr-r']}>
@@ -183,7 +181,7 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                                             Market Cap
                                         </span>
                                         <span className={styles['data-row-value']}>
-                                            {companyData?.profile?.mktCap}
+                                            {formatNumber(companyData?.profile?.mktCap)}
                                         </span>
                                     </div>
                                     <div className={styles['cp-dr-r']}>
