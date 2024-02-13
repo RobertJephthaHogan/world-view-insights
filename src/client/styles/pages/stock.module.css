@@ -71,11 +71,18 @@
 }
 
 .company-profile-container {
-   width: 50%; 
+   width: 100%; 
 }
 
 .company-chart-container {
-    width: 50%;
+    width: 100%;
+    /* background-color: #dddddd; */
+    padding-left: 20px
+}
+
+.company-chart-wrapper {
+    width: 100%;
+    height: 100%;
 }
 
 .cp-title {

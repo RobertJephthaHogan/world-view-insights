@@ -11,6 +11,29 @@ import styles from '../../styles/pages/stock.module.css'
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { formatNumber } from '@/utils/formatters';
+import { Line } from 'react-chartjs-2';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+} from 'chart.js';
+// Register the components
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+);
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,10 +44,67 @@ const StarOutlined = dynamic(() => import('@ant-design/icons/StarOutlined').then
 
 
 
+
+const chartOptions = {
+    scales: {
+        x: {
+            display: false, // Hides the x-axis label and scale
+            },
+        // y: {
+        //     display: false, // Hides the y-axis label and scale
+        // }
+    },
+    layout: {
+        padding: 0, // Adjusts padding around the chart. Set to 0 or an object {top, right, bottom, left} for fine control
+    },
+    plugins: {
+        legend: {
+            display: false, // Optionally, hide the legend if you also want to remove that
+        },
+        // tooltip: {
+        //     enabled: false, // Disable tooltips
+        // },
+    },
+    maintainAspectRatio: false // This is optional based on your responsiveness needs
+};
+
+
+
 const StockDataPage: NextPage<any> = ({ companyData }) => {
 
     const [chartData, setChartData] = useState<any>([])
 
+    const defaultLabels = ['1', '2', '3', '4', '5', '6']
+    const defaultChartData = [65, 59, 80, 81, 56, 55, 40]
+    const dateLabels = chartData?.length ? chartData?.map((item: any) => item.date) : []
+    const closingPrices = chartData?.length ? chartData?.map((item: any) => item.close) : []
+    dateLabels.reverse() // correct direction
+    closingPrices.reverse() // correct direction
+
+    const startPrice = closingPrices[0]
+    const endPrice = closingPrices[closingPrices.length - 1]
+
+    const closeIsLower = startPrice > endPrice
+
+    const darkRed = '#F44949'
+    const lightRed = '#F9DCDC'
+    const darkGreen = '#39BE6E'
+    const lightGreen = '#DEF9DC'
+
+    const chartJsData = {
+        labels: dateLabels?.length ? dateLabels : defaultLabels,
+        datasets: [
+            {
+                label: 'Price',
+                backgroundColor: closeIsLower ? lightRed : lightGreen,
+                borderColor: closeIsLower ? darkRed : darkGreen,
+                borderWidth: 1,
+                data: closingPrices?.length ? closingPrices : defaultChartData,
+                fill: true, // Enables area fill
+                pointRadius: 0, // Removes the dots on each datapoint
+            },
+        ],
+    };
 
     useEffect(() => {
 
@@ -251,7 +331,14 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                             </div>
                         </div>
                         <div className={styles['company-chart-container']}>
-                            Chart
+                            <div className={styles['company-chart-wrapper']}>
+                                <Line 
+                                    data={chartJsData} 
+                                    options={chartOptions}
+                                    // height={60}
+                                    // width={60}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className={styles['company-description-container']}>
