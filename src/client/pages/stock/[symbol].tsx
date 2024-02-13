@@ -22,6 +22,8 @@ const StarOutlined = dynamic(() => import('@ant-design/icons/StarOutlined').then
 
 const StockDataPage: NextPage<any> = ({ companyData }) => {
 
+    const [chartTimeframe, setChartTimeframe] = useState<string>('')
+
     console.log('StockDataPage')
     console.log('companyData', companyData)
 
