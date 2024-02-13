@@ -6,6 +6,7 @@ import { TrackingProvider } from '@/providers/TrackingProvider';
 import { GetServerSideProps, NextPage } from 'next';
 import { Inter } from "next/font/google";
 import { stockService } from '@/services/stock.service';
+import { priceHistoryService } from '@/services/priceHistory.service';
 import styles from '../../styles/pages/stock.module.css'
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -22,10 +23,22 @@ const StarOutlined = dynamic(() => import('@ant-design/icons/StarOutlined').then
 
 const StockDataPage: NextPage<any> = ({ companyData }) => {
 
-    const [chartTimeframe, setChartTimeframe] = useState<string>('')
+    const [chartData, setChartData] = useState<any>([])
 
-    console.log('StockDataPage')
-    console.log('companyData', companyData)
+
+    useEffect(() => {
+
+        priceHistoryService.getStockPriceHistory(companyData?.profile?.symbol)
+            .then((resp: any) => {
+                console.log('resp', resp)
+                setChartData(resp)
+            })
+            .catch((error) => {
+                console.log('Error getting stock price history', error)
+            })
+
+    }, [companyData])
+
 
   return (
 	<TrackingProvider>
