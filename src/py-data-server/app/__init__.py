@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import initiate_database
 
 
+from app.services.edgar.routes import router as EdgarRouter
+
 
 
 
@@ -40,3 +42,7 @@ async def startup_event():
 @app.get("/", tags=["Root"])
 async def read_root():
     return {"message": "Hello! Welcome to World View Insights - Python Data Server."}
+
+
+# Add service routers to app router
+app.include_router(EdgarRouter, tags=["Edgar"], prefix="/edgar")
