@@ -7,6 +7,13 @@ services:
       - "8008:8008"
     container_name: wvi_server
 
+  wvi_py_data_server:
+    build:
+      context: ./py-data-server
+    ports:
+      - "8007:8007"
+    container_name: wvi_py_data_server
+
   wvi_client:
     build:
       context: ./client
