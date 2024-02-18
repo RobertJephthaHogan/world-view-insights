@@ -4,7 +4,7 @@ from .config import initiate_database
 
 
 from app.services.edgar.routes import router as EdgarRouter
-
+from app.services.collector.routes import router as CollectorRouter
 
 
 
@@ -46,3 +46,4 @@ async def read_root():
 
 # Add service routers to app router
 app.include_router(EdgarRouter, tags=["Edgar"], prefix="/edgar")
+app.include_router(CollectorRouter, tags=["Collector"], prefix="/collector")
