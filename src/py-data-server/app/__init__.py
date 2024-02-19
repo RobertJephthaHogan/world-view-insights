@@ -4,8 +4,8 @@ from .config import initiate_database
 
 
 from app.services.edgar.routes import router as EdgarRouter
-
-
+from app.services.collector.routes import router as CollectorRouter
+from app.services.form_four.routes import router as FormFourRouter
 
 
 # Create the App
@@ -46,3 +46,5 @@ async def read_root():
 
 # Add service routers to app router
 app.include_router(EdgarRouter, tags=["Edgar"], prefix="/edgar")
+app.include_router(CollectorRouter, tags=["Collector"], prefix="/collector")
+app.include_router(FormFourRouter, tags=["Form Four"], prefix="/form-four")
