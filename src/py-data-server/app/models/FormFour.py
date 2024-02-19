@@ -7,6 +7,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 class FormFour(Document):
     id: Optional[str] = Field(...)
+    cikAccessionId: Optional[str] = Field(...)
     schemaVersion: str = Field(...)
     documentType: str = Field(...)
     periodOfReport: str = Field(...)
@@ -35,6 +36,7 @@ class FormFour(Document):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
+                "cikAccessionId": "123456-123123123123123123123",
                 "schemaVersion": "version",
                 "documentType": "4",
                 "periodOfReport": "period",
@@ -60,6 +62,7 @@ class FormFour(Document):
 
 class UpdateFormFourModel(BaseModel):
     id: Optional[str]
+    cikAccessionId: Optional[str]
     schemaVersion: Optional[str]
     documentType: Optional[str]
     periodOfReport: Optional[str]
@@ -86,6 +89,7 @@ class UpdateFormFourModel(BaseModel):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
+                "cikAccessionId": "123456-123123123123123123123",
                 "schemaVersion": "version",
                 "documentType": "4",
                 "periodOfReport": "period",
