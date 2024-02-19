@@ -18,5 +18,7 @@ class CollectorService:
         
         for filing in recentFilings:
             print('filing', filing)
+            # check if the filing exists in the database, if it exists, do nothing
+            # if it does not exist 
         
         pass
