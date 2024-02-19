@@ -5,6 +5,7 @@ from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic_settings import BaseSettings
 
+from app.models.FormFour import FormFour
 
 
 # Load the environment variables
@@ -39,5 +40,5 @@ async def initiate_database():
     client = AsyncIOMotorClient(Settings().DATABASE_URL)
     await init_beanie(database=client.world_view_insights,
                         document_models=[
-
+                                            FormFour
                                         ])

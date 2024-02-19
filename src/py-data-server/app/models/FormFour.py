@@ -33,7 +33,7 @@ class FormFour(Document):
         name = "FormFour"
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "cikAccessionId": "123456-123123123123123123123",
@@ -86,7 +86,7 @@ class UpdateFormFourModel(BaseModel):
     
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "cikAccessionId": "123456-123123123123123123123",
