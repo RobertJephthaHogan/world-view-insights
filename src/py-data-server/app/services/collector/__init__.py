@@ -1,6 +1,8 @@
 from app.services.edgar import EdgarService
+from app.models.FormFour import FormFour
 from app.database.form_four_operations import FormFourOperations
 from app.services.edgar.form_four_parser import parseFormFour
+from bson import ObjectId
 
 
 
@@ -35,12 +37,15 @@ class CollectorService:
                 newFiling = filing
                 soup, filing = await EdgarService.getFiling(newFiling)
                 formFourDTO = parseFormFour(soup, filing)
-                
-                print('newFiling', newFiling)
-                print('soup', soup)
-                print('filing', filing)
+                formFourDTO['id'] = str(ObjectId())
+
+                # print('newFiling', newFiling)
+                # print('soup', soup)
+                # print('filing', filing)
                 print('formFourDTO', formFourDTO)
                 
+                form_four_obj = FormFour(**formFourDTO)
+                await FormFourOperations.add_form_four(form_four_obj)
                 
                 
                 pass

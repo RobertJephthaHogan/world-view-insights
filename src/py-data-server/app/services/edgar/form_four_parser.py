@@ -187,25 +187,25 @@ def parseFormFour(soup, filing):
     except Exception:
         otherTitle = ""
     try:
-        notSubjectToSection16 = soup.find('notSubjectToSection16').contents
+        notSubjectToSection16 = soup.find('notSubjectToSection16').contents.lower() == 'true'
     except Exception:
-        notSubjectToSection16 = ""
+        notSubjectToSection16 = False
     try:
-        isOfficer = (soup.find('reportingOwner')).find('isOfficer').text
+        isOfficer = (soup.find('reportingOwner')).find('isOfficer').text.lower() == 'true'
     except Exception:
-        isOfficer = ""
+        isOfficer = False
     try:
-        isTenPercentOwner = (soup.find('reportingOwner')).find('isTenPercentOwner').text
+        isTenPercentOwner = (soup.find('reportingOwner')).find('isTenPercentOwner').text.lower() == 'true'
     except Exception:
-        isTenPercentOwner = ""
+        isTenPercentOwner = False
     try:
-        isOther = (soup.find('reportingOwner')).find('isOther').text
+        isOther = (soup.find('reportingOwner')).find('isOther').text.lower() == 'true'
     except Exception:
-        isOther = ""
+        isOther = False
     try:
-        isDirector = (soup.find('reportingOwner')).find('isDirector').text
+        isDirector = (soup.find('reportingOwner')).find('isDirector').text.lower() == 'true'
     except Exception:
-        isDirector = ""
+        isDirector = False
     try:
         rptOwnerCik = (soup.find('reportingOwner')).find('rptOwnerCik').text
     except Exception:
@@ -224,10 +224,10 @@ def parseFormFour(soup, filing):
         issuerMarketCap = "Form Four Parse error -- No Market Cap Available For This Symbol"
 
     formFourDTO = {
-        "_id": filing,
-        "schemaVersion": soup.find('schemaVersion').contents,
-        "documentType": soup.find('documentType').contents,
-        "periodOfReport": soup.find('periodOfReport').contents,
+        "cikAccessionId": filing,
+        "schemaVersion": soup.find('schemaVersion').contents[0],
+        "documentType": soup.find('documentType').contents[0],
+        "periodOfReport": soup.find('periodOfReport').contents[0],
         "notSubjectToSection16": notSubjectToSection16,
         "issuerName": (soup.find('issuer')).find('issuerName').text,
         "issuerCik": (soup.find('issuer')).find('issuerCik').text,
