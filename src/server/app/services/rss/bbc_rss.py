@@ -24,10 +24,10 @@ class BbcRSS:
         for item in news_items:
             feed_item = {
                 'id': str(ObjectId()),
-                "title": item.title,
-                "description": item.description,
-                "link": item.link,
-                "publicationDate": item.published,
+                "title": getattr(item, 'title', ''),
+                "description": getattr(item, 'description', ''),
+                "link": getattr(item, 'link', ''),
+                "publicationDate": getattr(item, 'published', ''),
                 "authors": [],
                 "guid": item.id,
                 "systemId": f"bbc-{item.id}",
