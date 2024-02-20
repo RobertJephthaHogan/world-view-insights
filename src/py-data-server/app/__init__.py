@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .config import initiate_database
 
+from .config import initiate_database
+from app.services.scheduled_service import ScheduledServiceService
 
 from app.services.edgar.routes import router as EdgarRouter
 from app.services.collector.routes import router as CollectorRouter
@@ -36,6 +37,8 @@ async def startup_event():
     print("Starting Py Data Server...")
     print("Initiating Database...")
     await initiate_database()
+    print("Starting Service Scheduler...")
+    ScheduledServiceService().startScheduler()
     
     
 # Root Render
