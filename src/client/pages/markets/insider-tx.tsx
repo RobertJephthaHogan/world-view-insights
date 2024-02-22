@@ -1,17 +1,34 @@
 import { TrackingProvider } from '@/providers/TrackingProvider'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head';
 import Header from '@/components/Header';
 import { Inter } from "next/font/google";
 import styles from '../../styles/pages/markets/insider-tx.module.css'
 import ComingSoon from '@/components/ComingSoon';
-
+import {formFourService} from '@/services/formFour.service';
 
 const inter = Inter({ subsets: ["latin"] });
 
 
 
 export default function InsiderTransactions() {
+
+    const [transactions, setTransactions] = useState<any[]>([])
+
+    useEffect(() => {
+
+        formFourService.getFormFours(50, 1)
+            .then((resp: any) => {
+                console.log('form fours:', resp)
+                setTransactions(resp.data)
+            })
+            .catch((error: any) => {
+                console.error("error getting form fours", error)
+            })
+        
+
+    }, [])
+
     return (
         <TrackingProvider>
             <Head>
@@ -20,7 +37,7 @@ export default function InsiderTransactions() {
                 </title>
                 <meta
                     name="description"
-                    content="Form 4 Filings - Insider Transactions - WorldView Insights"
+                    content="Form 4 Filings - Insider Transactions "
                 />
             </Head>
             <div className={inter.className}>
