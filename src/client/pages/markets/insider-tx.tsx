@@ -26,7 +26,6 @@ export default function InsiderTransactions() {
             .catch((error: any) => {
                 console.error("error getting form fours", error)
             })
-        
 
     }, [])
 
