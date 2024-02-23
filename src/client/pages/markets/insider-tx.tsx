@@ -72,7 +72,9 @@ export default function InsiderTransactions() {
                             </a>
                         </div>
                         <div className={styles['itxc-table-container']}>
-                            <InsiderTxTable/>
+                            <InsiderTxTable
+                                tableData={transactions}
+                            />
                         </div>
                     </div>
                     <div>
