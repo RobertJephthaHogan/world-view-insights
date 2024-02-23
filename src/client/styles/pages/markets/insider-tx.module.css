@@ -12,5 +12,31 @@
 
 .itxc-center {
     display: flex;
+    flex-direction: column;
+}
+
+.itxc-topbar{
+    display: flex;
     justify-content: center;
+    padding: 1em 0;
+}
+
+.itxc-tb-btn-anchor {
+    all: unset
+}
+
+.itxc-tb-btn {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 1px solid #000;
+    margin: 0 5px;
+    padding: 0 5px;
+}
+
+.itxc-tb-btn:hover {
+    cursor: pointer;
+}
+
+.tb-btn-txt {
+
 }

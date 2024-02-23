@@ -6,6 +6,7 @@ import { Inter } from "next/font/google";
 import styles from '../../styles/pages/markets/insider-tx.module.css'
 import ComingSoon from '@/components/ComingSoon';
 import {formFourService} from '@/services/formFour.service';
+import InsiderTxTable from '@/features/insider-rx/InsiderTxTable';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,7 +48,32 @@ export default function InsiderTransactions() {
 
                     </div>
                     <div className={styles['itxc-center']}>
-                        <ComingSoon/>
+                        <div className={styles['itxc-topbar']}>
+                            <a className={styles['itxc-tb-btn-anchor']}>
+                                <div className={styles['itxc-tb-btn']}>
+                                    <span className={styles['tb-btn-txt']}>
+                                        Latest Insider Transactions
+                                    </span>
+                                </div>
+                            </a>
+                            <a className={styles['itxc-tb-btn-anchor']}>
+                                <div className={styles['itxc-tb-btn']}>
+                                    <span className={styles['tb-btn-txt']}>
+                                        Top Insider Transactions This Week
+                                    </span>
+                                </div>
+                            </a>
+                            <a className={styles['itxc-tb-btn-anchor']}>
+                                <div className={styles['itxc-tb-btn']}>
+                                    <span className={styles['tb-btn-txt']}>
+                                        Top 10% Owner Transactions This Week
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
+                        <div className={styles['itxc-table-container']}>
+                            <InsiderTxTable/>
+                        </div>
                     </div>
                     <div>
 
