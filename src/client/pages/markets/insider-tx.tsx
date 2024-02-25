@@ -11,7 +11,6 @@ import InsiderTxTable from '@/features/insider-rx/InsiderTxTable';
 const inter = Inter({ subsets: ["latin"] });
 
 
-
 export default function InsiderTransactions() {
 
     const [transactions, setTransactions] = useState<any[]>([])
