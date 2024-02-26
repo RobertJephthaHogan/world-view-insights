@@ -1,7 +1,7 @@
 from app.services.edgar import EdgarService
 from app.models.FormFour import FormFour
 from app.database.form_four_operations import FormFourOperations
-from app.services.edgar.form_four_parser import parseFormFour
+from app.services.form_four.form_four_parser import parseFormFour
 from bson import ObjectId
 
 
