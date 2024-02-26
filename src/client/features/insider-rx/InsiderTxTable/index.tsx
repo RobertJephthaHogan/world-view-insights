@@ -11,7 +11,6 @@ interface InsiderTxTableProps {
 export default function InsiderTxTable(props: InsiderTxTableProps) {
 
 
-
     const tableData = props.tableData?.map((item: any) => {
         return { ...item, key: item._id };
     }) || []
