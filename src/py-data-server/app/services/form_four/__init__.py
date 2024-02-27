@@ -10,7 +10,6 @@ from app.services.data_fetcher_service import DataFetcherService as DFS
 class FormFourService:
     
     
-    
     async def add_form_four(form_four: FormFour = Body(...)):
         new_form_four = await FormFourOperations.add_form_four(form_four)
 

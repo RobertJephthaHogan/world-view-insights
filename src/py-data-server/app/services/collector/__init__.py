@@ -32,24 +32,13 @@ class CollectorService:
             if not (len(filing_exists)):
                                 
                 newFiling = filing
-                soup, filing = await EdgarService.getFiling(newFiling)
+                soup, filing = await EdgarService.getFiling(newFiling)                
                 
-                formFourDTO = parseFormFour(soup, filing)
-                print('formFourDTO', formFourDTO)
+                form_four_dto = await FormFourService().parse_form_four(soup, filing)
                 
-                print('filing', filing)
+                form_four_dto['id'] = str(ObjectId())
                 
-                new_f4_Dto = await FormFourService().parse_form_four(soup, filing)
-                #print('NEW PARSED DTO CHECK', new_f4_Dto)
-                print(json.dumps(new_f4_Dto, indent=4))
-
-                
-                #formFourDTO['id'] = str(ObjectId())
-                new_f4_Dto['id'] = str(ObjectId())
-                
-                #form_four_obj = FormFour(**formFourDTO)
-                form_four_obj = FormFour(**new_f4_Dto)
-                print('form_four_obj', form_four_obj)
+                form_four_obj = FormFour(**form_four_dto)
                 await FormFourOperations.add_form_four(form_four_obj)
                 
                 
