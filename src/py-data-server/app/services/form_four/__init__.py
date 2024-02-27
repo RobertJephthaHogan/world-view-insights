@@ -49,10 +49,10 @@ class FormFourService:
         derivative_table_dict = {"derivativeTransactions": {}, "derivativeHoldings": {}}
         
         # Function to process individual transactions or holdings
-        def process_entries(entries, entry_type):
+        def process_entries(entries, entry_fields, entry_type):
             entry_dict = {}
             for counter, entry in enumerate(entries, 1):
-                fields = {field: self.extract_form_four_field(entry.find(field)) for field in entry_type}
+                fields = {field: self.extract_form_four_field(entry.find(field)) for field in entry_fields}
                 # Special handling for fields requiring transformation
                 transaction_shares = entry.find('transactionShares')
                 transaction_shares = self.fix_string_zero_value(self.extract_form_four_field(transaction_shares, default="0"))
@@ -61,7 +61,7 @@ class FormFourService:
                 transaction_price_per_share = self.fix_string_zero_value(self.extract_form_four_field(transaction_price_per_share, default="0"))
                 
                 fields['transactionSize'] = float(transaction_shares) * float(transaction_price_per_share)
-                entry_dict[f"{entry_type[0]} {counter}"] = fields
+                entry_dict[f"{entry_type}_{counter}"] = fields
 
             return entry_dict
         
@@ -69,21 +69,37 @@ class FormFourService:
         non_derivative_table = soup.find('nonDerivativeTable')
         if non_derivative_table:
             non_derivative_transactions = non_derivative_table.find_all('nonDerivativeTransaction')
-            non_derivative_table_dict["nonDerivativeTransactions"] = process_entries(non_derivative_transactions, ['securityTitle', 'transactionDate', 'deemedExecutionDate', 'transactionFormType', 'transactionCode', 'equitySwapInvolved', 'transactionShares', 'transactionPricePerShare', 'transactionAcquiredDisposedCode', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership'])
+            non_derivative_table_dict["nonDerivativeTransactions"] = process_entries(
+                                                                non_derivative_transactions, 
+                                                                ['securityTitle', 'transactionDate', 'deemedExecutionDate', 'transactionFormType', 'transactionCode', 'equitySwapInvolved', 'transactionShares', 'transactionPricePerShare', 'transactionAcquiredDisposedCode', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership'],
+                                                                'nonDerivativeTransaction'
+                                                                )
 
             non_derivative_holdings = non_derivative_table.find_all('nonDerivativeHolding')
-            non_derivative_table_dict["nonDerivativeHoldings"] = process_entries(non_derivative_holdings, ['securityTitle', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership', 'natureOfOwnership'])
+            non_derivative_table_dict["nonDerivativeHoldings"] = process_entries(
+                                                                non_derivative_holdings, 
+                                                                ['securityTitle', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership', 'natureOfOwnership'],
+                                                                'nonDerivativeHolding'
+                                                                )
 
         # Processing Derivative Table
         derivative_table = soup.find('derivativeTable')
         if derivative_table:
             derivative_transactions = derivative_table.find_all('derivativeTransaction')
-            derivative_table_dict["derivativeTransactions"] = process_entries(derivative_transactions, ['securityTitle', 'conversionOrExercisePrice', 'transactionDate', 'deemedExecutionDate', 'transactionFormType', 'transactionCode', 'equitySwapsInvolved', 'transactionTimeliness', 'transactionShares', 'transactionPricePerShare', 'transactionAcquiredDisposedCode', 'exerciseDate', 'expirationDate', 'underlyingSecurityTitle', 'underlyingSecurityShares', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership'])
+            derivative_table_dict["derivativeTransactions"] = process_entries(
+                                                            derivative_transactions, 
+                                                            ['securityTitle', 'conversionOrExercisePrice', 'transactionDate', 'deemedExecutionDate', 'transactionFormType', 'transactionCode', 'equitySwapsInvolved', 'transactionTimeliness', 'transactionShares', 'transactionPricePerShare', 'transactionAcquiredDisposedCode', 'exerciseDate', 'expirationDate', 'underlyingSecurityTitle', 'underlyingSecurityShares', 'sharesOwnedFollowingTransaction', 'directOrIndirectOwnership'],
+                                                            'derivativeTransaction'
+                                                            )
 
             derivative_holdings = derivative_table.find_all('derivativeHolding')
-            derivative_table_dict["derivativeHoldings"] = process_entries(derivative_holdings, ['securityTitle', 'conversionOrExercisePrice', 'exerciseDate', 'expirationDate', 'underlyingSecurityTitle', 'underlyingSecurityShares', 'sharesOwnedFollowingTransaction', 'valueOwnedFollowingTransaction', 'directOrIndirectOwnership'])
+            derivative_table_dict["derivativeHoldings"] = process_entries(
+                                                        derivative_holdings, 
+                                                        ['securityTitle', 'conversionOrExercisePrice', 'exerciseDate', 'expirationDate', 'underlyingSecurityTitle', 'underlyingSecurityShares', 'sharesOwnedFollowingTransaction', 'valueOwnedFollowingTransaction', 'directOrIndirectOwnership'],
+                                                        'derivativeHolding'
+                                                        )
 
-        # Additional information
+        # Construct DTO
         form_four_dto = {
             "cikAccessionId": filing,
             "schemaVersion": self.extract_form_four_field(soup.find('schemaVersion'), default=""),
@@ -93,12 +109,18 @@ class FormFourService:
             "issuerName": self.extract_form_four_field(soup.find('issuer').find('issuerName')),
             "issuerCik": self.extract_form_four_field(soup.find('issuer').find('issuerCik')),
             "issuerTradingSymbol": self.extract_form_four_field(soup.find('issuer').find('issuerTradingSymbol')),
-            # Assuming getStockQuote and getMarketCap are async and return a dict with the specified keys
-            "stockPrice": str(DFS.getStockQuote(self.extract_form_four_field(soup.find('issuer').find('issuerTradingSymbol')))),
-            "marketCap": str(DFS.getMarketCap(self.extract_form_four_field(soup.find('issuer').find('issuerTradingSymbol'))))
+            "issuerStockQuote": str(DFS.getStockQuote(self.extract_form_four_field(soup.find('issuer').find('issuerTradingSymbol')))),
+            "issuerMarketCap": str(DFS.getMarketCap(self.extract_form_four_field(soup.find('issuer').find('issuerTradingSymbol')))),
+            "rptOwnerCik" : self.extract_form_four_field(soup.find('rptOwnerCik'), default=""),
+            "rptOwnerName" : self.extract_form_four_field(soup.find('rptOwnerName'), default=""),
+            "isDirector" : self.extract_form_four_field(soup.find('isDirector'), default=""),
+            "isOfficer" : self.extract_form_four_field(soup.find('isOfficer'), default=""),
+            "isTenPercentOwner" : self.extract_form_four_field(soup.find('isTenPercentOwner'), default=""),
+            "isOther" : self.extract_form_four_field(soup.find('isOther'), default=""),
+            "officerTitle" : self.extract_form_four_field(soup.find('officerTitle'), default=""),
+            "otherTitle" : self.extract_form_four_field(soup.find('otherTitle'), default=""),
+            "nonDerivativeTable": non_derivative_table_dict,
+            "derivativeTable": derivative_table_dict,
         }
         
-        # Combine all the dictionaries
-        final_dict = {**form_four_dto, **non_derivative_table_dict, **derivative_table_dict}
-
-        return final_dict
+        return form_four_dto

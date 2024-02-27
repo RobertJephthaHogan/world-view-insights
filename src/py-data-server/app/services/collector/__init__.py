@@ -44,11 +44,12 @@ class CollectorService:
                 print(json.dumps(new_f4_Dto, indent=4))
 
                 
-                formFourDTO['id'] = str(ObjectId())
-                #new_f4_Dto['id'] = str(ObjectId())
+                #formFourDTO['id'] = str(ObjectId())
+                new_f4_Dto['id'] = str(ObjectId())
                 
-                form_four_obj = FormFour(**formFourDTO)
-                # form_four_obj = FormFour(**new_f4_Dto)
+                #form_four_obj = FormFour(**formFourDTO)
+                form_four_obj = FormFour(**new_f4_Dto)
+                print('form_four_obj', form_four_obj)
                 await FormFourOperations.add_form_four(form_four_obj)
                 
                 
