@@ -15,8 +15,8 @@ class FormFour(Document):
     issuerName: str = Field(...)
     issuerCik: str = Field(...)
     issuerTradingSymbol: str = Field(...)
-    issuerStockQuote: str = Field(...)
-    issuerMarketCap: str = Field(...)
+    issuerStockQuote: Union[str, int, float] = Field(...)
+    issuerMarketCap: Union[str, int, float] = Field(...)
     rptOwnerCik: str = Field(...)
     rptOwnerName: str = Field(...)
     isDirector: bool = Field(...)
@@ -70,8 +70,8 @@ class UpdateFormFourModel(BaseModel):
     issuerName: Optional[str]
     issuerCik: Optional[str]
     issuerTradingSymbol: Optional[str]
-    issuerStockQuote: Optional[str]
-    issuerMarketCap: Optional[str]
+    issuerStockQuote: Optional[Union[str, int, float]]
+    issuerMarketCap: Optional[Union[str, int, float]]
     rptOwnerCik: Optional[str]
     rptOwnerName: str = Field(...)
     isDirector: Optional[bool]

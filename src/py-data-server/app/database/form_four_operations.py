@@ -31,6 +31,14 @@ class FormFourOperations:
     async def retrieve_form_four_by_accession_id(accession_id) -> List[FormFour]:
         form_four = await form_four_collection.find(FormFour.cikAccessionId == accession_id).to_list()
         return form_four
+    
+    
+    async def retrieve_form_fours_paginated(page_size: int, page: int) -> List[FormFour]:
+        # Calculate the number of documents to skip
+        skip = (page - 1) * page_size
+        # Query the database with skip and limit for pagination
+        form_fours = await FormFour.find().sort("-_id").skip(skip).limit(page_size).to_list()
+        return form_fours
         
 
     async def delete_form_four(id: PydanticObjectId) -> bool:

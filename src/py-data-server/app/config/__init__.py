@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     USER_AGENT: Optional[str] = os.getenv("USER_AGENT")
 
     # FMP API key:
-    FMP_API_KEY: Optional[str] = os.getenv("FMP_KEY")
+    FMP_KEY: Optional[str] = os.getenv("FMP_KEY")
 
     # JWT
     SECRET_KEY: str
