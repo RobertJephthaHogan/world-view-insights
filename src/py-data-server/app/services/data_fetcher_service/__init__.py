@@ -13,8 +13,12 @@ class DataFetcherService:
         url = f'https://financialmodelingprep.com/api/v3/quote/{ticker}?apikey={Settings().FMP_KEY}'
         r = requests.get(url)
         try:
+            print('r', r.json())
             p = r.json()[0]["price"]
         except IndexError:
+            p = "Not Available" 
+            print(f'Price not available for symbol: {ticker}')
+        except KeyError:
             p = "Not Available" 
             print(f'Price not available for symbol: {ticker}')
         return p 
@@ -26,6 +30,9 @@ class DataFetcherService:
         try:
             mc = r.json()[0]["marketCap"]
         except IndexError as ex:
+            mc = "Not Available" 
+            print(f'MC not available for symbol: {ticker}')
+        except KeyError:
             mc = "Not Available" 
             print(f'MC not available for symbol: {ticker}')
         return mc 
