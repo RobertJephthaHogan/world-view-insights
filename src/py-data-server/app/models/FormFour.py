@@ -25,6 +25,8 @@ class FormFour(Document):
     isOther: bool = Field(...)
     officerTitle: str = Field(...)
     otherTitle: str = Field(...)
+    transactionType: str = Field(...)
+    securityTitle: str = Field(...)
     nonDerivativeTable: Dict[Any, Any] = Field(...)
     derivativeTable: Dict[Any, Any] = Field(...)
     
@@ -54,6 +56,8 @@ class FormFour(Document):
                 "isOther": True,
                 "officerTitle": "title",
                 "otherTitle": "title",
+                "transactionType": "P",
+                "securityTitle": "Common Stock",
                 "nonDerivativeTable": {},
                 "derivativeTable": {},
             }
@@ -80,6 +84,8 @@ class UpdateFormFourModel(BaseModel):
     isOther: Optional[bool]
     officerTitle: Optional[str]
     otherTitle: Optional[str]
+    transactionType: Optional[str]
+    securityTitle: Optional[str]
     nonDerivativeTable: Optional[Dict[Any, Any]]
     derivativeTable: Optional[Dict[Any, Any]]
     
@@ -107,6 +113,8 @@ class UpdateFormFourModel(BaseModel):
                 "isOther": True,
                 "officerTitle": "title",
                 "otherTitle": "title",
+                "transactionType": "P",
+                "securityTitle": "Common Stock",
                 "nonDerivativeTable": {},
                 "derivativeTable": {},
             }

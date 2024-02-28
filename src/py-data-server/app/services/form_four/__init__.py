@@ -52,7 +52,6 @@ class FormFourService:
         transaction_securities = {trans["securityTitle"] for trans in transactions.values()}
         all_codes_match = len(transaction_codes) == 1
         all_securities_match = len(transaction_securities) == 1
-        print('transactions.values()', transactions.values())
         tx_code = list(transactions.values())[0]["transactionCode"] if all_codes_match else False
         security_title = list(transactions.values())[0]["securityTitle"] if all_securities_match else False
         return all_codes_match, tx_code, all_securities_match, security_title
@@ -61,8 +60,8 @@ class FormFourService:
     def determine_transaction_type(self, derivative_table, non_derivative_table):
         """Determines the transaction type of the filing"""
         
-        print('derivative_table', json.dumps(derivative_table, indent=4))
-        print('non_derivative_table', json.dumps(non_derivative_table, indent=4))
+        # print('derivative_table', json.dumps(derivative_table, indent=4))
+        # print('non_derivative_table', json.dumps(non_derivative_table, indent=4))
         
         
         
@@ -78,10 +77,15 @@ class FormFourService:
         
         if codes_match and securities_match and tx_code == 'P':
             # return transaction type and security type
+            print('PURCHASE!!!!')
             return tx_code, security_title 
         
-        
         #TODO: Go through the nonDerivative transactions first and determine if the tx type is a sale
+        
+        if codes_match and securities_match and tx_code == 'S':
+            # return transaction type and security type
+            print('SALE!!!!')
+            return tx_code, security_title 
 
         # TODO: Determine if the tx type is options being exercised
         
@@ -225,11 +229,11 @@ class FormFourService:
         
         # print(json.dumps(form_four_dto, indent=4))
         
-        
+        # Determine the transaction type and security title
         transaction_type, security_title = self.determine_transaction_type(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
         
-        print('transaction_type', transaction_type)
-        print('security_title', security_title)
+        form_four_dto['transactionType'] = transaction_type
+        form_four_dto['securityTitle'] = security_title
         
         
         return form_four_dto
