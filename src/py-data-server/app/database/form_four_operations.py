@@ -39,6 +39,31 @@ class FormFourOperations:
         # Query the database with skip and limit for pagination
         form_fours = await FormFour.find().sort("-_id").skip(skip).limit(page_size).to_list()
         return form_fours
+    
+    
+    async def retrieve_form_fours_by_tx_type_paginated(page_size: int, page: int, transaction_types: List[str]) -> List[FormFour]:
+        """
+        Retrieves a paginated list of FormFour entries filtered by transaction types.
+
+        Args:
+        - page_size (int): The number of FormFour entries to return per page.
+        - page (int): The page number to retrieve.
+        - transaction_types (List[str]): The list of transaction types to filter by. Expected values are typically 'P' or 'S'.
+
+        Returns:
+        - List[FormFour]: A list of FormFour entries that match the given transaction types, paginated according to page_size and page.
+        """
+        # Calculate the number of documents to skip
+        skip = (page - 1) * page_size
+
+        # Query the database with conditions for transactionType, along with skip and limit for pagination
+        form_fours = await FormFour.find({"transactionType": {"$in": transaction_types}})\
+                                .sort("-_id")\
+                                .skip(skip)\
+                                .limit(page_size)\
+                                .to_list()
+
+        return form_fours
         
 
     async def delete_form_four(id: PydanticObjectId) -> bool:

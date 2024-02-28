@@ -33,19 +33,37 @@ class FormFourController:
             }
         
     @router.get("/get_paginated_form_fours/{page}/{page_size}", response_description="Form Fours retrieved", response_model=Response)
-    async def get_scheduled_services(page_size, page):
+    async def get_paginated_form_fours(page_size, page):
         
-        scheduled_services = await FormFourService.get_paginated_form_fours(int(page_size), int(page))
+        form_fours = await FormFourService.get_paginated_form_fours(int(page_size), int(page))
         
-        if scheduled_services:
+        if form_fours:
             return {
                 "status_code": 200,
                 "response_type": "success",
-                "description": "Scheduled Services retrieved successfully",
-                "data": scheduled_services
+                "description": "Form Fours retrieved successfully",
+                "data": form_fours
             }
         return {
             "status_code": 404,
             "response_type": "error",
-            "description": "No Scheduled Services exist",
+            "description": "No Form Fours exist",
+        }
+        
+    @router.get("/get_paginated_purchase_and_sales/{page}/{page_size}", response_description="Form Fours retrieved", response_model=Response)
+    async def get_paginated_purchase_and_sales(page_size, page):
+        
+        form_fours = await FormFourService.get_purchases_and_sales(int(page_size), int(page))
+        
+        if form_fours:
+            return {
+                "status_code": 200,
+                "response_type": "success",
+                "description": "Form Fours retrieved successfully",
+                "data": form_fours
+            }
+        return {
+            "status_code": 404,
+            "response_type": "error",
+            "description": "No Form Fours exist",
         }

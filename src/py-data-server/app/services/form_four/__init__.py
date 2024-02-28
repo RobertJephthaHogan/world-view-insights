@@ -23,6 +23,11 @@ class FormFourService:
         return form_fours
     
     
+    async def get_purchases_and_sales(page_size: int, page: int):
+        form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(page_size, page, ['P', 'S'])
+        return form_fours
+    
+    
     def extract_form_four_field(self, tag, default="", transform=lambda x: x.replace('\n', '')):
         """Helper function to extract text from a BeautifulSoup tag safely."""
         try:
