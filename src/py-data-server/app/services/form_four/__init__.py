@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Body
+import json
 from app.models.FormFour import FormFour, UpdateFormFourModel
 from app.database.form_four_operations import FormFourOperations
 from app.services.data_fetcher_service import DataFetcherService as DFS
@@ -40,6 +41,58 @@ class FormFourService:
         if value == '':
             return "0"
         return value
+    
+    
+    def check_if_tx_codes_match(self, transactions):
+        """
+            Checks if the all of the filings transaction codes and security types are the same,
+            if so it returns all_codes_match, tx_code, all_securities_match, and he security_title
+        """
+        transaction_codes = {trans["transactionCode"] for trans in transactions.values()}
+        transaction_securities = {trans["securityTitle"] for trans in transactions.values()}
+        all_codes_match = len(transaction_codes) == 1
+        all_securities_match = len(transaction_securities) == 1
+        tx_code = list(transactions.values())[0]["transactionCode"] if all_codes_match else False
+        security_title = list(transactions.values())[0]["securityTitle"] if all_securities_match else False
+        return all_codes_match, tx_code, all_securities_match, security_title
+    
+    
+    def determine_transaction_type(self, derivative_table, non_derivative_table):
+        """Determines the transaction type of the filing"""
+        
+        # print('derivative_table', json.dumps(derivative_table, indent=4))
+        # print('non_derivative_table', json.dumps(non_derivative_table, indent=4))
+        
+        
+        
+        #TODO: Go through the nonDerivative transactions first and determine if the tx type is a purchase
+        
+        non_derivative_transactions = non_derivative_table['nonDerivativeTransactions']
+        codes_match, tx_code, securities_match, security_title = self.check_if_tx_codes_match(non_derivative_transactions)
+        print('codes_match', codes_match)
+        print('tx_code', tx_code)
+        print('securities_match', securities_match)
+        print('security_title', security_title)
+        
+        
+        if codes_match and securities_match and tx_code == 'P':
+            # return transaction type and security type
+            print('PURCHASE!!!!')
+            return tx_code, security_title 
+        
+        #TODO: Go through the nonDerivative transactions first and determine if the tx type is a sale
+        
+        if codes_match and securities_match and tx_code == 'S':
+            # return transaction type and security type
+            print('SALE!!!!')
+            return tx_code, security_title 
+
+        # TODO: Determine if the tx type is options being exercised
+        
+        
+        
+        
+        return "undefined", "undefined"
     
     
     async def parse_form_four(self, soup, filing):
@@ -173,5 +226,14 @@ class FormFourService:
             "nonDerivativeTable": non_derivative_table_dict,
             "derivativeTable": derivative_table_dict,
         }
+        
+        # print(json.dumps(form_four_dto, indent=4))
+        
+        # Determine the transaction type and security title
+        transaction_type, security_title = self.determine_transaction_type(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
+        
+        form_four_dto['transactionType'] = transaction_type
+        form_four_dto['securityTitle'] = security_title
+        
         
         return form_four_dto
