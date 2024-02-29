@@ -14,12 +14,28 @@ const apiInstance = axios.create({
 
 export const formFourService = {
     getFormFours,
+    getPurchasesAndSales
 }
 
 async function getFormFours(pageSize, page) {
     return new Promise((resolve, reject) => {
         apiInstance
             .get(`/form-four/get_paginated_form_fours/${page}/${pageSize}`)
+            .then((response) => {
+                const resp = response.data
+                return resolve(resp)
+            })
+            .catch((error) => {
+                console.error(error)
+                reject(error)
+            })
+    })
+}
+
+async function getPurchasesAndSales(pageSize, page) {
+    return new Promise((resolve, reject) => {
+        apiInstance
+            .get(`/form-four/get_paginated_purchase_and_sales/${page}/${pageSize}`)
             .then((response) => {
                 const resp = response.data
                 return resolve(resp)
