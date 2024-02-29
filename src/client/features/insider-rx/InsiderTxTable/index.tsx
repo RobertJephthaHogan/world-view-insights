@@ -22,17 +22,27 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'symbol',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.symbol}
+                    {record?.issuerTradingSymbol}
                 </div>
             ),
         },
         {
-            title: 'Reporting Ownder Name',
+            title: 'Reporting Owner Name',
             dataIndex: 'rptOwnerName',
             key: 'rptOwnerName',
             render: (_: any, record: any) => (
                 <div>
                     {record?.rptOwnerName}
+                </div>
+            ),
+        },
+        {
+            title: 'Transaction type',
+            dataIndex: 'transactionType',
+            key: 'transactionType',
+            render: (_: any, record: any) => (
+                <div>
+                    {record?.transactionType}
                 </div>
             ),
         },
