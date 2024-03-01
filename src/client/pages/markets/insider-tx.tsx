@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import styles from '../../styles/pages/markets/insider-tx.module.css'
 import ComingSoon from '@/components/ComingSoon';
 import {formFourService} from '@/services/formFour.service';
-import InsiderTxTable from '@/features/insider-rx/InsiderTxTable';
+import InsiderTxTable from '@/features/insider-tx/InsiderTxTable';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +17,7 @@ export default function InsiderTransactions() {
 
     useEffect(() => {
 
-        formFourService.getFormFours(50, 1)
+        formFourService.getPurchasesAndSales(200, 1)
             .then((resp: any) => {
                 console.log('form fours:', resp)
                 setTransactions(resp.data)
