@@ -47,7 +47,12 @@ export default function InsiderTransactions() {
                     </div>
                     <div className={styles['itxc-center']}>
                         <div className={styles['itxc-topbar']}>
-                            <a className={styles['itxc-tb-btn-anchor']}>
+                            <div className={styles['itxc-topbar-title-container']}>
+                                <span className={styles['itxc-topbar-title']}>
+                                    Latest Insider Transactions
+                                </span>
+                            </div>
+                            {/* <a className={styles['itxc-tb-btn-anchor']}>
                                 <div className={styles['itxc-tb-btn']}>
                                     <span className={styles['tb-btn-txt']}>
                                         Latest Insider Transactions
@@ -67,7 +72,7 @@ export default function InsiderTransactions() {
                                         Top 10% Owner Transactions This Week
                                     </span>
                                 </div>
-                            </a>
+                            </a> */}
                         </div>
                         <div className={styles['itxc-table-container']}>
                             <InsiderTxTable
