@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Body
 import json
+import re
 from app.models.FormFour import FormFour, UpdateFormFourModel
 from app.database.form_four_operations import FormFourOperations
 from app.services.data_fetcher_service import DataFetcherService as DFS
@@ -267,6 +268,22 @@ class FormFourService:
             "derivativeTable": derivative_table_dict,
         }
         
+        
+        # TODO: Add Link to filing field
+        # Add the filing link to the dto
+        cik = (filing.split('-'))[0]
+        accessionUnformatted = (filing.split('-'))[1]
+
+        # Define a regex pattern to match the <FILENAME> tag and capture its contents
+        # This pattern assumes the tag is followed by any character except for a new line, up to the '.xml'
+        pattern = r'<FILENAME>([^<]+\.xml)'
+        
+        # Find all occurrences of the pattern (There will only be 1)
+        filenames = re.findall(pattern, soup.prettify())
+        file_name = filenames[0]
+        filing_url = f'https://www.sec.gov/Archives/edgar/data/{cik}/{accessionUnformatted}/xslF345X05/{file_name}'
+        form_four_dto['link'] = filing_url
+        
         # print(json.dumps(form_four_dto, indent=4))
         
         # Determine the transaction type and security title
@@ -277,8 +294,6 @@ class FormFourService:
         
         
         # TODO: Add Relationship Field
-        # TODO: Add Link to filing field
-        
         
         
         if transaction_type == "P" or "S":
