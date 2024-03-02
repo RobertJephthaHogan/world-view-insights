@@ -25,6 +25,10 @@ class FormFour(Document):
     isOther: bool = Field(...)
     officerTitle: str = Field(...)
     otherTitle: str = Field(...)
+    link: str = Field(...)
+    totalTransactionShares: Union[str, int, float] = Field(...)
+    transactionPrice: Union[str, int, float] = Field(...)
+    totalTransactionSize: Union[str, int, float] = Field(...)
     transactionType: str = Field(...)
     securityTitle: str = Field(...)
     nonDerivativeTable: Dict[Any, Any] = Field(...)
@@ -56,6 +60,10 @@ class FormFour(Document):
                 "isOther": True,
                 "officerTitle": "title",
                 "otherTitle": "title",
+                "link": "https://example.com",
+                "totalTransactionShares": "",
+                "transactionPrice": "",
+                "totalTransactionSize": "",
                 "transactionType": "P",
                 "securityTitle": "Common Stock",
                 "nonDerivativeTable": {},
@@ -82,6 +90,10 @@ class UpdateFormFourModel(BaseModel):
     isOfficer: Optional[bool]
     isTenPercentOwner: Optional[bool]
     isOther: Optional[bool]
+    link: Optional[str]
+    totalTransactionShares: Optional[Union[str, int, float]]
+    transactionPrice: Optional[Union[str, int, float]]
+    totalTransactionSize: Optional[Union[str, int, float]]
     officerTitle: Optional[str]
     otherTitle: Optional[str]
     transactionType: Optional[str]
@@ -112,6 +124,10 @@ class UpdateFormFourModel(BaseModel):
                 "isTenPercentOwner": True,
                 "isOther": True,
                 "officerTitle": "title",
+                "link": "https://example.com",
+                "totalTransactionShares": "",
+                "transactionPrice": "",
+                "totalTransactionSize": "",
                 "otherTitle": "title",
                 "transactionType": "P",
                 "securityTitle": "Common Stock",

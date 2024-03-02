@@ -134,7 +134,7 @@ class FormFourService:
             total_transaction_size = self.calculate_total_transaction_size(non_derivative_transactions)
             return total_transaction_shares, wavg_price_per_share, total_transaction_size
 
-        return None, None, None
+        return 0, 0, 0
     
     async def parse_form_four(self, soup, filing):
         # Initialize dictionaries for non-derivative and derivative data
@@ -264,12 +264,17 @@ class FormFourService:
             "isOther" : self.extract_form_four_field(soup.find('isOther'), transform=lambda x: x.lower() == 'true', default=False),
             "officerTitle" : self.extract_form_four_field(soup.find('officerTitle'), default=""),
             "otherTitle" : self.extract_form_four_field(soup.find('otherTitle'), default=""),
+            "link": '',
+            "totalTransactionShares": '',
+            "transactionPrice": '',
+            "totalTransactionSize": '',
+            "transactionType": '',
+            "securityTitle": '',
             "nonDerivativeTable": non_derivative_table_dict,
             "derivativeTable": derivative_table_dict,
         }
         
         
-        # TODO: Add Link to filing field
         # Add the filing link to the dto
         cik = (filing.split('-'))[0]
         accessionUnformatted = (filing.split('-'))[1]
