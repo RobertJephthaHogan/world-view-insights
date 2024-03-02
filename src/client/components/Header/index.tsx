@@ -117,7 +117,7 @@ export default function Header() {
                         <div className={styles["dropdown-content"]}>
                             <div className={styles['dropdown-panel']}>
                                 <div>
-                                    <a 
+                                    {/* <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/overview')}
                                         href={`${config.clientUrl}markets/overview`}
                                     >
@@ -128,14 +128,14 @@ export default function Header() {
                                         href={`${config.clientUrl}markets/currencies`}
                                     >
                                         Currencies
-                                    </a>
+                                    </a> */}
                                     <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/stocks')}
                                         href={`${config.clientUrl}markets/stocks`}
                                     >
                                         Stocks
                                     </a>
-                                    <a 
+                                    {/* <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/sectors')}
                                         href={`${config.clientUrl}markets/sectors`}
                                     >
@@ -146,7 +146,7 @@ export default function Header() {
                                         href={`${config.clientUrl}markets/interest-rates`}
                                     >
                                         Interest Rates
-                                    </a>
+                                    </a> */}
                                     <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
                                         href={`${config.clientUrl}markets/insider-tx`}

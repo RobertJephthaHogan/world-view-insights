@@ -18,7 +18,7 @@ class ScheduledService(Document):
         name = "ScheduledService"
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "action": 'send-scheduled-one-time-email',
@@ -43,7 +43,7 @@ class UpdateScheduledServiceModel(BaseModel):
     time: Optional[datetime.datetime]
 
     class Config:
-        schema_extra = {
+        json_schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "action": 'send-scheduled-one-time-email',

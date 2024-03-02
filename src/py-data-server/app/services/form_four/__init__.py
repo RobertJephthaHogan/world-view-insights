@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Body
 import json
+import re
 from app.models.FormFour import FormFour, UpdateFormFourModel
 from app.database.form_four_operations import FormFourOperations
 from app.services.data_fetcher_service import DataFetcherService as DFS
@@ -20,6 +21,11 @@ class FormFourService:
     async def get_paginated_form_fours(page_size: int, page: int):
         form_fours = await FormFourOperations.retrieve_form_fours_paginated(page_size, page)
         
+        return form_fours
+    
+    
+    async def get_purchases_and_sales(page_size: int, page: int):
+        form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(page_size, page, ['P', 'S'])
         return form_fours
     
     
@@ -64,36 +70,71 @@ class FormFourService:
         # print('non_derivative_table', json.dumps(non_derivative_table, indent=4))
         
         
-        
-        #TODO: Go through the nonDerivative transactions first and determine if the tx type is a purchase
-        
+        # Go through the nonDerivative transactions first and determine if the tx type is a purchase or sale
         non_derivative_transactions = non_derivative_table['nonDerivativeTransactions']
         codes_match, tx_code, securities_match, security_title = self.check_if_tx_codes_match(non_derivative_transactions)
-        print('codes_match', codes_match)
-        print('tx_code', tx_code)
-        print('securities_match', securities_match)
-        print('security_title', security_title)
         
         
         if codes_match and securities_match and tx_code == 'P':
-            # return transaction type and security type
-            print('PURCHASE!!!!')
             return tx_code, security_title 
         
-        #TODO: Go through the nonDerivative transactions first and determine if the tx type is a sale
-        
+        # Go through the nonDerivative transactions and determine if the tx type is a sale
         if codes_match and securities_match and tx_code == 'S':
-            # return transaction type and security type
-            print('SALE!!!!')
             return tx_code, security_title 
 
         # TODO: Determine if the tx type is options being exercised
         
         
-        
+        # then Go through the derivative transactions and determine if the tx type is a purchase or sale (handle this later)
         
         return "undefined", "undefined"
     
+    
+    def calculate_weighted_average_price(self, transactions):
+        total_value = 0
+        total_shares = 0
+        
+        for key, transaction in transactions.items():
+            shares = float(transaction['transactionShares'])
+            price_per_share = float(transaction['transactionPricePerShare'])
+            
+            total_value += shares * price_per_share
+            total_shares += shares
+        
+        if total_shares == 0:
+            return 0  # To avoid division by zero
+        weighted_average_price = total_value / total_shares
+        return weighted_average_price
+    
+    
+    def calculate_total_transaction_size(self, transactions):
+        total_transaction_size = 0
+        
+        for key, transaction in transactions.items():
+            shares = float(transaction['transactionShares'])
+            price_per_share = float(transaction['transactionPricePerShare'])
+            
+            total_transaction_size += shares * price_per_share
+        
+        return total_transaction_size
+    
+    
+    def get_aggregate_tx_data(self, derivative_table, non_derivative_table):
+        """determines the avg tx price, tx size, and total shares"""
+        
+        # Go through the nonDerivative transactions first and determine if the tx type is a purchase or sale
+        non_derivative_transactions = non_derivative_table['nonDerivativeTransactions']
+        codes_match, tx_code, securities_match, security_title = self.check_if_tx_codes_match(non_derivative_transactions)
+
+        # if the codes match and the securities match, determine the avg tx price, tx size, and total shares
+        print('non_derivative_transactions', non_derivative_transactions)
+        if codes_match and securities_match:
+            total_transaction_shares = sum(int(transaction["transactionShares"]) for transaction in non_derivative_transactions.values())
+            wavg_price_per_share = self.calculate_weighted_average_price(non_derivative_transactions)
+            total_transaction_size = self.calculate_total_transaction_size(non_derivative_transactions)
+            return total_transaction_shares, wavg_price_per_share, total_transaction_size
+
+        return 0, 0, 0
     
     async def parse_form_four(self, soup, filing):
         # Initialize dictionaries for non-derivative and derivative data
@@ -223,9 +264,30 @@ class FormFourService:
             "isOther" : self.extract_form_four_field(soup.find('isOther'), transform=lambda x: x.lower() == 'true', default=False),
             "officerTitle" : self.extract_form_four_field(soup.find('officerTitle'), default=""),
             "otherTitle" : self.extract_form_four_field(soup.find('otherTitle'), default=""),
+            "link": '',
+            "totalTransactionShares": '',
+            "transactionPrice": '',
+            "totalTransactionSize": '',
+            "transactionType": '',
+            "securityTitle": '',
             "nonDerivativeTable": non_derivative_table_dict,
             "derivativeTable": derivative_table_dict,
         }
+        
+        
+        # Add the filing link to the dto
+        cik = (filing.split('-'))[0]
+        accessionUnformatted = (filing.split('-'))[1]
+
+        # Define a regex pattern to match the <FILENAME> tag and capture its contents
+        # This pattern assumes the tag is followed by any character except for a new line, up to the '.xml'
+        pattern = r'<FILENAME>([^<]+\.xml)'
+        
+        # Find all occurrences of the pattern (There will only be 1)
+        filenames = re.findall(pattern, soup.prettify())
+        file_name = filenames[0]
+        filing_url = f'https://www.sec.gov/Archives/edgar/data/{cik}/{accessionUnformatted}/xslF345X05/{file_name}'
+        form_four_dto['link'] = filing_url
         
         # print(json.dumps(form_four_dto, indent=4))
         
@@ -234,6 +296,25 @@ class FormFourService:
         
         form_four_dto['transactionType'] = transaction_type
         form_four_dto['securityTitle'] = security_title
+        
+        
+        # TODO: Add Relationship Field
+        
+        
+        if transaction_type == "P" or "S":
+            
+            """
+                If transaction is a purchase or sale, 
+            """
+            # TODO: Add total transaction size field
+            # TODO: Add # Shares total
+            # TODO: Add average tx price
+            
+            total_transaction_shares, wavg_price_per_share, total_transaction_size = self.get_aggregate_tx_data(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
+            form_four_dto['totalTransactionShares'] = total_transaction_shares
+            form_four_dto['transactionPrice'] = wavg_price_per_share
+            form_four_dto['totalTransactionSize'] = total_transaction_size
+        
         
         
         return form_four_dto

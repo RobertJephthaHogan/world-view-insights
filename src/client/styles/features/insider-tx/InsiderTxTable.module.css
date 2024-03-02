@@ -1,0 +1,38 @@
+
+
+
+
+
+.tx-date-txt {
+    white-space: nowrap;
+}
+
+.tx-trading-symbol-anchor {
+    
+}
+
+.tx-trading-symbol {
+
+}
+
+.tx-trading-symbol:hover {
+    cursor: pointer;
+}
+
+.transaction-buy {
+    background-color: #e6ffed; /* Green */
+}
+
+.transaction-buy:hover {
+    background-color: #e6ffed; /* Green */
+    cursor: pointer;
+}
+
+.transaction-sell {
+    background-color: #fff1f0; /* Red */
+}
+
+.transaction-sell:hover {
+    background-color: #fff1f0; /* Red */
+    cursor: pointer;
+}
