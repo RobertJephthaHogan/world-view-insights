@@ -96,7 +96,12 @@ class FormFourService:
         
         for key, transaction in transactions.items():
             shares = float(transaction['transactionShares'])
-            price_per_share = float(transaction['transactionPricePerShare'])
+            
+            # Prevent ValueError when transaction['transactionPricePerShare'] is not able to be converted
+            try:
+                price_per_share = float(transaction['transactionPricePerShare'])
+            except ValueError:
+                price_per_share = 0.0
             
             total_value += shares * price_per_share
             total_shares += shares
@@ -112,7 +117,11 @@ class FormFourService:
         
         for key, transaction in transactions.items():
             shares = float(transaction['transactionShares'])
-            price_per_share = float(transaction['transactionPricePerShare'])
+            # Prevent ValueError when transaction['transactionPricePerShare'] is not able to be converted
+            try:
+                price_per_share = float(transaction['transactionPricePerShare'])
+            except ValueError:
+                price_per_share = 0.0
             
             total_transaction_size += shares * price_per_share
         
