@@ -3,16 +3,54 @@
 
 
 
-.tx-date-txt {
-    white-space: nowrap;
-}
+
 
 .tx-trading-symbol-anchor {
     
 }
 
 .tx-trading-symbol {
+    white-space: nowrap;
+}
 
+.rptOwnerName-txt {
+    white-space: nowrap;
+}
+
+.transactionType-txt {
+    white-space: nowrap;
+}
+
+.transactionPrice-txt {
+    white-space: nowrap;
+}
+
+.totalTransactionShares-txt {
+    white-space: nowrap;
+}
+
+.totalTransactionSize-txt {
+    white-space: nowrap;
+}
+
+.isDirector-txt {
+    white-space: nowrap;
+}
+
+.isOfficer-txt {
+    white-space: nowrap;
+}
+
+.isTenPercentOwner-txt {
+    white-space: nowrap;
+}
+
+.isOther-txt {
+    white-space: nowrap;
+}
+
+.tx-date-txt {
+    white-space: nowrap;
 }
 
 .tx-trading-symbol:hover {
@@ -35,4 +73,8 @@
 .transaction-sell:hover {
     background-color: #fff1f0; /* Red */
     cursor: pointer;
+}
+
+.insider-tx-table thead > tr > th {
+    white-space: nowrap !important;
 }

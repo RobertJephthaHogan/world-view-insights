@@ -29,6 +29,24 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
     };
 
 
+    // Create a new Intl.NumberFormat object for US English, displaying as currency
+    const currencyFormatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        // Specify rounding to a maximum of 2 decimal places
+        maximumFractionDigits: 2,
+    });
+    
+
+    // Create a new Intl.NumberFormat object for US English, displaying as currency
+    const usNumberFormatter = new Intl.NumberFormat('en-US', {
+        //style: 'currency',
+        currency: 'USD',
+        // Specify rounding to a maximum of 2 decimal places
+        maximumFractionDigits: 2,
+    });
+
+
     const tableData = props.tableData?.map((item: any) => {
         return { ...item, key: item._id };
     }) || []
@@ -56,7 +74,9 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'rptOwnerName',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.rptOwnerName}
+                    <span className={styles['rptOwnerName-txt']}>
+                        {record?.rptOwnerName}
+                    </span>
                 </div>
             ),
         },
@@ -66,8 +86,46 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'transactionType',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.transactionType == 'P' ? 'Purchase': null}
-                    {record?.transactionType == 'S' ? 'Sale': null}
+                    <span className={styles['transactionType-txt']}>
+                        {record?.transactionType == 'P' ? 'Purchase': null}
+                        {record?.transactionType == 'S' ? 'Sale': null}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            title: 'Tx Price',
+            dataIndex: 'transactionPrice',
+            key: 'transactionPrice',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['transactionPrice-txt']}>
+                        {currencyFormatter.format(record?.transactionPrice)}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            title: '# Shares',
+            dataIndex: 'totalTransactionShares',
+            key: 'totalTransactionShares',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['totalTransactionShares-txt']}>
+                        {usNumberFormatter.format(record?.totalTransactionShares)}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            title: 'Trade Value',
+            dataIndex: 'totalTransactionSize',
+            key: 'totalTransactionSize',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['totalTransactionSize-txt']}>
+                        {currencyFormatter.format(record?.totalTransactionSize)}
+                    </span>
                 </div>
             ),
         },
@@ -77,7 +135,9 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'isDirector',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.isDirector ? 'true' : 'false'}
+                    <span className={styles['isDirector-txt']}>
+                        {record?.isDirector ? 'true' : 'false'}
+                    </span>
                 </div>
             ),
         },
@@ -87,7 +147,9 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'isOfficer',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.isOfficer ? 'true' : 'false'}
+                    <span className={styles['isOfficer-txt']}>
+                        {record?.isOfficer ? 'true' : 'false'}
+                    </span>
                 </div>
             ),
         },
@@ -97,7 +159,9 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'isTenPercentOwner',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.isTenPercentOwner ? 'true' : 'false'}
+                    <span className={styles['isTenPercentOwner-txt']}>
+                        {record?.isTenPercentOwner ? 'true' : 'false'}
+                    </span>
                 </div>
             ),
         },
@@ -107,7 +171,9 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             key: 'isOther',
             render: (_: any, record: any) => (
                 <div>
-                    {record?.isOther ? 'true' : 'false'}
+                    <span className={styles['isOther-txt']}>
+                        {record?.isOther ? 'true' : 'false'}
+                    </span>
                 </div>
             ),
         },
@@ -116,11 +182,15 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             dataIndex: 'periodOfReport',
             key: 'periodOfReport',
             render: (_: any, record: any) => (
-                <div>
+                <a
+                    className={styles['date-link-anchor']}
+                    href={record?.link?.replace(/\s+/g, '')}
+                    target="_blank"
+                >
                     <span className={styles['tx-date-txt']}>
                         {record?.periodOfReport}
                     </span>
-                </div>
+                </a>
             ),
         },
 
@@ -132,6 +202,7 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
                 dataSource={tableData} 
                 columns={columns} 
                 size='small'
+                className={styles['insider-tx-table']}
                 rowClassName={(record) => {
                     switch (record.transactionType) {
                         case 'P':
