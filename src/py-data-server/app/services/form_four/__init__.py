@@ -300,7 +300,6 @@ class FormFourService:
         
         # TODO: Add Relationship Field
         
-        
         if transaction_type == "P" or "S":
             
             """
