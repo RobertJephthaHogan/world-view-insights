@@ -2,8 +2,9 @@ import { TrackingProvider } from '@/providers/TrackingProvider'
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head';
 import Header from '@/components/Header';
+import TickerBanner from '@/components/TickerBanner';
 import { Inter } from "next/font/google";
-import styles from '../../styles/pages/markets/insider-tx.module.css'
+import styles from '../../../styles/pages/markets/insider-tx.module.css'
 import ComingSoon from '@/components/ComingSoon';
 import {formFourService} from '@/services/formFour.service';
 import InsiderTxTable from '@/features/insider-tx/InsiderTxTable';
@@ -41,6 +42,7 @@ export default function InsiderTransactions() {
             </Head>
             <div className={inter.className}>
                 <Header/>
+                <TickerBanner/>
                 <div className={styles['insider-tx-component']}>
                     <div>
 
