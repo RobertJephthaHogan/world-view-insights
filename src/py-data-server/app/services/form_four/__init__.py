@@ -138,7 +138,7 @@ class FormFourService:
         # if the codes match and the securities match, determine the avg tx price, tx size, and total shares
         print('non_derivative_transactions', non_derivative_transactions)
         if codes_match and securities_match:
-            total_transaction_shares = sum(int(transaction["transactionShares"]) for transaction in non_derivative_transactions.values())
+            total_transaction_shares = sum(float(transaction["transactionShares"]) for transaction in non_derivative_transactions.values())
             wavg_price_per_share = self.calculate_weighted_average_price(non_derivative_transactions)
             total_transaction_size = self.calculate_total_transaction_size(non_derivative_transactions)
             return total_transaction_shares, wavg_price_per_share, total_transaction_size

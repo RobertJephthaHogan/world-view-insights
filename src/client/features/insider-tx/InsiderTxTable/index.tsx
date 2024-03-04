@@ -182,11 +182,15 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             dataIndex: 'periodOfReport',
             key: 'periodOfReport',
             render: (_: any, record: any) => (
-                <div>
+                <a
+                    className={styles['date-link-anchor']}
+                    href={record?.link?.replace(/\s+/g, '')}
+                    target="_blank"
+                >
                     <span className={styles['tx-date-txt']}>
                         {record?.periodOfReport}
                     </span>
-                </div>
+                </a>
             ),
         },
 
