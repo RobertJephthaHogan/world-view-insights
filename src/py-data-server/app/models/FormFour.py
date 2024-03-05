@@ -25,10 +25,12 @@ class FormFour(Document):
     isOther: bool = Field(...)
     officerTitle: str = Field(...)
     otherTitle: str = Field(...)
+    relationship: str = Field(...)
     link: str = Field(...)
     totalTransactionShares: Union[str, int, float] = Field(...)
     transactionPrice: Union[str, int, float] = Field(...)
     totalTransactionSize: Union[str, int, float] = Field(...)
+    sharesRemainingAfterTransaction: Union[str, int, float] = Field(...)
     transactionType: str = Field(...)
     securityTitle: str = Field(...)
     nonDerivativeTable: Dict[Any, Any] = Field(...)
@@ -60,10 +62,12 @@ class FormFour(Document):
                 "isOther": True,
                 "officerTitle": "title",
                 "otherTitle": "title",
+                "relationship": "CEO",
                 "link": "https://example.com",
                 "totalTransactionShares": "",
                 "transactionPrice": "",
                 "totalTransactionSize": "",
+                "sharesRemainingAfterTransaction": "",
                 "transactionType": "P",
                 "securityTitle": "Common Stock",
                 "nonDerivativeTable": {},
@@ -94,8 +98,10 @@ class UpdateFormFourModel(BaseModel):
     totalTransactionShares: Optional[Union[str, int, float]]
     transactionPrice: Optional[Union[str, int, float]]
     totalTransactionSize: Optional[Union[str, int, float]]
+    sharesRemainingAfterTransaction: Optional[Union[str, int, float]]
     officerTitle: Optional[str]
     otherTitle: Optional[str]
+    relationship: Optional[str]
     transactionType: Optional[str]
     securityTitle: Optional[str]
     nonDerivativeTable: Optional[Dict[Any, Any]]
@@ -128,7 +134,9 @@ class UpdateFormFourModel(BaseModel):
                 "totalTransactionShares": "",
                 "transactionPrice": "",
                 "totalTransactionSize": "",
+                "sharesRemainingAfterTransaction": "",
                 "otherTitle": "title",
+                "relationship": "CEO",
                 "transactionType": "P",
                 "securityTitle": "Common Stock",
                 "nonDerivativeTable": {},

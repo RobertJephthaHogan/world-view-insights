@@ -112,6 +112,17 @@ class FormFourService:
         return weighted_average_price
     
     
+    def sum_shares_by_security_title(self, holdings, security_title):
+        total_shares = 0
+        # Iterate through each of the holdings (nonDerivativeHoldings here may change later)
+        for holding in holdings['nonDerivativeHoldings'].values():
+            # Check if the securityTitle matches the one provided
+            if holding['securityTitle'] == security_title:
+                # Add the sharesOwnedFollowingTransaction to the total, converting to int
+                total_shares += int(holding['sharesOwnedFollowingTransaction'])
+        return total_shares
+    
+    
     def calculate_total_transaction_size(self, transactions):
         total_transaction_size = 0
         
@@ -136,7 +147,6 @@ class FormFourService:
         codes_match, tx_code, securities_match, security_title = self.check_if_tx_codes_match(non_derivative_transactions)
 
         # if the codes match and the securities match, determine the avg tx price, tx size, and total shares
-        print('non_derivative_transactions', non_derivative_transactions)
         if codes_match and securities_match:
             total_transaction_shares = sum(float(transaction["transactionShares"]) for transaction in non_derivative_transactions.values())
             wavg_price_per_share = self.calculate_weighted_average_price(non_derivative_transactions)
@@ -146,6 +156,9 @@ class FormFourService:
         return 0, 0, 0
     
     async def parse_form_four(self, soup, filing):
+        
+        # TODO: HANDLE CONVERSION + BUY/SELL TRANSACTIONS
+        
         # Initialize dictionaries for non-derivative and derivative data
         non_derivative_table_dict = {"nonDerivativeTransactions": {}, "nonDerivativeHoldings": {}}
         derivative_table_dict = {"derivativeTransactions": {}, "derivativeHoldings": {}}
@@ -273,10 +286,12 @@ class FormFourService:
             "isOther" : self.extract_form_four_field(soup.find('isOther'), transform=lambda x: x.lower() == 'true', default=False),
             "officerTitle" : self.extract_form_four_field(soup.find('officerTitle'), default=""),
             "otherTitle" : self.extract_form_four_field(soup.find('otherTitle'), default=""),
+            "relationship": "",
             "link": '',
             "totalTransactionShares": '',
             "transactionPrice": '',
             "totalTransactionSize": '',
+            "sharesRemainingAfterTransaction": '',
             "transactionType": '',
             "securityTitle": '',
             "nonDerivativeTable": non_derivative_table_dict,
@@ -295,10 +310,19 @@ class FormFourService:
         # Find all occurrences of the pattern (There will only be 1)
         filenames = re.findall(pattern, soup.prettify())
         file_name = filenames[0]
+        # Use regular expression to replace all white spaces and new lines
+        file_name = re.sub(r'\s+', '', file_name)
         filing_url = f'https://www.sec.gov/Archives/edgar/data/{cik}/{accessionUnformatted}/xslF345X05/{file_name}'
         form_four_dto['link'] = filing_url
         
-        # print(json.dumps(form_four_dto, indent=4))
+        
+        # Add Filers Relationship Title to the dto
+        officerTitle = self.extract_form_four_field(soup.find('officerTitle'), default="")
+        otherTitle = self.extract_form_four_field(soup.find('otherTitle'), default="")
+        relationshipTitle = officerTitle if officerTitle else otherTitle
+        form_four_dto['relationship'] = relationshipTitle
+        
+
         
         # Determine the transaction type and security title
         transaction_type, security_title = self.determine_transaction_type(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
@@ -306,17 +330,17 @@ class FormFourService:
         form_four_dto['transactionType'] = transaction_type
         form_four_dto['securityTitle'] = security_title
         
+        # Add number of shares remaining after the transaction
+        shares_remaining = self.sum_shares_by_security_title(non_derivative_table_dict, security_title)
+        form_four_dto['sharesRemainingAfterTransaction'] = shares_remaining
         
         # TODO: Add Relationship Field
         
         if transaction_type == "P" or "S":
             
             """
-                If transaction is a purchase or sale, 
+                If transaction is a purchase or sale, Add total transaction size field, # Shares total, average tx price
             """
-            # TODO: Add total transaction size field
-            # TODO: Add # Shares total
-            # TODO: Add average tx price
             
             total_transaction_shares, wavg_price_per_share, total_transaction_size = self.get_aggregate_tx_data(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
             form_four_dto['totalTransactionShares'] = total_transaction_shares
@@ -324,5 +348,8 @@ class FormFourService:
             form_four_dto['totalTransactionSize'] = total_transaction_size
         
         
+        
+        print(json.dumps(form_four_dto, indent=4))
+
         
         return form_four_dto
