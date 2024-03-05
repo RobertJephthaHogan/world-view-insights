@@ -81,6 +81,18 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             ),
         },
         {
+            title: 'Relationship',
+            dataIndex: 'relationship',
+            key: 'relationship',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['relationship-txt']}>
+                        {record?.relationship}
+                    </span>
+                </div>
+            ),
+        },
+        {
             title: 'Transaction type',
             dataIndex: 'transactionType',
             key: 'transactionType',

@@ -155,6 +155,33 @@ class FormFourService:
 
         return 0, 0, 0
     
+    
+    def determine_filer_relationship(
+        self,
+        officer_title,
+        other_title,
+        is_officer,
+        is_director,
+        is_ten_pct_owner,
+        is_other
+    ):
+        if officer_title:
+            return officer_title
+        elif other_title:
+            return other_title
+        elif is_director:
+            return "Director"
+        elif is_ten_pct_owner:
+            return "10% Owner"
+        elif is_officer:
+            return "Officer" 
+        elif is_other:
+            return "See Remarks"
+        
+        return "See Remarks" 
+        
+        
+    
     async def parse_form_four(self, soup, filing):
         
         # TODO: HANDLE CONVERSION + BUY/SELL TRANSACTIONS
@@ -315,12 +342,23 @@ class FormFourService:
         filing_url = f'https://www.sec.gov/Archives/edgar/data/{cik}/{accessionUnformatted}/xslF345X05/{file_name}'
         form_four_dto['link'] = filing_url
         
-        
-        # TODO: Fix Relationship field
         # Add Filers Relationship Title to the dto 
-        officerTitle = self.extract_form_four_field(soup.find('officerTitle'), default="")
-        otherTitle = self.extract_form_four_field(soup.find('otherTitle'), default="")
-        relationshipTitle = officerTitle if officerTitle else otherTitle
+        officer_title = self.extract_form_four_field(soup.find('officerTitle'), default="")
+        other_title = self.extract_form_four_field(soup.find('otherTitle'), default="")
+        is_director = form_four_dto['isDirector']
+        is_officer = form_four_dto['isOfficer']
+        is_ten_pct_owner = form_four_dto['isTenPercentOwner']
+        is_other = form_four_dto['isOther']
+        
+        relationshipTitle = self.determine_filer_relationship(
+            officer_title,
+            other_title,
+            is_director,
+            is_officer,
+            is_ten_pct_owner,
+            is_other
+        )
+                        
         form_four_dto['relationship'] = relationshipTitle
         
 
@@ -334,7 +372,7 @@ class FormFourService:
         # Add number of shares remaining after the transaction
         # TODO: Fix shares remaining after the transaction field
         shares_remaining = self.sum_shares_by_security_title(non_derivative_table_dict, security_title)
-        print('shares_remaining', shares_remaining)
+        #print('shares_remaining', shares_remaining)
         form_four_dto['sharesRemainingAfterTransaction'] = shares_remaining
         
        
@@ -351,7 +389,7 @@ class FormFourService:
         
         
         
-        print(json.dumps(form_four_dto, indent=4))
+        #print(json.dumps(form_four_dto, indent=4))
 
         
         return form_four_dto
