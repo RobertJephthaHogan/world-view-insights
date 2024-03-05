@@ -119,7 +119,7 @@ class FormFourService:
             # Check if the securityTitle matches the one provided
             if holding['securityTitle'] == security_title:
                 # Add the sharesOwnedFollowingTransaction to the total, converting to int
-                total_shares += int(holding['sharesOwnedFollowingTransaction'])
+                total_shares += float(holding['sharesOwnedFollowingTransaction'])
         return total_shares
     
     
@@ -316,7 +316,8 @@ class FormFourService:
         form_four_dto['link'] = filing_url
         
         
-        # Add Filers Relationship Title to the dto
+        # TODO: Fix Relationship field
+        # Add Filers Relationship Title to the dto 
         officerTitle = self.extract_form_four_field(soup.find('officerTitle'), default="")
         otherTitle = self.extract_form_four_field(soup.find('otherTitle'), default="")
         relationshipTitle = officerTitle if officerTitle else otherTitle
@@ -331,11 +332,12 @@ class FormFourService:
         form_four_dto['securityTitle'] = security_title
         
         # Add number of shares remaining after the transaction
+        # TODO: Fix shares remaining after the transaction field
         shares_remaining = self.sum_shares_by_security_title(non_derivative_table_dict, security_title)
+        print('shares_remaining', shares_remaining)
         form_four_dto['sharesRemainingAfterTransaction'] = shares_remaining
         
-        # TODO: Add Relationship Field
-        
+       
         if transaction_type == "P" or "S":
             
             """
