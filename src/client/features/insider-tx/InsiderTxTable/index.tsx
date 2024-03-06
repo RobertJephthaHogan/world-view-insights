@@ -109,13 +109,24 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             title: 'Shares Remaining',
             dataIndex: 'sharesRemainingAfterTransaction',
             key: 'sharesRemainingAfterTransaction',
-            render: (_: any, record: any) => (
+            render: (_: any, record: any) => {
+
+                const convertToNumberIfPossible = (input: any) => {
+                    const number = Number(input);
+                    return isNaN(number) ? input : number;
+                };
+                
+                return (
                 <div>
                     <span className={styles['relationship-txt']}>
-                        {record?.sharesRemainingAfterTransaction}
+                        {
+                            typeof convertToNumberIfPossible(record?.sharesRemainingAfterTransaction) === 'number' 
+                            ? usNumberFormatter.format(record?.sharesRemainingAfterTransaction)
+                            : record.sharesRemainingAfterTransaction 
+                        }
                     </span>
                 </div>
-            ),
+            )},
         },
         {
             title: 'Tx Price',

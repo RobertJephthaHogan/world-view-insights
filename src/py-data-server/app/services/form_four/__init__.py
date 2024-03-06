@@ -406,7 +406,7 @@ class FormFourService:
         
         
         
-        # print(json.dumps(form_four_dto, indent=4))
+        print(json.dumps(form_four_dto, indent=4))
 
         
         return form_four_dto
