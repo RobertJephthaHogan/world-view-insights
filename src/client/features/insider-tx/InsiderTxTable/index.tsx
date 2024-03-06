@@ -106,6 +106,18 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             ),
         },
         {
+            title: 'Shares Remaining',
+            dataIndex: 'sharesRemainingAfterTransaction',
+            key: 'sharesRemainingAfterTransaction',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['relationship-txt']}>
+                        {record?.sharesRemainingAfterTransaction}
+                    </span>
+                </div>
+            ),
+        },
+        {
             title: 'Tx Price',
             dataIndex: 'transactionPrice',
             key: 'transactionPrice',
