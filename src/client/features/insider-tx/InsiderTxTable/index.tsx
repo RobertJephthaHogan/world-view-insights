@@ -81,6 +81,18 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             ),
         },
         {
+            title: 'Relationship',
+            dataIndex: 'relationship',
+            key: 'relationship',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['relationship-txt']}>
+                        {record?.relationship}
+                    </span>
+                </div>
+            ),
+        },
+        {
             title: 'Transaction type',
             dataIndex: 'transactionType',
             key: 'transactionType',
@@ -89,6 +101,18 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
                     <span className={styles['transactionType-txt']}>
                         {record?.transactionType == 'P' ? 'Purchase': null}
                         {record?.transactionType == 'S' ? 'Sale': null}
+                    </span>
+                </div>
+            ),
+        },
+        {
+            title: 'Shares Remaining',
+            dataIndex: 'sharesRemainingAfterTransaction',
+            key: 'sharesRemainingAfterTransaction',
+            render: (_: any, record: any) => (
+                <div>
+                    <span className={styles['relationship-txt']}>
+                        {record?.sharesRemainingAfterTransaction}
                     </span>
                 </div>
             ),

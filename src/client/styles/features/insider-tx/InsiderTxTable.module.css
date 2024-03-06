@@ -17,6 +17,10 @@
     white-space: nowrap;
 }
 
+.relationship-txt {
+    white-space: nowrap;
+}
+
 .transactionType-txt {
     white-space: nowrap;
 }

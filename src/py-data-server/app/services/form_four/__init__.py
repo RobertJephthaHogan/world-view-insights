@@ -112,15 +112,32 @@ class FormFourService:
         return weighted_average_price
     
     
-    def sum_shares_by_security_title(self, holdings, security_title):
+    def determine_shares_owned_following_transaction(self, non_derivative_table, security_title):
+        total_shares_remaining = "See Filing"
+        
+        non_derivative_transactions = non_derivative_table['nonDerivativeHoldings']
+        if non_derivative_transactions:
+            last_key = next(reversed(non_derivative_transactions))
+            total_shares_remaining = non_derivative_transactions[last_key]['sharesOwnedFollowingTransaction']
+            
+        if total_shares_remaining != "See Filing":
+            return total_shares_remaining
+        
+        # TODO: Determine shares owned following transaction for uniform buy
+        # TODO: Determine shares owned following transaction for uniform sell
+        
+        # Iterate through each of the non_derivative_table holdings (nonDerivativeHoldings here may change later)
         total_shares = 0
-        # Iterate through each of the holdings (nonDerivativeHoldings here may change later)
-        for holding in holdings['nonDerivativeHoldings'].values():
+        for holding in non_derivative_table['nonDerivativeHoldings'].values():
             # Check if the securityTitle matches the one provided
             if holding['securityTitle'] == security_title:
-                # Add the sharesOwnedFollowingTransaction to the total, converting to int
-                total_shares += int(holding['sharesOwnedFollowingTransaction'])
-        return total_shares
+                # Add the sharesOwnedFollowingTransaction to the total
+                total_shares += float(holding['sharesOwnedFollowingTransaction'])
+        
+        if total_shares != 0:
+            return total_shares # if there are remaining shares here, return them
+        
+        return total_shares_remaining # Return 'See Filing'
     
     
     def calculate_total_transaction_size(self, transactions):
@@ -154,6 +171,33 @@ class FormFourService:
             return total_transaction_shares, wavg_price_per_share, total_transaction_size
 
         return 0, 0, 0
+    
+    
+    def determine_filer_relationship(
+        self,
+        officer_title,
+        other_title,
+        is_officer,
+        is_director,
+        is_ten_pct_owner,
+        is_other
+    ):
+        if officer_title:
+            return officer_title
+        elif other_title:
+            return other_title
+        elif is_director:
+            return "Director"
+        elif is_ten_pct_owner:
+            return "10% Owner"
+        elif is_officer:
+            return "Officer" 
+        elif is_other:
+            return "See Remarks"
+        
+        return "See Remarks" 
+        
+        
     
     async def parse_form_four(self, soup, filing):
         
@@ -315,14 +359,24 @@ class FormFourService:
         filing_url = f'https://www.sec.gov/Archives/edgar/data/{cik}/{accessionUnformatted}/xslF345X05/{file_name}'
         form_four_dto['link'] = filing_url
         
+        # Add Filers Relationship Title to the dto 
+        officer_title = self.extract_form_four_field(soup.find('officerTitle'), default="")
+        other_title = self.extract_form_four_field(soup.find('otherTitle'), default="")
+        is_director = form_four_dto['isDirector']
+        is_officer = form_four_dto['isOfficer']
+        is_ten_pct_owner = form_four_dto['isTenPercentOwner']
+        is_other = form_four_dto['isOther']
         
-        # Add Filers Relationship Title to the dto
-        officerTitle = self.extract_form_four_field(soup.find('officerTitle'), default="")
-        otherTitle = self.extract_form_four_field(soup.find('otherTitle'), default="")
-        relationshipTitle = officerTitle if officerTitle else otherTitle
+        relationshipTitle = self.determine_filer_relationship(
+            officer_title,
+            other_title,
+            is_director,
+            is_officer,
+            is_ten_pct_owner,
+            is_other
+        )
+          
         form_four_dto['relationship'] = relationshipTitle
-        
-
         
         # Determine the transaction type and security title
         transaction_type, security_title = self.determine_transaction_type(form_four_dto['derivativeTable'], form_four_dto['nonDerivativeTable'])
@@ -330,12 +384,15 @@ class FormFourService:
         form_four_dto['transactionType'] = transaction_type
         form_four_dto['securityTitle'] = security_title
         
+        
+        
         # Add number of shares remaining after the transaction
-        shares_remaining = self.sum_shares_by_security_title(non_derivative_table_dict, security_title)
+        # TODO: Fix shares remaining after the transaction field
+        shares_remaining = self.determine_shares_owned_following_transaction(non_derivative_table_dict, security_title)
+        #print('shares_remaining', shares_remaining)
         form_four_dto['sharesRemainingAfterTransaction'] = shares_remaining
         
-        # TODO: Add Relationship Field
-        
+       
         if transaction_type == "P" or "S":
             
             """
@@ -349,7 +406,7 @@ class FormFourService:
         
         
         
-        print(json.dumps(form_four_dto, indent=4))
+        # print(json.dumps(form_four_dto, indent=4))
 
         
         return form_four_dto
