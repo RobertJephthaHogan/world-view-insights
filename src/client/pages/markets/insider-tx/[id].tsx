@@ -95,8 +95,163 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                 </div>
                             </div>
                         </div>
+                        <div  className={styles['itxfc-filing-details-container']}>
+                            <div className={styles['itxfc-fd']}>
+                                <div className={styles['itxfc-fd-tb']}>
+                                    <span className={styles['itxfc-fd-tb-title']}>
+                                        Filing Details
+                                    </span>
+                                </div>
+                                <div className={styles['itxfc-fd-info-grid-container']}>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Period of Report
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            03-12-2024
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Is Director?
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            False
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Reporting Owner Name
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            ROSS TERRY D
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Is Officer?
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            False
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Reporting Owner CIK
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            0026541235
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Is 10% Owner?
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            False
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Relationship
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            GROUP PRESIDENT, PR
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Is Other?
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            False
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Issuer Name
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            Enovis CORP
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Officer Title
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            GROUP PRESIDENT, PR
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Issuer Trading Symbol
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            ENOV
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Other Title
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            ----
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Issuer CIK
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            0001420800
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Shares Remaining After Transaction
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            23,0213,123
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Total Transaction Shares
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            500
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Accession Number
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            000095017024026786
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Transaction Price
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            $59.81
+                                        </span>
+                                    </div>
+                                    <div className={styles['itxfc-grid-item']}>
+                                        <span className={styles['itxfc-grid-item-label']}>
+                                            Total Transaction Size
+                                        </span>
+                                        <span className={styles['itxfc-grid-item-value']}>
+                                            $26,495.83
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                        Filing Page Content
+                        
 
                     </div>
                     <div>

@@ -25,7 +25,7 @@ const isExternalLink = (url: string) => {
 const CustomLink = ({ href, children, ...props }: any) => {
     const router = useRouter();
   
-    const handleClick = (e) => {
+    const handleClick = (e: any) => {
       // Prevent default if internal link to utilize Next.js navigation
       if (!isExternalLink(href)) {
         e.preventDefault();
