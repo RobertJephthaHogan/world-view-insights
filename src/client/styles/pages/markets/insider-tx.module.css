@@ -65,5 +65,34 @@
 
 .itxfc-topbar {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+.itxfc-topbar-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.itxfc-tc-left {
+    display: flex;
+    align-items: center;
+}
+
+.itxfc-tc-left-logo {
+    height: 100px;
+    width: 100px;
+}
+
+.itxfc-tc-left-logo svg{
+    height: 60px;
+    width: 60px;
+}
+
+.itxfc-tc-left-title {
+    font-size: 20px;
+    font-weight: 600;
 }

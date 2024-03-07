@@ -7,6 +7,8 @@ import { Inter } from "next/font/google";
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import styles from '../../../styles/pages/markets/insider-tx.module.css'
+import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
+import { formFourService } from '@/services/formFour.service';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,6 +20,22 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params!;
 
     console.log('filing ID', id)
+
+
+    try {
+        const resp = await formFourService.getFormFourById(id)
+	
+		return {
+			props: { filingData: resp?.data }, 
+		};
+	} catch (error) {
+		console.error('Error Getting Form Four By ID', error);
+	
+		return {
+			props: { filingData: null }
+		};
+	}
+
     
     // ToDo: Get the filing data from the backend
     const filingData = {}
@@ -27,8 +45,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     };
 }
   
-const PostPage: NextPage<any> = ({ post }: any) => {
 
+const FormFourPage: NextPage<any> = ({ filingData }: any) => {
+
+    console.log('filingData', filingData)
 
     return (
         <TrackingProvider>
@@ -50,8 +70,25 @@ const PostPage: NextPage<any> = ({ post }: any) => {
                     </div>
                     <div className={styles['itxfc-center']}>
                         <div className={styles['itxfc-topbar']}>
-                            Filing Page Top Bar
+                            <div className={styles['itxfc-topbar-content']}>
+                                <div className={styles['itxfc-tc-left']}>
+                                    <div>
+                                        <SnippetsOutlined  className={styles['itxfc-tc-left-logo']}/>
+                                    </div>
+                                    <div>
+                                        <span className={styles['itxfc-tc-left-title']}>
+                                            SEC - Form 4 - {filingData?._id}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div>
+                                    Right
+                                </div>
+                            </div>
                         </div>
+
+                        Filing Page Content
+
                     </div>
                     <div>
 
@@ -63,4 +100,4 @@ const PostPage: NextPage<any> = ({ post }: any) => {
     );
 };
   
-export default PostPage;
+export default FormFourPage;

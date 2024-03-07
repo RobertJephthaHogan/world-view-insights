@@ -247,7 +247,7 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
         return {
             onClick: (event: any) => {
                 console.log(`Row clicked!`, record, rowIndex);
-                handleTableNavigationClick(event, `/markets/insider-tx/${record?.id}`)
+                handleTableNavigationClick(event, `/markets/insider-tx/${record?._id}`)
                 // You can do something with the clicked row here.
             },
             // You can also add other event handlers here if needed, e.g., onDoubleClick, onContextMenu, etc.
