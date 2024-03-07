@@ -10,6 +10,8 @@ import styles from '../../../styles/pages/markets/insider-tx.module.css'
 import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
 import LinkOutlined from '@ant-design/icons/LinkOutlined'
 import { formFourService } from '@/services/formFour.service';
+import Link from 'next/link';
+import CustomLink from '@/components/CustomLink';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -78,14 +80,18 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                     </div>
                                 </div>
                                 <div className={styles['itxfc-tc-right']}>
-                                    <Button className={styles['itxfc-tcr-btn']}>
-                                        <LinkOutlined/>
-                                        See Company Info
-                                    </Button>
-                                    <Button>
-                                        <LinkOutlined/>
-                                        Go To SEC Filing
-                                    </Button>
+                                    <CustomLink href={`/stock/${filingData?.issuerTradingSymbol}`}>
+                                        <Button className={styles['itxfc-tcr-btn']}>
+                                            <LinkOutlined/>
+                                            See Company Info
+                                        </Button>
+                                    </CustomLink>
+                                    <CustomLink href={filingData?.link}>
+                                        <Button>
+                                            <LinkOutlined/>
+                                            Go To SEC Filing
+                                        </Button>
+                                    </CustomLink>
                                 </div>
                             </div>
                         </div>
