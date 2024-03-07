@@ -6,6 +6,7 @@ import { GetServerSideProps, NextPage } from 'next';
 import { Inter } from "next/font/google";
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import styles from '../../../styles/pages/markets/insider-tx.module.css'
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -27,6 +28,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
   
 const PostPage: NextPage<any> = ({ post }: any) => {
+
+
     return (
         <TrackingProvider>
             <Head>
@@ -40,7 +43,21 @@ const PostPage: NextPage<any> = ({ post }: any) => {
             </Head>
             <div className={inter.className}>
                 <Header/>
-                Form Four Filing Page
+                <TickerBanner/>
+                <div className={styles['insider-tx-filing-component']}>
+                    <div>
+
+                    </div>
+                    <div className={styles['itxfc-center']}>
+                        <div className={styles['itxfc-topbar']}>
+                            Filing Page Top Bar
+                        </div>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                
             </div>
         </TrackingProvider>
     );

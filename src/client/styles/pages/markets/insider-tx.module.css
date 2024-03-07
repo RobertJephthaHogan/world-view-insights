@@ -48,3 +48,22 @@
 .tb-btn-txt {
 
 }
+
+
+
+.insider-tx-filing-component {
+    display: grid;
+    grid-template-columns: 2fr 6fr 2fr;
+    column-gap: 1.5em;
+    padding: 0 2em;;
+}
+
+.itxfc-center {
+    display: flex;
+    flex-direction: column;
+}
+
+.itxfc-topbar {
+    display: flex;
+    flex-direction: column;
+}
