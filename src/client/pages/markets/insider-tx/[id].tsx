@@ -8,11 +8,13 @@ import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import styles from '../../../styles/pages/markets/insider-tx.module.css'
 import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
+import LinkOutlined from '@ant-design/icons/LinkOutlined'
 import { formFourService } from '@/services/formFour.service';
 
 
 const inter = Inter({ subsets: ["latin"] });
 
+const Button = dynamic(() => import('antd').then(mod => mod.Button));
 
 
 
@@ -37,12 +39,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	}
 
     
-    // ToDo: Get the filing data from the backend
-    const filingData = {}
-  
-    return {
-        props: { filingData }, // Filing data passed to the page component as props
-    };
 }
   
 
@@ -81,8 +77,15 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                         </span>
                                     </div>
                                 </div>
-                                <div>
-                                    Right
+                                <div className={styles['itxfc-tc-right']}>
+                                    <Button className={styles['itxfc-tcr-btn']}>
+                                        <LinkOutlined/>
+                                        See Company Info
+                                    </Button>
+                                    <Button>
+                                        <LinkOutlined/>
+                                        Go To SEC Filing
+                                    </Button>
                                 </div>
                             </div>
                         </div>

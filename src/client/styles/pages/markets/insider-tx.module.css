@@ -82,6 +82,11 @@
     align-items: center;
 }
 
+.itxfc-tc-right {
+    display: flex;
+    align-items: center;
+}
+
 .itxfc-tc-left-logo {
     height: 100px;
     width: 100px;
@@ -95,4 +100,8 @@
 .itxfc-tc-left-title {
     font-size: 20px;
     font-weight: 600;
+}
+
+.itxfc-tcr-btn {
+    margin-right: 0.5em
 }
