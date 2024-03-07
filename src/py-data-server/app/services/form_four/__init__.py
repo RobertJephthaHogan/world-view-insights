@@ -14,19 +14,22 @@ class FormFourService:
     
     async def add_form_four(form_four: FormFour = Body(...)):
         new_form_four = await FormFourOperations.add_form_four(form_four)
-
         return new_form_four
 
         
     async def get_paginated_form_fours(page_size: int, page: int):
         form_fours = await FormFourOperations.retrieve_form_fours_paginated(page_size, page)
-        
         return form_fours
     
     
     async def get_purchases_and_sales(page_size: int, page: int):
         form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(page_size, page, ['P', 'S'])
         return form_fours
+    
+    
+    async def get_form_four_by_id(id):
+        form_four = await FormFourOperations.retrieve_form_four(id)
+        return form_four
     
     
     def extract_form_four_field(self, tag, default="", transform=lambda x: x.replace('\n', '')):
@@ -406,7 +409,7 @@ class FormFourService:
         
         
         
-        # print(json.dumps(form_four_dto, indent=4))
+        print(json.dumps(form_four_dto, indent=4))
 
         
         return form_four_dto

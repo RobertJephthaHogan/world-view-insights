@@ -45,7 +45,7 @@ class FormFourController:
                 "data": form_fours
             }
         return {
-            "status_code": 404,
+            "status_code": 500,
             "response_type": "error",
             "description": "No Form Fours exist",
         }
@@ -63,7 +63,23 @@ class FormFourController:
                 "data": form_fours
             }
         return {
-            "status_code": 404,
+            "status_code": 500,
             "response_type": "error",
             "description": "No Form Fours exist",
+        }
+                
+    @router.get("/{id}", response_description="Form Four data retrieved", response_model=Response)
+    async def get_form_four_by_id(id: PydanticObjectId):
+        form_four = await FormFourService.get_form_four_by_id(id)
+        if form_four:
+            return {
+                "status_code": 200,
+                "response_type": "success",
+                "description": "Form Four data retrieved successfully",
+                "data": form_four
+            }
+        return {
+            "status_code": 500,
+            "response_type": "error",
+            "description": "Form Four doesn't exist",
         }

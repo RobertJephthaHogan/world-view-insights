@@ -29,6 +29,18 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
     };
 
 
+    const handleTableNavigationClick = (event: any, path: string) => {
+        // Prevent the default href link behavior 
+        // event.preventDefault();
+    
+        // TODO: Implement tracking logic here
+    
+        // Navigate to the URL after tracking
+        //window.location.href = url;
+        router.push(path);
+    };
+
+
     // Create a new Intl.NumberFormat object for US English, displaying as currency
     const currencyFormatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -109,13 +121,24 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
             title: 'Shares Remaining',
             dataIndex: 'sharesRemainingAfterTransaction',
             key: 'sharesRemainingAfterTransaction',
-            render: (_: any, record: any) => (
+            render: (_: any, record: any) => {
+
+                const convertToNumberIfPossible = (input: any) => {
+                    const number = Number(input);
+                    return isNaN(number) ? input : number;
+                };
+                
+                return (
                 <div>
                     <span className={styles['relationship-txt']}>
-                        {record?.sharesRemainingAfterTransaction}
+                        {
+                            typeof convertToNumberIfPossible(record?.sharesRemainingAfterTransaction) === 'number' 
+                            ? usNumberFormatter.format(record?.sharesRemainingAfterTransaction)
+                            : record.sharesRemainingAfterTransaction 
+                        }
                     </span>
                 </div>
-            ),
+            )},
         },
         {
             title: 'Tx Price',
@@ -220,6 +243,19 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
 
     ];
 
+    const onRowClick = (record: any, rowIndex: any) => {
+        return {
+            onClick: (event: any) => {
+                console.log(`Row clicked!`, record, rowIndex);
+                handleTableNavigationClick(event, `/markets/insider-tx/${record?._id}`)
+                // You can do something with the clicked row here.
+            },
+            // You can also add other event handlers here if needed, e.g., onDoubleClick, onContextMenu, etc.
+        };
+    };
+
+        
+
     return (
         <div>
             <Table 
@@ -238,6 +274,7 @@ export default function InsiderTxTable(props: InsiderTxTableProps) {
                             return '';
                     }
                 }}
+                onRow={(record, rowIndex) => onRowClick(record, rowIndex)}
             />
         </div>
     )
