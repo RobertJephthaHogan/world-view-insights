@@ -129,12 +129,6 @@ export default function Header() {
                                     >
                                         Currencies
                                     </a> */}
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/stocks')}
-                                        href={`${config.clientUrl}markets/stocks`}
-                                    >
-                                        Stocks
-                                    </a>
                                     {/* <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/sectors')}
                                         href={`${config.clientUrl}markets/sectors`}
@@ -154,21 +148,6 @@ export default function Header() {
                                         Insider Tx Viewer
                                     </a>
                                     <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/updates')}
-                                        href={`${config.clientUrl}markets/updates`}
-                                    >
-                                        Market Updates
-                                    </a>
-                                    {/* <a href="#markets1">Mortgage Data</a> */}
-                                </div>
-                                <div className={styles['dp-col']}>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
-                                        href={`${config.clientUrl}markets/leaders`}
-                                    >
-                                        Market Leaders
-                                    </a>
-                                    <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
                                         href={`${config.clientUrl}markets/gainers`}
                                     >
@@ -180,6 +159,27 @@ export default function Header() {
                                     >
                                         Losers
                                     </a>
+                                    {/* <a 
+                                        onClick={(e) => handleNavigationClick(e, '/markets/updates')}
+                                        href={`${config.clientUrl}markets/updates`}
+                                    >
+                                        Market Updates
+                                    </a> */}
+                                    {/* <a 
+                                        onClick={(e) => handleNavigationClick(e, '/markets/stocks')}
+                                        href={`${config.clientUrl}markets/stocks`}
+                                    >
+                                        Stocks
+                                    </a> */}
+                                    {/* <a href="#markets1">Mortgage Data</a> */}
+                                </div>
+                                <div className={styles['dp-col']}>
+                                    <a 
+                                        onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
+                                        href={`${config.clientUrl}markets/leaders`}
+                                    >
+                                        Market Leaders
+                                    </a>
                                     <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/active')}
                                         href={`${config.clientUrl}markets/active`}
@@ -190,7 +190,7 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles['hc-menu-item']}>
+                    {/* <div className={styles['hc-menu-item']}>
                         <span>
                             Tools
                         </span>
@@ -198,7 +198,7 @@ export default function Header() {
                         <div className={styles["dropdown-content"]}>
                             <a href="#markets1">Calculators</a>
                         </div>
-                    </div>
+                    </div> */}
                     {/* <div className='hc-menu-item'>
                         <span>
                             Mortgages

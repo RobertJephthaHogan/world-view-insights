@@ -162,3 +162,11 @@
     font-size: 14px;
     font-weight: 700;
 }
+
+.non-derivative-table-container {
+    margin-top: 2em;
+}
+
+.derivative-table-container {
+    margin-top: 2em;
+}

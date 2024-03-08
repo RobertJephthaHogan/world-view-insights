@@ -250,7 +250,12 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                 </div>
                             </div>
                         </div>
-
+                        <div className={styles['non-derivative-table-container']}>
+                            Non Derivative Table Container
+                        </div>
+                        <div className={styles['derivative-table-container']}>
+                            Derivative Table Container
+                        </div>
                         
 
                     </div>
