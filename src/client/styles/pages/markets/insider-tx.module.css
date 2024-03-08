@@ -170,3 +170,30 @@
 .derivative-table-container {
     margin-top: 2em;
 }
+
+.itxfc-ndt-tb {
+    background-color: #F6F6F6;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.itxfc-ndt-tb-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.itxfc-dt-tb {
+    background-color: #F6F6F6;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.itxfc-dt-tb-title {
+    font-size: 20px;
+    font-weight: 500;
+}

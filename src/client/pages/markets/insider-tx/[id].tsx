@@ -12,6 +12,7 @@ import LinkOutlined from '@ant-design/icons/LinkOutlined'
 import { formFourService } from '@/services/formFour.service';
 import Link from 'next/link';
 import CustomLink from '@/components/CustomLink';
+import NonDerivativeTable from '@/features/insider-tx/NonDerivativeTable';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -108,7 +109,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Period of Report
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            03-12-2024
+                                            {filingData?.periodOfReport}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -116,7 +117,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Is Director?
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            False
+                                            {filingData?.isDirector ? 'True': 'False'}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -124,7 +125,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Reporting Owner Name
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            ROSS TERRY D
+                                            {filingData?.rptOwnerName}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -132,7 +133,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Is Officer?
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            False
+                                            {filingData?.isOfficer ? 'True': 'False'}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -140,7 +141,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Reporting Owner CIK
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            0026541235
+                                            {filingData?.rptOwnerCik}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -148,7 +149,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Is 10% Owner?
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            False
+                                            {filingData?.isTenPercentOwner ? 'True': 'False'}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -156,7 +157,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Relationship
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            GROUP PRESIDENT, PR
+                                            {filingData?.relationship}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -164,7 +165,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Is Other?
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            False
+                                            {filingData?.isOther ? 'True': 'False'}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -172,7 +173,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Issuer Name
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            Enovis CORP
+                                            {filingData?.issuerName}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -180,7 +181,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Officer Title
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            GROUP PRESIDENT, PR
+                                            {filingData?.officerTitle}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -188,7 +189,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Issuer Trading Symbol
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            ENOV
+                                            {filingData?.issuerTradingSymbol}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -196,7 +197,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Other Title
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            ----
+                                            {filingData?.otherTitle}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -204,7 +205,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Issuer CIK
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            0001420800
+                                            {filingData?.issuerCik}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -212,7 +213,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Shares Remaining After Transaction
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            23,0213,123
+                                            {filingData?.sharesRemainingAfterTransaction}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -220,7 +221,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Total Transaction Shares
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            500
+                                            {filingData?.totalTransactionShares}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -236,7 +237,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Transaction Price
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            $59.81
+                                            {filingData?.transactionPrice}
                                         </span>
                                     </div>
                                     <div className={styles['itxfc-grid-item']}>
@@ -244,17 +245,30 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                             Total Transaction Size
                                         </span>
                                         <span className={styles['itxfc-grid-item-value']}>
-                                            $26,495.83
+                                            {filingData?.totalTransactionSize}
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div className={styles['non-derivative-table-container']}>
-                            Non Derivative Table Container
+                            <div className={styles['itxfc-ndt-tb']}>
+                                <span className={styles['itxfc-ndt-tb-title']}>
+                                    Table I - Non-Derivative Securities Acquired, Disposed of, or Beneficially Owned
+                                </span>
+                            </div>
+                            <div className={styles['itxfc-ndt-table']}>
+                                <NonDerivativeTable/>
+                                
+                            </div>
                         </div>
                         <div className={styles['derivative-table-container']}>
-                            Derivative Table Container
+                            <div className={styles['itxfc-dt-tb']}>
+                                <span className={styles['itxfc-dt-tb-title']}>
+                                    Table II - Derivative Securities Acquired, Disposed of, or Beneficially Owned
+                                    {/* (e.g., puts, calls, warrants, options, convertible securities) */}
+                                </span>
+                            </div>
                         </div>
                         
 
