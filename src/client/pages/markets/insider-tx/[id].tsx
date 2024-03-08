@@ -13,6 +13,7 @@ import { formFourService } from '@/services/formFour.service';
 import Link from 'next/link';
 import CustomLink from '@/components/CustomLink';
 import NonDerivativeTable from '@/features/insider-tx/NonDerivativeTable';
+import DerivativeTable from '@/features/insider-tx/DerivativeTable';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -259,7 +260,6 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                             </div>
                             <div className={styles['itxfc-ndt-table']}>
                                 <NonDerivativeTable/>
-                                
                             </div>
                         </div>
                         <div className={styles['derivative-table-container']}>
@@ -268,6 +268,9 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                     Table II - Derivative Securities Acquired, Disposed of, or Beneficially Owned
                                     {/* (e.g., puts, calls, warrants, options, convertible securities) */}
                                 </span>
+                            </div>
+                            <div className={styles['itxfc-dt-table']}>
+                                <DerivativeTable/>
                             </div>
                         </div>
                         
