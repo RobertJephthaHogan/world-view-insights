@@ -141,11 +141,23 @@ export default function Header() {
                                     >
                                         Interest Rates
                                     </a> */}
-                                    <a 
+                                    {/* <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
                                         href={`${config.clientUrl}markets/insider-tx`}
                                     >
                                         Insider Tx Viewer
+                                    </a> */}
+                                    <a 
+                                        onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
+                                        href={`${config.clientUrl}markets/leaders`}
+                                    >
+                                        Market Leaders
+                                    </a>
+                                    <a 
+                                        onClick={(e) => handleNavigationClick(e, '/markets/active')}
+                                        href={`${config.clientUrl}markets/active`}
+                                    >
+                                        Most Active
                                     </a>
                                     <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
@@ -173,7 +185,7 @@ export default function Header() {
                                     </a> */}
                                     {/* <a href="#markets1">Mortgage Data</a> */}
                                 </div>
-                                <div className={styles['dp-col']}>
+                                {/* <div className={styles['dp-col']}>
                                     <a 
                                         onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
                                         href={`${config.clientUrl}markets/leaders`}
@@ -186,19 +198,24 @@ export default function Header() {
                                     >
                                         Most Active
                                     </a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
-                    {/* <div className={styles['hc-menu-item']}>
+                    <div className={styles['hc-menu-item']}>
                         <span>
                             Tools
                         </span>
                         <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
-                            <a href="#markets1">Calculators</a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
+                                href={`${config.clientUrl}markets/insider-tx`}
+                            >
+                                Insider Tx Viewer
+                            </a>
                         </div>
-                    </div> */}
+                    </div>
                     {/* <div className='hc-menu-item'>
                         <span>
                             Mortgages
