@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/features/insider-tx/DerivativeTable.module.css'
 
 
+interface DerivativeTableProps {
+    derivativeTable?: any
+}
 
-export default function DerivativeTable() {
+
+export default function DerivativeTable(props: DerivativeTableProps) {
+
+    const [tableData, setTableData] = useState<any>([])
+
+    
+    useEffect(() => {
+        // format transactions into table entries
+        const entries = Object.values(props.derivativeTable?.derivativeTransactions)
+        setTableData(entries)
+    }, [props.derivativeTable])
 
     // TODO: Ensure Overflow scroll works properly
 
@@ -63,7 +76,64 @@ export default function DerivativeTable() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                {
+                    tableData?.map((filing: any, i: number) => {
+
+                        return (
+                            <tr key={i}>
+                                <td>
+                                    {filing?.securityTitle}
+                                </td>
+                                <td>
+                                    {filing?.conversionOrExercisePrice}
+                                </td>
+                                <td>
+                                    {filing?.transactionDate}
+                                </td>
+                                <td>
+                                    {filing?.deemedExecutionDate}
+                                </td>
+                                <td>
+                                    {filing?.transactionCode}
+                                </td>
+                                <td> 
+                                    {/* TODO: Determine V */}
+                                </td>
+                                <td> 
+                                    {/* TODO: Determine (A) column */}
+                                </td>
+                                <td> 
+                                    {/* TODO: Determine (D) column */}
+                                </td>
+                                <td>
+                                    {filing?.exerciseDate}
+                                </td>
+                                <td>
+                                    {filing?.expirationDate}
+                                </td>
+                                <td>
+                                    {filing?.underlyingSecurityTitle}
+                                </td>
+                                <td>
+                                    {filing?.underlyingSecurityShares}
+                                </td>
+                                <td>
+                                    {filing?.transactionPricePerShare}
+                                </td>
+                                <td>
+                                    {filing?.sharesOwnedFollowingTransaction}
+                                </td>
+                                <td>
+                                    {filing?.directOrIndirectOwnership}
+                                </td>
+                                <td>
+                                    {/* TODO: ADD NATURE OF BENEFICIAL OWNERSHIP */}
+                                </td>
+                            </tr>
+                        )
+                    })
+                }
+                {/* <tr>
                     <td>Title</td>
                     <td></td>
                     <td></td>
@@ -98,7 +168,7 @@ export default function DerivativeTable() {
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
+                </tr> */}
             </tbody>
         </table>
     )

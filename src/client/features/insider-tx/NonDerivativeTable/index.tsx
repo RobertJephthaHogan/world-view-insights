@@ -3,7 +3,7 @@ import styles from '../../../styles/features/insider-tx/NonDerivativeTable.modul
 
 
 interface NonDerivativeTableProps {
-    nonDerivativeTransactions?: any
+    nonDerivativeTable?: any
 }
 
 export default function NonDerivativeTable(props: NonDerivativeTableProps){ 
@@ -12,11 +12,10 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
 
 
     useEffect(() => {
-
-        //TODO format transactions into table entries
-        const entries = Object.values(props.nonDerivativeTransactions?.nonDerivativeTransactions)
+        // format transactions into table entries
+        const entries = Object.values(props.nonDerivativeTable?.nonDerivativeTransactions)
         setTableData(entries)
-    }, [props.nonDerivativeTransactions])
+    }, [props.nonDerivativeTable])
 
     return (
         <table 
@@ -24,7 +23,7 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
             className={styles['non-derivative-table']}
         >
             <thead>
-                <tr>
+                <tr key={'ndt-top-header'}>
                     <th rowSpan="2">
                         1. Title of Security (Instr. 3)
                     </th>
@@ -50,7 +49,7 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
                         7. Nature of Indirect Beneficial Ownership (Instr. 4)
                     </th>
                 </tr>
-                <tr>
+                <tr key={'ndt-bottom-header'}>
                     <th>Code</th>
                     <th>V</th>
                     <th>Amount</th>
@@ -60,10 +59,10 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
             </thead>
             <tbody>
                 {
-                    tableData?.map((filing: any) => {
+                    tableData?.map((filing: any, i: number) => {
 
                         return (
-                            <tr>
+                            <tr key={i}>
                                 <td>
                                     {filing?.securityTitle}
                                 </td>
@@ -76,7 +75,9 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
                                 <td>
                                     {filing?.transactionCode}
                                 </td>
-                                <td></td>
+                                <td>
+                                    {/* TODO: Determine V */}
+                                </td>
                                 <td>
                                     {filing?.transactionShares}
                                 </td>

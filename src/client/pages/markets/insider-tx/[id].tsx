@@ -25,7 +25,6 @@ const Button = dynamic(() => import('antd').then(mod => mod.Button));
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const { id } = context.params!;
 
-    console.log('filing ID', id)
 
 
     try {
@@ -48,7 +47,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const FormFourPage: NextPage<any> = ({ filingData }: any) => {
 
-    console.log('filingData', filingData)
 
     return (
         <TrackingProvider>
@@ -260,7 +258,7 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                             </div>
                             <div className={styles['itxfc-ndt-table']}>
                                 <NonDerivativeTable
-                                    nonDerivativeTransactions={filingData?.nonDerivativeTable}
+                                    nonDerivativeTable={filingData?.nonDerivativeTable}
                                 />
                             </div>
                         </div>
@@ -272,7 +270,9 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                 </span>
                             </div>
                             <div className={styles['itxfc-dt-table']}>
-                                <DerivativeTable/>
+                                <DerivativeTable
+                                    derivativeTable={filingData?.derivativeTable}
+                                />
                             </div>
                         </div>
                         
