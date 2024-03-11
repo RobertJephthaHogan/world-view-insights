@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../../../styles/features/insider-tx/DerivativeTable.module.css'
 
 
 
@@ -7,7 +8,10 @@ export default function DerivativeTable() {
     // TODO: Ensure Overflow scroll works properly
 
     return (
-        <table border="1">
+        <table 
+            border="1"
+            className={styles['derivative-table']}
+        >
             <thead>
                 <tr>
                     <th rowSpan="2">

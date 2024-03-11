@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from '../../../styles/features/insider-tx/NonDerivativeTable.module.css'
 
 
 
@@ -6,7 +7,10 @@ import React from 'react'
 export default function NonDerivativeTable(){ 
 
     return (
-        <table border="1">
+        <table 
+            border="1"
+            className={styles['non-derivative-table']}
+        >
             <thead>
                 <tr>
                     <th rowSpan="2">
