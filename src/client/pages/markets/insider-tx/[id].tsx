@@ -259,7 +259,9 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                 </span>
                             </div>
                             <div className={styles['itxfc-ndt-table']}>
-                                <NonDerivativeTable/>
+                                <NonDerivativeTable
+                                    nonDerivativeTransactions={filingData?.nonDerivativeTable}
+                                />
                             </div>
                         </div>
                         <div className={styles['derivative-table-container']}>

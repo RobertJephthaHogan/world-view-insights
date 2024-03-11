@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../../../styles/features/insider-tx/NonDerivativeTable.module.css'
 
 
+interface NonDerivativeTableProps {
+    nonDerivativeTransactions?: any
+}
+
+export default function NonDerivativeTable(props: NonDerivativeTableProps){ 
+
+    const [tableData, setTableData] = useState<any>([])
 
 
-export default function NonDerivativeTable(){ 
+    useEffect(() => {
+
+        //TODO format transactions into table entries
+        const entries = Object.values(props.nonDerivativeTransactions?.nonDerivativeTransactions)
+        setTableData(entries)
+    }, [props.nonDerivativeTransactions])
 
     return (
         <table 
@@ -47,32 +59,46 @@ export default function NonDerivativeTable(){
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Title of Security 1</td>
-                    <td>Transaction Date 1</td>
-                    <td></td>
-                    <td>S</td>
-                    <td></td>
-                    <td>D1</td>
-                    <td>D2</td>
-                    <td>D3</td>
-                    <td></td>
-                    <td>I</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Title of Security 2</td>
-                    <td>Transaction Date 2</td>
-                    <td></td>
-                    <td>S</td>
-                    <td></td>
-                    <td>D1</td>
-                    <td>D2</td>
-                    <td>D3</td>
-                    <td></td>
-                    <td>I</td>
-                    <td></td>
-                </tr>
+                {
+                    tableData?.map((filing: any) => {
+
+                        return (
+                            <tr>
+                                <td>
+                                    {filing?.securityTitle}
+                                </td>
+                                <td>
+                                    {filing?.transactionDate}
+                                </td>
+                                <td>
+                                    {filing?.deemedExecutionDate}
+                                </td>
+                                <td>
+                                    {filing?.transactionCode}
+                                </td>
+                                <td></td>
+                                <td>
+                                    {filing?.transactionShares}
+                                </td>
+                                <td>
+                                    {filing?.transactionAcquiredDisposedCode}
+                                </td>
+                                <td>
+                                    {filing?.transactionPricePerShare}
+                                </td>
+                                <td>
+                                    {filing?.sharesOwnedFollowingTransaction}
+                                </td>
+                                <td>
+                                    {filing?.directOrIndirectOwnership}
+                                </td>
+                                <td>
+                                    {/* TODO: ADD NATURE OF BENEFICIAL OWNERSHIP */}
+                                </td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </table>
     )
