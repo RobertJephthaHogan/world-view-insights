@@ -2,6 +2,7 @@ from typing import List, Union
 from bson import ObjectId
 from app.models.Tweet import Tweet, UpdateTweetModel
 from app.database.tweet_operations import TweetOperations
+from app.database.form_four_operations import FormFour, FormFourOperations
 
 
 
@@ -33,3 +34,46 @@ class TwitterService:
         deleted_tweet = await TweetOperations.delete_tweet(id)
         return deleted_tweet
         
+    
+    async def execute_tweet_bot():
+        
+        # Get the last 20 purchase or sale transactions
+        form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(1, 1, ['P', 'S'])
+        
+        #print('form_fours', form_fours)
+        
+        # Go through each entry and generate a tweet dict for it
+        for form_four in form_fours:
+                        
+            symbol = form_four.issuerTradingSymbol
+            rpt_owner_name = form_four.rptOwnerName
+            purchase_or_sale = "purchased" #TODO
+            total_number_shares = "100" #TODO
+            security_type = "Common Stock" #TODO
+            total_tx_value = "100,000" #TODO
+            num_transactions = "123" #TODO
+            
+            #TODO : Finish final tweet content string
+            tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_transactions}"
+            
+            basic_content = f"${symbol} - Insider Trade detected on #{symbol} - See More at "
+            
+            tweet_info = {
+                "content": basic_content
+            }
+            
+            # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
+            tweet_exists = await TweetOperations.check_tweet_content_exists(basic_content)
+            print('tweet_exists', tweet_exists)
+            
+            if tweet_exists:
+                # Do not create a duplicate tweet if the tweet content already exists
+                pass
+            
+            if not tweet_exists:
+                # TODO: Create the tweet, if it is posted successfully, create the db entry
+                pass
+        
+            # if the tweet has not been tweeted before, it is new and you 
+        
+        pass

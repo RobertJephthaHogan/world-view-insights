@@ -57,3 +57,11 @@ class TweetOperations:
             return tweet
         return False
 
+
+    async def check_tweet_content_exists(content_str: str) -> bool:
+        """
+            Checks if any entry in the database has a 'content' attribute with the same string as content_str.
+        """
+        existing_entry = await tweet_collection.find_one({"content": content_str})
+        return existing_entry is not None
+    
