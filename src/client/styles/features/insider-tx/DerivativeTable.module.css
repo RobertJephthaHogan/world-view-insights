@@ -1,0 +1,16 @@
+
+
+
+.derivative-table {
+    overflow: auto;
+    table-layout: fixed;
+    max-width: 1000px;
+}
+
+.derivative-table th {
+    font-size: 10px;
+}
+
+.derivative-table td {
+    font-size: 10px;
+}

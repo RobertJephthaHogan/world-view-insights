@@ -82,6 +82,11 @@
     align-items: center;
 }
 
+.itxfc-tc-right {
+    display: flex;
+    align-items: center;
+}
+
 .itxfc-tc-left-logo {
     height: 100px;
     width: 100px;
@@ -95,4 +100,100 @@
 .itxfc-tc-left-title {
     font-size: 20px;
     font-weight: 600;
+}
+
+.itxfc-tcr-btn {
+    margin-right: 0.5em
+}
+
+.itxfc-filing-details-container {
+    margin-top: 2em
+}
+
+.itxfc-fd {
+
+}
+
+.itxfc-fd-tb {
+    background-color: #F6F6F6;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.itxfc-fd-tb-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.itxfc-fd-info-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+    gap: 1px; /* Gap between rows and columns */
+    background-color: #dcdcdc; /* Background color that acts as the border color */
+    padding: 1px; /* Ensures the outer border is visible */
+}
+
+.itxfc-grid-item {
+    background-color: white; /* Background color of each item */
+    padding: 5px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid #F6F6F6;  */
+}
+
+/* Removes the border between items horizontally */
+.itxfc-grid-item:nth-child(odd) {
+    border-right: none;
+}
+.itxfc-grid-item:nth-child(even) {
+    border-left: none;
+}
+
+.itxfc-grid-item-label {
+    font-size: 14px;
+    color: #626262;
+    font-weight: 500;
+}
+
+.itxfc-grid-item-value {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.non-derivative-table-container {
+    margin-top: 2em;
+}
+
+.derivative-table-container {
+    margin-top: 2em;
+}
+
+.itxfc-ndt-tb {
+    background-color: #F6F6F6;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.itxfc-ndt-tb-title {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+.itxfc-dt-tb {
+    background-color: #F6F6F6;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.itxfc-dt-tb-title {
+    font-size: 20px;
+    font-weight: 500;
 }
