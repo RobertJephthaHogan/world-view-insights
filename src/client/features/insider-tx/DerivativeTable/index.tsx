@@ -22,7 +22,6 @@ export default function DerivativeTable(props: DerivativeTableProps) {
 
     return (
         <table 
-            border="1"
             className={styles['derivative-table']}
         >
             <thead>

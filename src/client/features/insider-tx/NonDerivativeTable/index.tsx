@@ -19,7 +19,6 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
 
     return (
         <table 
-            border="1"
             className={styles['non-derivative-table']}
         >
             <thead>

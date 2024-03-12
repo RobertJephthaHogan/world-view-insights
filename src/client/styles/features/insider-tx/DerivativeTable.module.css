@@ -5,12 +5,15 @@
     overflow: auto;
     table-layout: fixed;
     max-width: 1000px;
+    border: 1px solid #000;
 }
 
 .derivative-table th {
     font-size: 10px;
+    border: 1px solid #000;
 }
 
 .derivative-table td {
     font-size: 10px;
+    border: 1px solid #000;
 }
