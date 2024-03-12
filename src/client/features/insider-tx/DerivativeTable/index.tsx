@@ -26,40 +26,40 @@ export default function DerivativeTable(props: DerivativeTableProps) {
         >
             <thead>
                 <tr>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         1. Title of Derivative Security (Instr. 3)
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         2. Conversion or Exercise Price of Derivative Security
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         3. Transaction Date (Month/Day/Year)	
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         3A. Deemed Execution Date, if any (Month/Day/Year)	
                     </th>
-                    <th colSpan="2">
+                    <th colSpan={2}>
                         4. Transaction Code (Instr. 8)	
                     </th>
-                    <th colSpan="2">
+                    <th colSpan={2}>
                         5. Number of Derivative Securities Acquired (A) or Disposed of (D) (Instr. 3, 4 and 5)	
                     </th>
-                    <th colSpan="2">
+                    <th colSpan={2}>
                         6. Date Exercisable and Expiration Date (Month/Day/Year)	
                     </th>
-                    <th colSpan="2">
+                    <th colSpan={2}>
                         7. Title and Amount of Securities Underlying Derivative Security (Instr. 3 and 4)	
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         8. Price of Derivative Security (Instr. 5)	
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         9. Number of derivative Securities Beneficially Owned Following Reported Transaction(s) (Instr. 4)	
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         10. Ownership Form: Direct (D) or Indirect (I) (Instr. 4)	
                     </th>
-                    <th rowSpan="2">
+                    <th rowSpan={2}>
                         11. Nature of Indirect Beneficial Ownership (Instr. 4)
                     </th>
                 </tr>
