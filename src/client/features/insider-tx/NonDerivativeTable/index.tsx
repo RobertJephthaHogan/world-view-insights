@@ -35,7 +35,7 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
                     <th colSpan={2}>
                         3. Transaction Code (Instr. 8)
                     </th>
-                    <th colSpan="3">
+                    <th colSpan={2}>
                         4. Securities Acquired (A) or Disposed Of (D) (Instr. 3, 4 and 5)
                     </th>
                     <th rowSpan={2}>
