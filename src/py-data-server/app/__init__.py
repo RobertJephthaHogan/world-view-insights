@@ -7,6 +7,7 @@ from app.services.scheduled_service import ScheduledServiceService
 from app.services.edgar.routes import router as EdgarRouter
 from app.services.collector.routes import router as CollectorRouter
 from app.services.form_four.routes import router as FormFourRouter
+from app.services.twitter.routes import router as TwitterRouter
 
 
 # Create the App
@@ -51,3 +52,4 @@ async def read_root():
 app.include_router(EdgarRouter, tags=["Edgar"], prefix="/edgar")
 app.include_router(CollectorRouter, tags=["Collector"], prefix="/collector")
 app.include_router(FormFourRouter, tags=["Form Four"], prefix="/form-four")
+app.include_router(TwitterRouter, tags=["Twitter"], prefix="/twitter")

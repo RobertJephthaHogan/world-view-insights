@@ -23,6 +23,13 @@ class Settings(BaseSettings):
 
     # FMP API key:
     FMP_KEY: Optional[str] = os.getenv("FMP_KEY")
+    
+    # WVI Insights Twitter Keys
+    WVI_INSIGHTS_API_KEY: Optional[str] = os.getenv("WVI_INSIGHTS_API_KEY")
+    WVI_INSIGHTS_API_KEY_SECRET: Optional[str] = os.getenv("WVI_INSIGHTS_API_KEY_SECRET")
+    WVI_INSIGHTS_BEARER_TOKEN: Optional[str] = os.getenv("WVI_INSIGHTS_BEARER_TOKEN")
+    WVI_INSIGHTS_ACCESS_TOKEN: Optional[str] = os.getenv("WVI_INSIGHTS_ACCESS_TOKEN")
+    WVI_INSIGHTS_ACCESS_TOKEN_SECRET: Optional[str] = os.getenv("WVI_INSIGHTS_ACCESS_TOKEN_SECRET")
 
     # JWT
     SECRET_KEY: str

@@ -1,12 +1,31 @@
 from typing import List, Union
 from bson import ObjectId
+from app.config import Settings
+import tweepy
 from app.models.Tweet import Tweet, UpdateTweetModel
 from app.database.tweet_operations import TweetOperations
 from app.database.form_four_operations import FormFour, FormFourOperations
 
+wvi_insights_api_key = Settings().WVI_INSIGHTS_API_KEY
+wvi_insights_api_key_secret = Settings().WVI_INSIGHTS_API_KEY_SECRET
+wvi_insights_access_token = Settings().WVI_INSIGHTS_ACCESS_TOKEN
+wvi_insights_access_token_secret = Settings().WVI_INSIGHTS_ACCESS_TOKEN_SECRET
+
+wvi_twitter_auth = tweepy.auth.OAuthHandler(wvi_insights_api_key, wvi_insights_api_key_secret )
+wvi_twitter_auth.set_access_token(wvi_insights_access_token, wvi_insights_access_token_secret)
+twitter_api = tweepy.API(wvi_twitter_auth)
 
 
 class TwitterService:
+    
+    
+    async def tweet_new_tweet():
+        # TODO: ATTEMPT CONNECTION AND PRINT OUT INFO TO CONFIRM WORKING
+        
+        print('SCREEN NAME', twitter_api.verify_credentials().screen_name)
+
+        return {}
+    
     
     async def add_tweet(new_tweet: Tweet) -> Tweet:
         tweet = await TweetOperations.add_tweet(new_tweet)
