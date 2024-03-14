@@ -8,12 +8,20 @@ from app.database.form_four_operations import FormFour, FormFourOperations
 
 wvi_insights_api_key = Settings().WVI_INSIGHTS_API_KEY
 wvi_insights_api_key_secret = Settings().WVI_INSIGHTS_API_KEY_SECRET
+wvi_insights_bearer_token = Settings().WVI_INSIGHTS_BEARER_TOKEN
 wvi_insights_access_token = Settings().WVI_INSIGHTS_ACCESS_TOKEN
 wvi_insights_access_token_secret = Settings().WVI_INSIGHTS_ACCESS_TOKEN_SECRET
 
-wvi_twitter_auth = tweepy.auth.OAuthHandler(wvi_insights_api_key, wvi_insights_api_key_secret )
-wvi_twitter_auth.set_access_token(wvi_insights_access_token, wvi_insights_access_token_secret)
-twitter_api = tweepy.API(wvi_twitter_auth)
+
+
+twitter_client = tweepy.Client(
+                                #bearer_token=wvi_insights_bearer_token,
+                                consumer_key=wvi_insights_api_key,
+                                consumer_secret=wvi_insights_api_key_secret,
+                                access_token=wvi_insights_access_token,
+                                access_token_secret=wvi_insights_access_token_secret
+                               )
+
 
 
 class TwitterService:
@@ -22,8 +30,13 @@ class TwitterService:
     async def tweet_new_tweet():
         # TODO: ATTEMPT CONNECTION AND PRINT OUT INFO TO CONFIRM WORKING
         
-        print('SCREEN NAME', twitter_api.verify_credentials().screen_name)
+        print('wvi_insights_api_key', wvi_insights_api_key)
+        print('wvi_insights_api_key_secret', wvi_insights_api_key_secret)
+        print('wvi_insights_access_token', wvi_insights_access_token)
+        print('wvi_insights_access_token_secret', wvi_insights_access_token_secret)
+        response = twitter_client.create_tweet(text="Test")
 
+        
         return {}
     
     
