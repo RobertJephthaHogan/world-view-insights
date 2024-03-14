@@ -67,6 +67,9 @@ export default function Header() {
                             <span className={styles['wvi-logo-text']}>
                                 WorldView Insights
                             </span>
+                            <span className={styles['wvi-beta-text']}>
+                                Beta
+                            </span>
                         </div>
                     </div>
                     <div className={styles['search-container']}>
