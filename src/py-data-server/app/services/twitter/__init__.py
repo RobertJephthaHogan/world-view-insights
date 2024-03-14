@@ -69,11 +69,36 @@ class TwitterService:
         return deleted_tweet
         
     
+    def extract_transaction_dates(self, transactions_dict):
+        # Initialize an empty list to store the dates
+        transaction_dates = []
+        
+        # Iterate over each transaction in the dictionary
+        for transaction in transactions_dict.values():
+            # Extract the transaction date and add it to the list
+            transaction_dates.append(transaction['transactionDate'])
+        
+        return transaction_dates
+    
+    
     async def determine_num_transactions_clause(self, derivative_table, non_derivative_table):
         
         # TODO: Write num transactions clause logic here
+        print('derivative_table', derivative_table)
+        print('non_derivative_table', non_derivative_table)
         
-        pass
+        total_transactions = len(derivative_table['derivativeTransactions']) + len(non_derivative_table['nonDerivativeTransactions'])
+        
+        non_derivative_transaction_dates = self.extract_transaction_dates(non_derivative_table['nonDerivativeTransactions'])
+        derivative_transaction_dates = self.extract_transaction_dates(derivative_table['derivativeTransactions'])
+
+        transaction_dates = non_derivative_transaction_dates + derivative_transaction_dates
+        print('transaction_dates', transaction_dates)
+        
+        # determine if all transactions are on one date or on multiple dates
+        # if multiple dates, get the first and last date for clause creation
+        
+        
     
     
     async def execute_tweet_bot(self):
