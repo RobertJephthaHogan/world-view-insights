@@ -36,7 +36,7 @@ class TwitterService:
         print('wvi_insights_access_token_secret', wvi_insights_access_token_secret)
         
         # Create the new tweet
-        response = twitter_client.create_tweet(text="Test")
+        #response = twitter_client.create_tweet(text="Test")
 
         
         return {}
@@ -69,26 +69,39 @@ class TwitterService:
         return deleted_tweet
         
     
-    async def execute_tweet_bot():
+    async def determine_num_transactions_clause(self, derivative_table, non_derivative_table):
         
-        # Get the last 20 purchase or sale transactions
-        form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(1, 1, ['P', 'S'])
+        # TODO: Write num transactions clause logic here
         
-        #print('form_fours', form_fours)
+        pass
+    
+    
+    async def execute_tweet_bot(self):
+        
+        # Get the last {x} purchase or sale transactions
+        lookback_window = 1
+        form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(lookback_window, 1, ['P', 'S'])
+        
         
         # Go through each entry and generate a tweet dict for it
         for form_four in form_fours:
                         
+            # Standard Transaction data for string generation
             symbol = form_four.issuerTradingSymbol
             rpt_owner_name = form_four.rptOwnerName
-            purchase_or_sale = "purchased" #TODO
-            total_number_shares = "100" #TODO
-            security_type = "Common Stock" #TODO
-            total_tx_value = "100,000" #TODO
+            purchase_or_sale = 'purchased' if form_four.transactionType == 'P' else 'sold'
+            total_number_shares = form_four.totalTransactionShares 
+            security_type = form_four.securityTitle 
+            total_tx_value = form_four.totalTransactionSize 
+            
+            # Logic to determine number of transactions clause
+            num_tx_clause = await self.determine_num_transactions_clause(form_four.derivativeTable, form_four.nonDerivativeTable)
             num_transactions = "123" #TODO
             
             #TODO : Finish final tweet content string
             tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_transactions}"
+            
+            print('tweet_content', tweet_content)
             
             basic_content = f"${symbol} - Insider Trade detected on #{symbol} - See More at "
             

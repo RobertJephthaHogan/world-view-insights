@@ -37,7 +37,8 @@ class ScheduledServiceService:
         
         
     async def execute_tweet_bot(self):
-        await TwitterService.execute_tweet_bot()
+        print('Executing Tweet Bot...')
+        await TwitterService().execute_tweet_bot()
         pass
         
         
