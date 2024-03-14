@@ -14,8 +14,9 @@ export default function DerivativeTable(props: DerivativeTableProps) {
     
     useEffect(() => {
         // format transactions into table entries
-        const entries = Object.values(props.derivativeTable?.derivativeTransactions)
-        setTableData(entries)
+        const derivativeTransactions = Object.values(props.derivativeTable?.derivativeTransactions)
+        const derivativeHoldings = Object.values(props.derivativeTable?.derivativeHoldings)
+        setTableData([...derivativeTransactions, ...derivativeHoldings])
     }, [props.derivativeTable])
 
     // TODO: Ensure Overflow scroll works properly

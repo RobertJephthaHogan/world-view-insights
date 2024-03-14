@@ -34,6 +34,8 @@ class TwitterService:
         print('wvi_insights_api_key_secret', wvi_insights_api_key_secret)
         print('wvi_insights_access_token', wvi_insights_access_token)
         print('wvi_insights_access_token_secret', wvi_insights_access_token_secret)
+        
+        # Create the new tweet
         response = twitter_client.create_tweet(text="Test")
 
         

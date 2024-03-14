@@ -13,8 +13,9 @@ export default function NonDerivativeTable(props: NonDerivativeTableProps){
 
     useEffect(() => {
         // format transactions into table entries
-        const entries = Object.values(props.nonDerivativeTable?.nonDerivativeTransactions)
-        setTableData(entries)
+        const nonDerivativeTransactions = Object.values(props.nonDerivativeTable?.nonDerivativeTransactions)
+        const nonDerivativeHoldings = Object.values(props.nonDerivativeTable?.nonDerivativeHoldings)
+        setTableData([...nonDerivativeTransactions, ...nonDerivativeHoldings])
     }, [props.nonDerivativeTable])
 
     return (
