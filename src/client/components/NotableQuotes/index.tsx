@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import CaretRightOutlined from '@ant-design/icons/CaretRightOutlined'
+import { FaCaretRight } from "react-icons/fa";
+
 import { dataService } from '../../services/data.service'
 import { useRouter } from 'next/navigation'
 import styles from '../../styles/components/NotableQuotes.module.css'
@@ -55,9 +57,10 @@ export default function NotableQuotes() {
                         <span className={styles['quote-section-title']}>
                             Market Leaders
                         </span>
-                        <CaretRightOutlined
+                        {/* <CaretRightOutlined
                             className={styles['quote-section-caret']}
-                        />
+                        /> */}
+                        <FaCaretRight/>
                     </div>
                 </a>
                 <div className={styles['section-quote-container']}>
@@ -134,9 +137,10 @@ export default function NotableQuotes() {
                         <span className={styles['quote-section-title']}>
                             Gainers
                         </span>
-                        <CaretRightOutlined
+                        {/* <CaretRightOutlined
                             className={styles['quote-section-caret']}
-                        />
+                        /> */}
+                        <FaCaretRight/>
                     </div>
                 </a>
                 <div className={styles['section-quote-container']}>
@@ -213,9 +217,10 @@ export default function NotableQuotes() {
                         <span className={styles['quote-section-title']}>
                             Losers
                         </span>
-                        <CaretRightOutlined
+                        {/* <CaretRightOutlined
                             className={styles['quote-section-caret']}
-                        />
+                        /> */}
+                        <FaCaretRight/>
                     </div>
                 </a>
                 <div className={styles['section-quote-container']}>
