@@ -110,12 +110,12 @@ class TwitterService:
             # Convert back to strings 
             first_date_str = first_date.strftime("%Y-%m-%d")
             last_date_str = last_date.strftime("%Y-%m-%d")
-            num_transactions_clause = f"from {first_date_str} to {last_date_str}"
+            num_transactions_clause = f"{total_transactions} from {first_date_str} to {last_date_str}"
         
         if all_same_day:
             single_tx_date = max(parsed_days)
             single_tx_date_str = single_tx_date.strftime("%Y-%m-%d")
-            num_transactions_clause = f"on {single_tx_date_str}"
+            num_transactions_clause = f"{total_transactions} on {single_tx_date_str}"
         
         return num_transactions_clause
         
