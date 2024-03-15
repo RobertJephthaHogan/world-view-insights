@@ -9,6 +9,8 @@ import dynamic from 'next/dynamic';
 import styles from '../../../styles/pages/markets/insider-tx.module.css'
 import SnippetsOutlined from '@ant-design/icons/SnippetsOutlined'
 import LinkOutlined from '@ant-design/icons/LinkOutlined'
+import { CiLink } from "react-icons/ci";
+import { AiOutlineSnippets } from "react-icons/ai";
 import { formFourService } from '@/services/formFour.service';
 import Link from 'next/link';
 import CustomLink from '@/components/CustomLink';
@@ -71,7 +73,9 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                             <div className={styles['itxfc-topbar-content']}>
                                 <div className={styles['itxfc-tc-left']}>
                                     <div>
-                                        <SnippetsOutlined  className={styles['itxfc-tc-left-logo']}/>
+                                        {/* <SnippetsOutlined  className={styles['itxfc-tc-left-logo']}/> */}
+                                        <AiOutlineSnippets />
+
                                     </div>
                                     <div>
                                         <span className={styles['itxfc-tc-left-title']}>
@@ -82,13 +86,15 @@ const FormFourPage: NextPage<any> = ({ filingData }: any) => {
                                 <div className={styles['itxfc-tc-right']}>
                                     <CustomLink href={`/stock/${filingData?.issuerTradingSymbol}`}>
                                         <Button className={styles['itxfc-tcr-btn']}>
-                                            <LinkOutlined/>
+                                            {/* <LinkOutlined/> */}
+                                            <CiLink/>
                                             See Company Info
                                         </Button>
                                     </CustomLink>
                                     <CustomLink href={filingData?.link}>
                                         <Button>
-                                            <LinkOutlined/>
+                                            {/* <LinkOutlined/> */}
+                                            <CiLink/>
                                             Go To SEC Filing
                                         </Button>
                                     </CustomLink>
