@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic';
 //import { Button, Input } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
-// import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
+import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
 import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
@@ -24,10 +24,6 @@ const Search = dynamic(
     () => import('antd').then(mod => mod.Input.Search),
     { ssr: false }
 );
-
-const CaretDownOutlined = dynamic(() => import('@ant-design/icons').then((mod) => mod.CaretDownOutlined), {
-    ssr: false,
-});
 
 // const { Search } = Input;
 
@@ -89,7 +85,7 @@ export default function Header() {
                 <div className={styles['hc-menu-item']}>
                     <span>News</span>
                     {/* <CaretDownOutlined className={styles['hc-mi-caret']}/> */}
-                    <CaretDownOutlined />
+                    <CaretDownOutlined className={styles['hc-mi-caret']}/>
                     <div className={styles["dropdown-content"]}>
                         <a 
                             onClick={(e) => handleNavigationClick(e, '/news/latest')}
@@ -121,7 +117,7 @@ export default function Header() {
                         <span>
                             Markets
                         </span>
-                        <CaretDownOutlined />
+                        <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
                             <div className={styles['dropdown-panel']}>
                                 <div>
@@ -214,7 +210,7 @@ export default function Header() {
                         <span>
                             Tools
                         </span>
-                        <CaretDownOutlined />
+                        <CaretDownOutlined className={styles['hc-mi-caret']}/>
                         <div className={styles["dropdown-content"]}>
                             <a 
                                 onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
