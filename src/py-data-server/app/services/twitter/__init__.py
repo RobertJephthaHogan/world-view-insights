@@ -2,6 +2,7 @@ from typing import List, Union
 from bson import ObjectId
 from app.config import Settings
 import tweepy
+from bson import ObjectId
 from datetime import datetime
 from app.models.Tweet import Tweet, UpdateTweetModel
 from app.database.tweet_operations import TweetOperations
@@ -28,7 +29,7 @@ twitter_client = tweepy.Client(
 class TwitterService:
     
     
-    async def tweet_new_tweet():
+    async def tweet_new_tweet(self, content):
         # TODO: ATTEMPT CONNECTION AND PRINT OUT INFO TO CONFIRM WORKING
         
         print('wvi_insights_api_key', wvi_insights_api_key)
@@ -37,7 +38,7 @@ class TwitterService:
         print('wvi_insights_access_token_secret', wvi_insights_access_token_secret)
         
         # Create the new tweet
-        #response = twitter_client.create_tweet(text="Test")
+        response = twitter_client.create_tweet(text=content)
 
         
         return {}
@@ -113,7 +114,8 @@ class TwitterService:
         
         if all_same_day:
             single_tx_date = max(parsed_days)
-            num_transactions_clause = f"on {single_tx_date}"
+            single_tx_date_str = single_tx_date.strftime("%Y-%m-%d")
+            num_transactions_clause = f"on {single_tx_date_str}"
         
         return num_transactions_clause
         
@@ -133,6 +135,7 @@ class TwitterService:
         for form_four in form_fours:
                         
             # Standard Transaction data for string generation
+            filing_system_id = form_four.id
             symbol = form_four.issuerTradingSymbol
             rpt_owner_name = form_four.rptOwnerName
             purchase_or_sale = 'purchased' if form_four.transactionType == 'P' else 'sold'
@@ -142,21 +145,30 @@ class TwitterService:
             
             # Logic to determine number of transactions clause
             num_tx_clause = await self.determine_num_transactions_clause(form_four.derivativeTable, form_four.nonDerivativeTable)
-            num_transactions = num_tx_clause 
+            
+            link_to_filing = None
+            link_to_filing = f"https://worldviewinsights.com/markets/insider-tx/{filing_system_id}"
             
             #TODO : Finish final tweet content string
-            tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_transactions} #{symbol}"
+            tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_tx_clause}. See {link_to_filing} for more info. #{symbol}"
+            number_of_characters = len(tweet_content)
             
             print('tweet_content', tweet_content)
-            
+            print('number_of_characters', number_of_characters)
             basic_content = f"${symbol} - Insider Trade detected on #{symbol} - See More at "
             
+        
+            
             tweet_info = {
-                "content": basic_content
+                "id": str(ObjectId()),
+                "title": 'Form Four Notification Tweet',
+                "type": 'form-four-filing',
+                "content": tweet_content,
+                "time": datetime.now()
             }
             
             # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
-            tweet_exists = await TweetOperations.check_tweet_content_exists(basic_content)
+            tweet_exists = await TweetOperations.check_tweet_content_exists(tweet_content)
             print('tweet_exists', tweet_exists)
             
             if tweet_exists:
@@ -164,8 +176,21 @@ class TwitterService:
                 pass
             
             if not tweet_exists:
+                
                 # TODO: Create the tweet, if it is posted successfully, create the db entry
-                pass
+                print('creating tweet')
+                
+                try:
+                    await self.tweet_new_tweet(tweet_info['content'])
+                    tweet_obj = Tweet(**tweet_info)
+                    await TweetOperations.add_tweet(tweet_obj)
+                    
+                except Exception as e:
+                    print('error', e)
+                
+                
+                
+                
         
             # if the tweet has not been tweeted before, it is new and you 
         
