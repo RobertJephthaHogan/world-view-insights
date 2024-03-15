@@ -11,6 +11,8 @@ import styles from '../../styles/pages/stock.module.css'
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { formatNumber } from '@/utils/formatters';
+import { CiStar } from "react-icons/ci";
+import { FaPlus } from "react-icons/fa6";
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -169,13 +171,15 @@ const StockDataPage: NextPage<any> = ({ companyData }) => {
                         </div>
                         <div  className={styles['sit-actions-container']}>
                             <Button className={styles['sit-action-btn']}>
-                                <StarOutlined/>
+                                {/* <StarOutlined/> */}
+                                <CiStar/>
                                 <span>
                                     Add To Favorites
                                 </span>
                             </Button>
                             <Button className={styles['sit-action-btn']}>
-                                <PlusOutlined/>
+                                {/* <PlusOutlined/> */}
+                                <FaPlus />
                                 <span>
                                     Add To Watchlist
                                 </span>
