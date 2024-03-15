@@ -42,6 +42,12 @@
     margin-left: 10px
 }
 
+.wvi-beta-text {
+    font-size: 10px;
+    font-weight: 300;
+    margin-left: 10px;
+}
+
 .search-container {
     display: flex;
     align-items: center;

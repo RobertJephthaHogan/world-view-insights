@@ -4,7 +4,8 @@ from apscheduler.triggers.cron import CronTrigger
 from datetime import datetime, timezone
 import pytz
 from app.services.collector import CollectorService
-
+from app.services.twitter import TwitterService
+import time
 
 
 
@@ -18,8 +19,10 @@ class ScheduledServiceService:
     
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
-        scheduler.add_job(self.collect_form_fours, "interval", seconds=10)  # Check every 60 seconds
-
+        scheduler.add_job(self.collect_form_fours, "interval", seconds=10)  # Check every 10 seconds
+        time.sleep(5)
+        scheduler.add_job(self.execute_tweet_bot, "interval", seconds=10)  # Check every 10 seconds
+        
         scheduler.start()
         
         
@@ -32,6 +35,11 @@ class ScheduledServiceService:
         print('Collecting Form Fours...')
         await CollectorService.collect_form_fours()
         
+        
+    async def execute_tweet_bot(self):
+        print('Executing Tweet Bot...')
+        await TwitterService().execute_tweet_bot()
+        pass
         
         
     def shutdownScheduler(self):

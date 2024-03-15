@@ -9,7 +9,7 @@ router = APIRouter()
 
 class CollectorController:
     
-    # Get Market Leader Quotes (populates ticker banner component)
+    # Test Collector
     @router.get("/test_collector/")
     async def test_collector():
         data = await Collector.collect_form_fours()

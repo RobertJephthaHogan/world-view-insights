@@ -392,7 +392,6 @@ class FormFourService:
         # Add number of shares remaining after the transaction
         # TODO: Fix shares remaining after the transaction field
         shares_remaining = self.determine_shares_owned_following_transaction(non_derivative_table_dict, security_title)
-        #print('shares_remaining', shares_remaining)
         form_four_dto['sharesRemainingAfterTransaction'] = shares_remaining
         
        
@@ -409,7 +408,7 @@ class FormFourService:
         
         
         
-        print(json.dumps(form_four_dto, indent=4))
+        #print(json.dumps(form_four_dto, indent=4))
 
         
         return form_four_dto
