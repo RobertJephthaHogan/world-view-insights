@@ -8,6 +8,7 @@ import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
 import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
+import { FaCaretDown } from 'react-icons/fa';
 
 
 const Button = dynamic(
@@ -84,8 +85,8 @@ export default function Header() {
                 <div className={styles['hc-right']}>
                 <div className={styles['hc-menu-item']}>
                     <span>News</span>
-                    {/* <CaretDownOutlined className={styles['hc-mi-caret']}/> */}
-                    <CaretDownOutlined className={styles['hc-mi-caret']}/>
+                    {/* <FaCaretDown /> */}
+                    <FaCaretDown />
                     <div className={styles["dropdown-content"]}>
                         <a 
                             onClick={(e) => handleNavigationClick(e, '/news/latest')}
@@ -117,7 +118,7 @@ export default function Header() {
                         <span>
                             Markets
                         </span>
-                        <CaretDownOutlined className={styles['hc-mi-caret']}/>
+                        <FaCaretDown />
                         <div className={styles["dropdown-content"]}>
                             <div className={styles['dropdown-panel']}>
                                 <div>
@@ -210,7 +211,7 @@ export default function Header() {
                         <span>
                             Tools
                         </span>
-                        <CaretDownOutlined className={styles['hc-mi-caret']}/>
+                        <FaCaretDown />
                         <div className={styles["dropdown-content"]}>
                             <a 
                                 onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
