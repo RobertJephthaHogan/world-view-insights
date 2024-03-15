@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import dynamic from 'next/dynamic';
 //import { Button, Input } from 'antd'
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
-import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
+// import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
 import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
@@ -24,6 +24,10 @@ const Search = dynamic(
     () => import('antd').then(mod => mod.Input.Search),
     { ssr: false }
 );
+
+const CaretDownOutlined = dynamic(() => import('@ant-design/icons').then((mod) => mod.CaretDownOutlined), {
+    ssr: false,
+});
 
 // const { Search } = Input;
 
