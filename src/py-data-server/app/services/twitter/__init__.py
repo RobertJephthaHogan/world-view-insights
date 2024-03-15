@@ -2,6 +2,7 @@ from typing import List, Union
 from bson import ObjectId
 from app.config import Settings
 import tweepy
+from datetime import datetime
 from app.models.Tweet import Tweet, UpdateTweetModel
 from app.database.tweet_operations import TweetOperations
 from app.database.form_four_operations import FormFour, FormFourOperations
@@ -83,20 +84,40 @@ class TwitterService:
     
     async def determine_num_transactions_clause(self, derivative_table, non_derivative_table):
         
-        # TODO: Write num transactions clause logic here
-        print('derivative_table', derivative_table)
-        print('non_derivative_table', non_derivative_table)
         
+        # Determine total number of transactions listed in the filing
         total_transactions = len(derivative_table['derivativeTransactions']) + len(non_derivative_table['nonDerivativeTransactions'])
         
+        # Extract the filing dates
         non_derivative_transaction_dates = self.extract_transaction_dates(non_derivative_table['nonDerivativeTransactions'])
         derivative_transaction_dates = self.extract_transaction_dates(derivative_table['derivativeTransactions'])
-
         transaction_dates = non_derivative_transaction_dates + derivative_transaction_dates
-        print('transaction_dates', transaction_dates)
         
         # determine if all transactions are on one date or on multiple dates
+        parsed_days = [datetime.strptime(date, "%Y-%m-%d") for date in transaction_dates]
+        all_same_day = all(date == parsed_days[0] for date in parsed_days)
+
+        single_tx_date = None
+        first_date_str = None
+        first_date_str = None
+        num_transactions_clause = None
+        
         # if multiple dates, get the first and last date for clause creation
+        if not all_same_day:
+            first_date = min(parsed_days)
+            last_date = max(parsed_days)
+            # Convert back to strings 
+            first_date_str = first_date.strftime("%Y-%m-%d")
+            last_date_str = last_date.strftime("%Y-%m-%d")
+            num_transactions_clause = f"from {first_date_str} to {last_date_str}"
+        
+        if all_same_day:
+            single_tx_date = max(parsed_days)
+            num_transactions_clause = f"on {single_tx_date}"
+        
+        return num_transactions_clause
+        
+        
         
         
     
@@ -121,10 +142,10 @@ class TwitterService:
             
             # Logic to determine number of transactions clause
             num_tx_clause = await self.determine_num_transactions_clause(form_four.derivativeTable, form_four.nonDerivativeTable)
-            num_transactions = "123" #TODO
+            num_transactions = num_tx_clause 
             
             #TODO : Finish final tweet content string
-            tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_transactions}"
+            tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_transactions} #{symbol}"
             
             print('tweet_content', tweet_content)
             
