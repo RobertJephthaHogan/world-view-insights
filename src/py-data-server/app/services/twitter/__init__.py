@@ -120,9 +120,20 @@ class TwitterService:
         return num_transactions_clause
         
         
-        
-        
+    async def format_and_round(self, number):
+        # Check if the number is a float and if its decimal part is non-zero
+        if isinstance(number, float) and (number % 1 != 0):
+            formatted_number = "{:,.0f}".format(round(number))
+        else:
+            formatted_number = "{:,.0f}".format(number)
+
+        return formatted_number
     
+    
+    def format_as_usd(self, amount):
+        # Format the number as USD currency
+        formatted_currency = "${:,.2f}".format(amount)
+        return formatted_currency
     
     async def execute_tweet_bot(self):
         
@@ -139,25 +150,22 @@ class TwitterService:
             symbol = form_four.issuerTradingSymbol
             rpt_owner_name = form_four.rptOwnerName
             purchase_or_sale = 'purchased' if form_four.transactionType == 'P' else 'sold'
-            total_number_shares = form_four.totalTransactionShares 
+            total_number_shares = await self.format_and_round(form_four.totalTransactionShares )
             security_type = form_four.securityTitle 
-            total_tx_value = form_four.totalTransactionSize 
+            total_tx_value = self.format_as_usd(form_four.totalTransactionSize)
             
             # Logic to determine number of transactions clause
             num_tx_clause = await self.determine_num_transactions_clause(form_four.derivativeTable, form_four.nonDerivativeTable)
             
-            link_to_filing = None
+            # Link to the filing
             link_to_filing = f"https://worldviewinsights.com/markets/insider-tx/{filing_system_id}"
             
-            #TODO : Finish final tweet content string
+            # Construct Link Content
             tweet_content = f"${symbol} - {rpt_owner_name} {purchase_or_sale} {total_number_shares} shares of {security_type} worth {total_tx_value} in {num_tx_clause}. See {link_to_filing} for more info. #{symbol}"
             number_of_characters = len(tweet_content)
             
-            print('tweet_content', tweet_content)
-            print('number_of_characters', number_of_characters)
             basic_content = f"${symbol} - Insider Trade detected on #{symbol} - See More at "
             
-        
             
             tweet_info = {
                 "id": str(ObjectId()),
@@ -177,7 +185,7 @@ class TwitterService:
             
             if not tweet_exists:
                 
-                # TODO: Create the tweet, if it is posted successfully, create the db entry
+                # Create the tweet, if it is posted successfully, create the db entry
                 print('creating tweet')
                 
                 try:
