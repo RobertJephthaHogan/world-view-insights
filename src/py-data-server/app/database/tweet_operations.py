@@ -2,7 +2,7 @@ from beanie import PydanticObjectId
 from pydantic import ValidationError
 from typing import List, Union
 from bson import ObjectId
-
+from datetime import datetime, timedelta
 
 from app.models.Tweet import Tweet, UpdateTweetModel
 
@@ -65,3 +65,16 @@ class TweetOperations:
         existing_entry = await tweet_collection.find_one({"content": content_str})
         return existing_entry is not None
     
+    
+    async def find_tweets_in_last_x_minutes(lookback_window: int) -> List[Tweet]:
+        # Calculate the datetime for x minutes ago
+        x_minutes_ago = datetime.utcnow() - timedelta(minutes=lookback_window)
+        
+        # Query the collection for tweets newer than x_minutes_ago
+        cursor = tweet_collection.find({"time": {"$gt": x_minutes_ago}})
+        
+        tweets = []
+        async for tweet in cursor:
+            tweets.append(tweet) 
+        
+        return tweets

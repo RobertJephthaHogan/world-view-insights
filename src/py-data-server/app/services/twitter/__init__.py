@@ -30,18 +30,12 @@ class TwitterService:
     
     
     async def tweet_new_tweet(self, content):
-        # TODO: ATTEMPT CONNECTION AND PRINT OUT INFO TO CONFIRM WORKING
-        
-        print('wvi_insights_api_key', wvi_insights_api_key)
-        print('wvi_insights_api_key_secret', wvi_insights_api_key_secret)
-        print('wvi_insights_access_token', wvi_insights_access_token)
-        print('wvi_insights_access_token_secret', wvi_insights_access_token_secret)
         
         # Create the new tweet
         response = twitter_client.create_tweet(text=content)
 
         
-        return {}
+        return response
     
     
     async def add_tweet(new_tweet: Tweet) -> Tweet:
@@ -175,21 +169,28 @@ class TwitterService:
                 "time": datetime.now()
             }
             
+            # Check if a tweet has been made in the last {x} minutes
+            tweets_in_last_30 = await TweetOperations.find_tweets_in_last_x_minutes(30)
+            
+            # Check how many tweets have been made in the last 24 hours
+            tweets_in_last_day = await TweetOperations.find_tweets_in_last_x_minutes(1440)
+            is_below_cutoff_threshold = len(tweets_in_last_day) < 40
+            
             # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
             tweet_exists = await TweetOperations.check_tweet_content_exists(tweet_content)
-            print('tweet_exists', tweet_exists)
             
             if tweet_exists:
                 # Do not create a duplicate tweet if the tweet content already exists
                 pass
             
-            if not tweet_exists:
+            # if the tweet does not exist and there has not been a tweet in the last 30 minutes, tweet the tweet
+            if not tweet_exists and is_below_cutoff_threshold and not tweets_in_last_30:
                 
                 # Create the tweet, if it is posted successfully, create the db entry
                 print('creating tweet')
                 
                 try:
-                    await self.tweet_new_tweet(tweet_info['content'])
+                    resp = await self.tweet_new_tweet(tweet_info['content'])
                     tweet_obj = Tweet(**tweet_info)
                     await TweetOperations.add_tweet(tweet_obj)
                     
