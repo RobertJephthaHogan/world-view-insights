@@ -7,6 +7,7 @@ from pydantic_settings import BaseSettings
 
 from app.models.FormFour import FormFour
 from app.models.Tweet import Tweet
+from app.models.NewsArticle import NewsArticle
 
 
 # Load the environment variables
@@ -22,7 +23,7 @@ class Settings(BaseSettings):
     USER_AGENT: Optional[str] = os.getenv("USER_AGENT")
 
     # FMP API key:
-    FMP_KEY: Optional[str] = os.getenv("FMP_KEY")
+    FMP_API_KEY: Optional[str] = os.getenv("FMP_KEY")
     
     # WVI Insights Twitter Keys
     WVI_INSIGHTS_API_KEY: Optional[str] = os.getenv("WVI_INSIGHTS_API_KEY")
@@ -55,5 +56,6 @@ async def initiate_database():
     await init_beanie(database=client.world_view_insights,
                         document_models=[
                                             FormFour,
-                                            Tweet
+                                            Tweet,
+                                            NewsArticle
                                         ])

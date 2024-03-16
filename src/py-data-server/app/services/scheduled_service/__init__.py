@@ -19,6 +19,7 @@ class ScheduledServiceService:
     
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
+        scheduler.add_job(self.collect_news_articles, "interval", seconds=10)  # Check every 2 hours
         scheduler.add_job(self.collect_form_fours, "interval", seconds=10)  # Check every 10 seconds
         time.sleep(5)
         scheduler.add_job(self.execute_tweet_bot, "interval", seconds=10)  # Check every 10 seconds
@@ -39,7 +40,11 @@ class ScheduledServiceService:
     async def execute_tweet_bot(self):
         print('Executing Tweet Bot...')
         await TwitterService().execute_tweet_bot()
-        pass
+    
+    
+    async def collect_news_articles(self):
+        print('Collecting News Articles...')
+        await CollectorService.collect_business_news_articles() 
         
         
     def shutdownScheduler(self):
