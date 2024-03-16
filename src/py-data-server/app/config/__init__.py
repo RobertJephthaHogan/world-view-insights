@@ -33,6 +33,9 @@ class Settings(BaseSettings):
     
     WVI_INSIGHTS_CLIENT_ID: Optional[str] = os.getenv("WVI_INSIGHTS_CLIENT_ID")
     WVI_INSIGHTS_CLIENT_SECRET: Optional[str] = os.getenv("WVI_INSIGHTS_CLIENT_SECRET")
+    
+    WVI_OPENAI_API_KEY: Optional[str] = os.getenv("WVI_OPENAI_API_KEY")
+
 
     # JWT
     SECRET_KEY: str
