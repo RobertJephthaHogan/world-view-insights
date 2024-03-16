@@ -7,6 +7,7 @@ client = OpenAI(api_key=Settings().WVI_OPENAI_API_KEY)
 
 class OpenAiService:
     
+    
     async def test_open_ai():
         
         completion = client.chat.completions.create(
@@ -19,6 +20,7 @@ class OpenAiService:
         print(completion.choices[0].message)    
     
     
+    # This is "Aaron" Our AI Financial Journalist. He writes articles to compete with other articles
     async def write_competitor_article(competitor_article):
         
         completion = client.chat.completions.create(
