@@ -70,12 +70,18 @@ class CollectorService:
                 # Use Aaron to write competitor article title here
                 competitor_content = article['content']
                 aaron_content = await OpenAiService.write_competitor_article(competitor_content)
+                print('aaron_content', aaron_content)
                 article['content'] = aaron_content
                 
                 # Use Aaron to write competitor article here
                 competitor_article_title = article['title']
                 aaron_article_title = await OpenAiService.write_competitor_article_title(competitor_article_title)
-                article['title'] = aaron_article_title
+                print('aaron_article_title', aaron_article_title)
+                # quotes generated in title
+                no_double_quotes = aaron_article_title.replace('"', '')
+                title_no_quotes = no_double_quotes.replace("'", '')
+                
+                article['title'] = title_no_quotes
                 
                 article_instance = NewsArticle(**article)
                 await NewsArticleOperations.add_news_article(article_instance)
