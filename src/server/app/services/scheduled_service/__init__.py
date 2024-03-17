@@ -27,10 +27,8 @@ eastern_timezone = pytz.timezone('America/New_York')
 
 class ScheduledServiceService: # as agonizing as this class name is, I'll continue to follow the convention I have been 
     
-    #collect_business_news_articles
     def startScheduler(self):
         scheduler = AsyncIOScheduler()
-        scheduler.add_job(self.collect_business_news_articles, "interval", seconds=24600)  # Check every 6 hours
         scheduler.add_job(self.collect_leaders_snapshot, "interval", seconds=60)  # Check every 60 seconds
         time.sleep(5) # space out minute interval services
         scheduler.add_job(self.collect_index_snapshots, "interval", seconds=60)  # Check every 60 seconds

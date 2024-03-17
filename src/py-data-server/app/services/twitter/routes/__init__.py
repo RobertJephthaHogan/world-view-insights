@@ -7,7 +7,7 @@ from .. import TwitterService
 
 router = APIRouter()
 
-class CollectorController:
+class TwitterController:
     
     # Test creating a new tweet
     @router.get("/test_tweet_new_tweet/")
