@@ -1,4 +1,5 @@
 from app.services.edgar import EdgarService
+from app.services.open_ai import OpenAiService
 from app.models.FormFour import FormFour
 from app.database.form_four_operations import FormFourOperations
 from app.services.form_four.form_four_parser import parseFormFour
@@ -53,11 +54,29 @@ class CollectorService:
 
         # iterate through articles, store articles that are not already stored       
         for article in articles:
+                        
             # check if article exists by title, if so pass, if not, add the article
-            article_exists = await NewsArticleOperations().retrieve_news_article_by_title(article['title'])
+            article_exists = await NewsArticleOperations().retrieve_news_article_by_reference_title(article['title'])
             if article_exists:
                 pass 
             else :
+                
+                # Set the Author to our AI financial Journalist
+                article['author'] = 'Aaron Horowitz'
+                
+                # set the title as referenceTitle so it can be searched for
+                article['referenceTitle'] = article['title']
+                
+                # Use Aaron to write competitor article title here
+                competitor_content = article['content']
+                aaron_content = await OpenAiService.write_competitor_article(competitor_content)
+                article['content'] = aaron_content
+                
+                # Use Aaron to write competitor article here
+                competitor_article_title = article['title']
+                aaron_article_title = await OpenAiService.write_competitor_article_title(competitor_article_title)
+                article['title'] = aaron_article_title
+                
                 article_instance = NewsArticle(**article)
                 await NewsArticleOperations.add_news_article(article_instance)
                 

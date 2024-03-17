@@ -20,7 +20,7 @@ class OpenAiService:
         print(completion.choices[0].message)    
     
     
-    # This is "Aaron" Our AI Financial Journalist. He writes articles to compete with other articles
+    # The functions below are for "Aaron" Our AI Financial Journalist. He writes articles to compete with other articles
     async def write_competitor_article(competitor_article):
         
         completion = client.chat.completions.create(
@@ -32,6 +32,19 @@ class OpenAiService:
                 "}
         ]
         )
-        print(completion.choices[0].message)    
-        return completion
+        return completion.choices[0].message.content
+    
+    
+    async def write_competitor_article_title(competitor_article_title):
+        
+        completion = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a high level financial journalist, skilled in explaining financial topics happening in the news better than anyone else."},
+            {"role": "user", "content": f"I am your boss. Our competitor wrote a news article before us and we are covering the exact same topic \
+                    Write a better article title than this {competitor_article_title}   \
+                "}
+        ]
+        )
+        return completion.choices[0].message.content
     

@@ -34,6 +34,13 @@ class NewsArticleOperations:
             return news_article
         
     
+    
+    async def retrieve_news_article_by_reference_title(self, reference_title: str) -> Union[NewsArticle, None]:
+            news_article = await news_article_collection.find_one(NewsArticle.referenceTitle == reference_title)
+            return news_article
+        
+    
+    
     async def retrieve_recent_news_articles(self, limit: int) -> List[NewsArticle]:
         recent_news_articles = await news_article_collection.find().sort("-datePosted").limit(limit).to_list()
         return recent_news_articles

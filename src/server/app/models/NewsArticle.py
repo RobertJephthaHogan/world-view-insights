@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 class NewsArticle(Document):
     id: Optional[str] = Field(...)
     title: str = Field(...)
+    referenceTitle: str = Field(...)
     datePosted: datetime.datetime = Field(...)
     creationDate: Union[str, datetime.datetime] = Field(...)
     content: str = Field(...)
@@ -27,6 +28,7 @@ class NewsArticle(Document):
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "title": "Article Title",
+                "referenceTitle": "Article Title",
                 "datePosted": "2022-12-22T16:09:23.443Z",
                 "creationDate": "2022-12-22T16:09:23.443Z",
                 "content": "Article Content",
@@ -44,6 +46,7 @@ class NewsArticle(Document):
 class UpdateNewsArticleModel(BaseModel):
     id: Optional[str]
     title: Optional[str]
+    referenceTitle: Optional[str]
     datePosted: Optional[datetime.datetime]
     creationDate: Optional[datetime.datetime]
     content: Optional[str]
@@ -61,6 +64,7 @@ class UpdateNewsArticleModel(BaseModel):
             "example": {
                 "id": "6382e2abc07256ef099af572",
                 "title": "Article Title",
+                "referenceTitle": "Article Title",
                 "datePosted": "2022-12-22T16:09:23.443Z",
                 "creationDate": "2022-12-22T16:09:23.443Z",
                 "content": "Article Content",
