@@ -22,7 +22,8 @@ class Settings(BaseSettings):
     # User Agent for SEC.gov requests
     USER_AGENT: Optional[str] = os.getenv("USER_AGENT")
 
-    # FMP API key:
+    # FMP API key: (FIX THIS)
+    FMP_KEY: Optional[str] = os.getenv("FMP_KEY")
     FMP_API_KEY: Optional[str] = os.getenv("FMP_KEY")
     
     # WVI Insights Twitter Keys
