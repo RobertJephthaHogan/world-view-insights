@@ -39,7 +39,7 @@ class ScheduledServiceService:
         
     async def execute_tweet_bot(self):
         print('Executing Tweet Bot...')
-        await TwitterService().execute_tweet_bot()
+        await TwitterService().execute_insider_tx_tweet_bot()
     
     
     async def collect_news_articles(self):

@@ -33,7 +33,6 @@ class TwitterService:
         
         # Create the new tweet
         response = twitter_client.create_tweet(text=content)
-
         
         return response
     
@@ -78,7 +77,6 @@ class TwitterService:
     
     
     async def determine_num_transactions_clause(self, derivative_table, non_derivative_table):
-        
         
         # Determine total number of transactions listed in the filing
         total_transactions = len(derivative_table['derivativeTransactions']) + len(non_derivative_table['nonDerivativeTransactions'])
@@ -129,12 +127,12 @@ class TwitterService:
         formatted_currency = "${:,.2f}".format(amount)
         return formatted_currency
     
-    async def execute_tweet_bot(self):
+
+    async def execute_insider_tx_tweet_bot(self):
         
         # Get the last {x} purchase or sale transactions
         lookback_window = 1
         form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(lookback_window, 1, ['P', 'S'])
-        
         
         # Go through each entry and generate a tweet dict for it
         for form_four in form_fours:
@@ -198,9 +196,6 @@ class TwitterService:
                     print('error', e)
                 
                 
-                
-                
-        
-            # if the tweet has not been tweeted before, it is new and you 
+            # other handling here if needed
         
         pass
