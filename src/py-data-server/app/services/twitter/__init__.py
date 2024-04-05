@@ -79,7 +79,7 @@ class TwitterService:
 
         # Get the last {x} news articles
 
-        recent_news_articles = await NewsArticleOperations.retrieve_news_articles_paginated(1, 1)
+        recent_news_articles = await NewsArticleOperations.retrieve_news_articles_paginated(5, 1)
 
         # for each of the news articles
         for news_article in recent_news_articles:
