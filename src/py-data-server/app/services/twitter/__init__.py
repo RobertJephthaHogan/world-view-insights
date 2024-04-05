@@ -36,7 +36,11 @@ class TwitterService:
         
         return response
     
-    
+
+    ####################################
+    # Tweet DB op function usage below #
+    ####################################
+
     async def add_tweet(new_tweet: Tweet) -> Tweet:
         tweet = await TweetOperations.add_tweet(new_tweet)
         return tweet
@@ -62,8 +66,29 @@ class TwitterService:
     async def delete_tweet(id):
         deleted_tweet = await TweetOperations.delete_tweet(id)
         return deleted_tweet
-        
     
+
+    ####################################
+    # News Bot service functions below #
+    ####################################
+
+
+    async def execute_news_bot(self):
+
+        # Get the last {x} news articles
+
+        # for each of the news articles
+        # generate the tweet string from the article
+        # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
+        # if it is new, and meets tweet requirements, tweet the tweet
+
+        pass
+
+
+    ##########################################
+    # Insider TX Bot service functions below #
+    ##########################################
+
     def extract_transaction_dates(self, transactions_dict):
         # Initialize an empty list to store the dates
         transaction_dates = []
