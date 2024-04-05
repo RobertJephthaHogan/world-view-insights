@@ -88,7 +88,6 @@ class TwitterService:
 
             # generate the tweet string from the article
             tweet_content = f" ${news_article.tickers} - {news_article.title}. See more at {link_to_wvi} #{news_article.tickers}"
-            print('tweet_content', tweet_content)
             
             tweet_info = {
                 "id": str(ObjectId()),
@@ -108,9 +107,7 @@ class TwitterService:
                 pass
 
             if not tweet_exists:
-                # Create the tweet, if it is posted successfully, create the db entry
-                print('creating tweet')
-                
+                # Create the tweet, if it is posted successfully, create the db entry                
                 try:
                     resp = await self.tweet_new_tweet(tweet_info['content'])
                     tweet_obj = Tweet(**tweet_info)
@@ -246,9 +243,7 @@ class TwitterService:
             # if the tweet does not exist and there has not been a tweet in the last 30 minutes, tweet the tweet
             if not tweet_exists and is_below_cutoff_threshold and not tweets_in_last_30:
                 
-                # Create the tweet, if it is posted successfully, create the db entry
-                print('creating tweet')
-                
+                # Create the tweet, if it is posted successfully, create the db entry                
                 try:
                     resp = await self.tweet_new_tweet(tweet_info['content'])
                     tweet_obj = Tweet(**tweet_info)
