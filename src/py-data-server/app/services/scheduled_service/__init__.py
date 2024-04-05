@@ -35,6 +35,11 @@ class ScheduledServiceService:
     async def collect_form_fours(self):
         print('Collecting Form Fours...')
         await CollectorService.collect_form_fours()
+
+
+    async def execute_news_tweet_bot():
+        print('Executing News Bot...')
+        pass
         
         
     async def execute_tweet_bot(self):

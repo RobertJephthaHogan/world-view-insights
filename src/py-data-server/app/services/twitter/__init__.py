@@ -1,4 +1,6 @@
 from typing import List, Union
+
+from app.database.news_article_operations import NewsArticleOperations
 from bson import ObjectId
 from app.config import Settings
 import tweepy
@@ -77,7 +79,13 @@ class TwitterService:
 
         # Get the last {x} news articles
 
+        recent_news_articles = NewsArticleOperations.retrieve_news_articles_paginated(5, 1)
+
         # for each of the news articles
+        for news_article in recent_news_articles:
+            print('news_article', news_article)
+            pass
+
         # generate the tweet string from the article
         # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
         # if it is new, and meets tweet requirements, tweet the tweet
