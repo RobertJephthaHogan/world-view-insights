@@ -1,6 +1,5 @@
 from app.connection.session import session
 import requests
-from bs4 import BeautifulSoup
 from app.config import Settings
 
 
