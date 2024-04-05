@@ -22,6 +22,7 @@ class ScheduledServiceService:
         scheduler.add_job(self.collect_news_articles, "interval", seconds=10)  # Check every 2 hours
         scheduler.add_job(self.collect_form_fours, "interval", seconds=10)  # Check every 10 seconds
         time.sleep(5)
+        scheduler.add_job(self.execute_news_tweet_bot, "interval", seconds=10)  # Check every 10 seconds
         scheduler.add_job(self.execute_tweet_bot, "interval", seconds=10)  # Check every 10 seconds
         
         scheduler.start()
@@ -37,9 +38,9 @@ class ScheduledServiceService:
         await CollectorService.collect_form_fours()
 
 
-    async def execute_news_tweet_bot():
+    async def execute_news_tweet_bot(self):
         print('Executing News Bot...')
-        pass
+        await TwitterService().execute_news_bot()
         
         
     async def execute_tweet_bot(self):

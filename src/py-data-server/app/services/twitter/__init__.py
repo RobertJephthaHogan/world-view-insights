@@ -79,16 +79,45 @@ class TwitterService:
 
         # Get the last {x} news articles
 
-        recent_news_articles = NewsArticleOperations.retrieve_news_articles_paginated(5, 1)
+        recent_news_articles = await NewsArticleOperations.retrieve_news_articles_paginated(1, 1)
 
         # for each of the news articles
         for news_article in recent_news_articles:
-            print('news_article', news_article)
-            pass
 
-        # generate the tweet string from the article
-        # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
-        # if it is new, and meets tweet requirements, tweet the tweet
+            link_to_wvi = f"https://worldviewinsights.com/"
+
+            # generate the tweet string from the article
+            tweet_content = f" ${news_article.tickers} - {news_article.title}. See more at {link_to_wvi} #{news_article.tickers}"
+            print('tweet_content', tweet_content)
+            
+            tweet_info = {
+                "id": str(ObjectId()),
+                "title": 'News Article Notification Tweet',
+                "type": 'news-article-tweet',
+                "content": tweet_content,
+                "time": datetime.now()
+            }
+
+            
+            # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
+            tweet_exists = await TweetOperations.check_tweet_content_exists(tweet_content)
+
+            # if it is new, and meets tweet requirements, tweet the tweet
+            if tweet_exists:
+                # Do not create a duplicate tweet if the tweet content already exists
+                pass
+
+            if not tweet_exists:
+                # Create the tweet, if it is posted successfully, create the db entry
+                print('creating tweet')
+                
+                try:
+                    resp = await self.tweet_new_tweet(tweet_info['content'])
+                    tweet_obj = Tweet(**tweet_info)
+                    await TweetOperations.add_tweet(tweet_obj)
+                    
+                except Exception as e:
+                    print('error', e)
 
         pass
 
