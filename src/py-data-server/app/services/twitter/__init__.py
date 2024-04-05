@@ -1,4 +1,6 @@
 from typing import List, Union
+
+from app.database.news_article_operations import NewsArticleOperations
 from bson import ObjectId
 from app.config import Settings
 import tweepy
@@ -33,11 +35,14 @@ class TwitterService:
         
         # Create the new tweet
         response = twitter_client.create_tweet(text=content)
-
         
         return response
     
-    
+
+    ####################################
+    # Tweet DB op function usage below #
+    ####################################
+
     async def add_tweet(new_tweet: Tweet) -> Tweet:
         tweet = await TweetOperations.add_tweet(new_tweet)
         return tweet
@@ -63,8 +68,61 @@ class TwitterService:
     async def delete_tweet(id):
         deleted_tweet = await TweetOperations.delete_tweet(id)
         return deleted_tweet
-        
     
+
+    ####################################
+    # News Bot service functions below #
+    ####################################
+
+
+    async def execute_news_bot(self):
+
+        # Get the last {x} news articles
+
+        recent_news_articles = await NewsArticleOperations.retrieve_news_articles_paginated(1, 1)
+
+        # for each of the news articles
+        for news_article in recent_news_articles:
+
+            link_to_wvi = f"https://worldviewinsights.com/"
+
+            # generate the tweet string from the article
+            tweet_content = f" ${news_article.tickers} - {news_article.title}. See more at {link_to_wvi} #{news_article.tickers}"
+            
+            tweet_info = {
+                "id": str(ObjectId()),
+                "title": 'News Article Notification Tweet',
+                "type": 'news-article-tweet',
+                "content": tweet_content,
+                "time": datetime.now()
+            }
+
+            
+            # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
+            tweet_exists = await TweetOperations.check_tweet_content_exists(tweet_content)
+
+            # if it is new, and meets tweet requirements, tweet the tweet
+            if tweet_exists:
+                # Do not create a duplicate tweet if the tweet content already exists
+                pass
+
+            if not tweet_exists:
+                # Create the tweet, if it is posted successfully, create the db entry                
+                try:
+                    resp = await self.tweet_new_tweet(tweet_info['content'])
+                    tweet_obj = Tweet(**tweet_info)
+                    await TweetOperations.add_tweet(tweet_obj)
+                    
+                except Exception as e:
+                    print('error', e)
+
+        pass
+
+
+    ##########################################
+    # Insider TX Bot service functions below #
+    ##########################################
+
     def extract_transaction_dates(self, transactions_dict):
         # Initialize an empty list to store the dates
         transaction_dates = []
@@ -78,7 +136,6 @@ class TwitterService:
     
     
     async def determine_num_transactions_clause(self, derivative_table, non_derivative_table):
-        
         
         # Determine total number of transactions listed in the filing
         total_transactions = len(derivative_table['derivativeTransactions']) + len(non_derivative_table['nonDerivativeTransactions'])
@@ -129,12 +186,12 @@ class TwitterService:
         formatted_currency = "${:,.2f}".format(amount)
         return formatted_currency
     
-    async def execute_tweet_bot(self):
+
+    async def execute_insider_tx_tweet_bot(self):
         
         # Get the last {x} purchase or sale transactions
         lookback_window = 1
         form_fours = await FormFourOperations.retrieve_form_fours_by_tx_type_paginated(lookback_window, 1, ['P', 'S'])
-        
         
         # Go through each entry and generate a tweet dict for it
         for form_four in form_fours:
@@ -186,9 +243,7 @@ class TwitterService:
             # if the tweet does not exist and there has not been a tweet in the last 30 minutes, tweet the tweet
             if not tweet_exists and is_below_cutoff_threshold and not tweets_in_last_30:
                 
-                # Create the tweet, if it is posted successfully, create the db entry
-                print('creating tweet')
-                
+                # Create the tweet, if it is posted successfully, create the db entry                
                 try:
                     resp = await self.tweet_new_tweet(tweet_info['content'])
                     tweet_obj = Tweet(**tweet_info)
@@ -198,9 +253,6 @@ class TwitterService:
                     print('error', e)
                 
                 
-                
-                
-        
-            # if the tweet has not been tweeted before, it is new and you 
+            # other handling here if needed
         
         pass

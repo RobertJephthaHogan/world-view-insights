@@ -34,17 +34,39 @@ class NewsArticleOperations:
             return news_article
         
     
-    
     async def retrieve_news_article_by_reference_title(self, reference_title: str) -> Union[NewsArticle, None]:
             news_article = await news_article_collection.find_one(NewsArticle.referenceTitle == reference_title)
             return news_article
         
     
-    
     async def retrieve_recent_news_articles(self, limit: int) -> List[NewsArticle]:
         recent_news_articles = await news_article_collection.find().sort("-datePosted").limit(limit).to_list()
         return recent_news_articles
         
+    
+    async def retrieve_news_articles_paginated(page_size: int, page: int) -> List[NewsArticle]:
+        """
+        Retrieves a paginated list of NewsArticle entries.
+
+        Args:
+        - page_size (int): The number of NewsArticle entries to return per page.
+        - page (int): The page number to retrieve.
+
+        Returns:
+        - List[NewsArticle]: A list of NewsArticle entries, paginated according to page_size and page.
+        """
+        # Calculate the number of documents to skip
+        skip = (page - 1) * page_size
+
+        # Query the database with skip and limit for pagination
+        news_articles = await NewsArticle.find()\
+                                    .sort("-_id")\
+                                    .skip(skip)\
+                                    .limit(page_size)\
+                                    .to_list()
+
+        return news_articles
+
 
     async def retrieve_news_article(id: NewsArticle) -> NewsArticle:
         news_article = await news_article_collection.get(str(id))
