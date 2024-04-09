@@ -83,8 +83,10 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles['hc-right']}>
-                <div className={styles['hc-menu-item']}>
-                    <span>News</span>
+                <div className={styles['hc-parent-menu']}>
+                    <span className={styles['hc-parent-menu-title']}>
+                        News
+                    </span>
                     {/* <FaCaretDown /> */}
                     <FaCaretDown />
                     <div className={styles["dropdown-content"]}>
@@ -92,123 +94,123 @@ export default function Header() {
                             onClick={(e) => handleNavigationClick(e, '/news/latest')}
                             href={`${config.clientUrl}news/latest`}
                         >
-                            Latest News
+                            <span className={styles["hc-menu-item"]}>
+                                Latest News
+                            </span>
                         </a>
                         <a 
                             onClick={(e) => handleNavigationClick(e, '/news/business')}
                             href={`${config.clientUrl}news/business`}
                         >
-                            Business News
+                            <span className={styles["hc-menu-item"]}>
+                                Business News
+                            </span>
                         </a>
                         <a 
                             onClick={(e) => handleNavigationClick(e, '/news/politics')}
                             href={`${config.clientUrl}news/politics`}
                         >
-                            Political News
+                            <span className={styles["hc-menu-item"]}>
+                                Political News
+                            </span>
                         </a>
                         <a 
                             onClick={(e) => handleNavigationClick(e, '/news/tech')}
                             href={`${config.clientUrl}news/tech`}
                         >
-                            Tech News
+                            <span className={styles["hc-menu-item"]}>
+                                Tech News
+                            </span>
                         </a>
                     </div>
                 </div>
-                    <div className={styles['hc-menu-item']}>
-                        <span>
+                    <div className={styles['hc-parent-menu']}>
+                        <span className={styles['hc-parent-menu-title']}>
                             Markets
                         </span>
                         <FaCaretDown />
                         <div className={styles["dropdown-content"]}>
-                            <div className={styles['dropdown-panel']}>
-                                <div>
-                                    {/* <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/overview')}
-                                        href={`${config.clientUrl}markets/overview`}
-                                    >
-                                        Overview
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/currencies')}
-                                        href={`${config.clientUrl}markets/currencies`}
-                                    >
-                                        Currencies
-                                    </a> */}
-                                    {/* <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/sectors')}
-                                        href={`${config.clientUrl}markets/sectors`}
-                                    >
-                                        Sectors
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/interest-rates')}
-                                        href={`${config.clientUrl}markets/interest-rates`}
-                                    >
-                                        Interest Rates
-                                    </a> */}
-                                    {/* <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
-                                        href={`${config.clientUrl}markets/insider-tx`}
-                                    >
-                                        Insider Tx Viewer
-                                    </a> */}
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
-                                        href={`${config.clientUrl}markets/leaders`}
-                                    >
+                            <div>
+                                {/* <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/overview')}
+                                    href={`${config.clientUrl}markets/overview`}
+                                >
+                                    Overview
+                                </a>
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/currencies')}
+                                    href={`${config.clientUrl}markets/currencies`}
+                                >
+                                    Currencies
+                                </a> */}
+                                {/* <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/sectors')}
+                                    href={`${config.clientUrl}markets/sectors`}
+                                >
+                                    Sectors
+                                </a>
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/interest-rates')}
+                                    href={`${config.clientUrl}markets/interest-rates`}
+                                >
+                                    Interest Rates
+                                </a> */}
+                                {/* <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
+                                    href={`${config.clientUrl}markets/insider-tx`}
+                                >
+                                    Insider Tx Viewer
+                                </a> */}
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
+                                    href={`${config.clientUrl}markets/leaders`}
+                                >
+                                    <span className={styles["hc-menu-item"]}>
                                         Market Leaders
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/active')}
-                                        href={`${config.clientUrl}markets/active`}
-                                    >
+                                    </span>
+                                </a>
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/active')}
+                                    href={`${config.clientUrl}markets/active`}
+                                >
+                                    <span className={styles["hc-menu-item"]}>
                                         Most Active
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
-                                        href={`${config.clientUrl}markets/gainers`}
-                                    >
+                                    </span>
+                                </a>
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
+                                    href={`${config.clientUrl}markets/gainers`}
+                                >
+                                    <span className={styles["hc-menu-item"]}>
                                         Gainers
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/losers')}
-                                        href={`${config.clientUrl}markets/losers`}
-                                    >
+                                    </span>
+                                </a>
+                                <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/losers')}
+                                    href={`${config.clientUrl}markets/losers`}
+                                >
+                                    <span className={styles["hc-menu-item"]}>
                                         Losers
-                                    </a>
-                                    {/* <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/updates')}
-                                        href={`${config.clientUrl}markets/updates`}
-                                    >
-                                        Market Updates
-                                    </a> */}
-                                    {/* <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/stocks')}
-                                        href={`${config.clientUrl}markets/stocks`}
-                                    >
-                                        Stocks
-                                    </a> */}
-                                    {/* <a href="#markets1">Mortgage Data</a> */}
-                                </div>
-                                {/* <div className={styles['dp-col']}>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
-                                        href={`${config.clientUrl}markets/leaders`}
-                                    >
-                                        Market Leaders
-                                    </a>
-                                    <a 
-                                        onClick={(e) => handleNavigationClick(e, '/markets/active')}
-                                        href={`${config.clientUrl}markets/active`}
-                                    >
-                                        Most Active
-                                    </a>
-                                </div> */}
+                                    </span>
+                                </a>
+                                {/* <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/updates')}
+                                    href={`${config.clientUrl}markets/updates`}
+                                >
+                                    Market Updates
+                                </a> */}
+                                {/* <a 
+                                    onClick={(e) => handleNavigationClick(e, '/markets/stocks')}
+                                    href={`${config.clientUrl}markets/stocks`}
+                                >
+                                    Stocks
+                                </a> */}
+                                {/* <a href="#markets1">Mortgage Data</a> */}
                             </div>
                         </div>
                     </div>
-                    <div className={styles['hc-menu-item']}>
-                        <span>
+                    <div className={styles['hc-parent-menu']}>
+                        <span className={styles['hc-parent-menu-title']}>
                             Tools
                         </span>
                         <FaCaretDown />
@@ -217,11 +219,13 @@ export default function Header() {
                                 onClick={(e) => handleNavigationClick(e, '/markets/insider-tx')}
                                 href={`${config.clientUrl}markets/insider-tx`}
                             >
-                                Insider Tx Viewer
+                                <span className={styles["hc-menu-item"]}>
+                                    Insider Tx Viewer
+                                </span>
                             </a>
                         </div>
                     </div>
-                    {/* <div className='hc-menu-item'>
+                    {/* <div className='hc-parent-menu'>
                         <span>
                             Mortgages
                         </span>
