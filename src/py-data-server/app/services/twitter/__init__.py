@@ -187,6 +187,11 @@ class TwitterService:
         return formatted_currency
     
 
+    def is_valid_symbol(self, symbol):
+        invalid_symbols = ["none", "na", "n/a"]
+        return symbol.lower() not in invalid_symbols if symbol else True
+    
+
     async def execute_insider_tx_tweet_bot(self):
         
         # Get the last {x} purchase or sale transactions
@@ -232,6 +237,9 @@ class TwitterService:
             # Check how many tweets have been made in the last 24 hours
             tweets_in_last_day = await TweetOperations.find_tweets_in_last_x_minutes(1440)
             is_below_cutoff_threshold = len(tweets_in_last_day) < 40
+
+            # Check to see if the ticker for the tweet is valid, avoid "NONE", "NA", and "NA"
+            valid_trading_symbol = self.is_valid_symbol(symbol)
             
             # check if the tweet has been tweeted before by matching the tweets content, If so, it is not a new tweet
             tweet_exists = await TweetOperations.check_tweet_content_exists(tweet_content)
@@ -241,7 +249,7 @@ class TwitterService:
                 pass
             
             # if the tweet does not exist and there has not been a tweet in the last 30 minutes, tweet the tweet
-            if not tweet_exists and is_below_cutoff_threshold and not tweets_in_last_30:
+            if not tweet_exists and is_below_cutoff_threshold and not tweets_in_last_30 and valid_trading_symbol:
                 
                 # Create the tweet, if it is posted successfully, create the db entry                
                 try:
