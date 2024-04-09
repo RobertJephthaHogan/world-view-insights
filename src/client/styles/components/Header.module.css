@@ -29,7 +29,85 @@
     cursor: pointer;
 }
 
-.wvi-icon-dark {
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+
+    .wvi-icon-dark {
+        background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+        background-size: cover;
+        height: 50px;
+        width: 90px;
+    }
+
+    .wvi-logo-text {
+        font-size: 20px;
+        font-weight: 500;
+        margin-left: 10px;
+    }
+
+    .wvi-beta-text {
+        font-size: 10px;
+        font-weight: 300;
+        margin-left: 10px;
+    }
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+
+    .wvi-icon-dark {
+        background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+        background-size: cover;
+        height: 50px;
+        width: 90px;
+    }
+
+    .wvi-logo-text {
+        font-size: 16px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap;
+    }
+
+    .wvi-beta-text {
+        font-size: 8px;
+        font-weight: 300;
+        margin-left: 10px;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  /* CSS rules for medium devices like tablets and small laptops */
+
+    .wvi-icon-dark {
+        background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+        background-size: cover;
+        height: 50px;
+        width: 90px;
+    }
+
+    .wvi-logo-text {
+        /* font-size: 16px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap; */
+        display: none;
+    }
+
+    .wvi-beta-text {
+        /* font-size: 8px;
+        font-weight: 300;
+        margin-left: 10px; */
+        display: none;
+    }
+}
+
+
+
+/* default logo styles before screen sizing formatting */
+/* .wvi-icon-dark {
     background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
     background-size: cover;
     height: 50px;
@@ -46,7 +124,7 @@
     font-size: 10px;
     font-weight: 300;
     margin-left: 10px;
-}
+} */
 
 .search-container {
     display: flex;
