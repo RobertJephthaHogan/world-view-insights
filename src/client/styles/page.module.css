@@ -33,3 +33,34 @@
   padding-left: 2em;
   padding-top: 2em;
 }
+
+
+@media only screen and (min-width: 1200px) {
+  /* CSS rules for extra large devices like large desktops and TVs */
+
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+  /* CSS rules for large devices like desktops and large laptops */
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+  /* CSS rules for medium devices like tablets and small laptops */
+
+}
+
+
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+  /* CSS rules for small devices like large phones and small tablets */
+
+}
+
+
+@media only screen and (max-width: 575.98px) {
+  /* CSS rules for extra small devices like mobile phones */
+
+}

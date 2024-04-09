@@ -134,6 +134,7 @@
     width: 100%;
     max-width: 100%;
     max-height: 120px;
+    box-sizing: border-box;
 }
 
 .story-row:hover {
@@ -151,7 +152,7 @@
 
 .sr-r {
     padding: 0.5em;
-    /* width: 100%; */
+    overflow-x: auto;
 }
 
 .sr-r-t {
@@ -170,6 +171,9 @@
 .story-row-date {
     font-size: 16px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: #515151;
 }
 
