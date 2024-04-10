@@ -33,6 +33,65 @@
     align-items: center;
 }
 
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+  
+    
+    .index-title {
+        font-size: 20px;
+        color: #686868;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 10px;
+    }
+
+    .index-display-price {
+        font-size: 13px;
+        color: #686868;
+        margin-left: 0.5em;
+        margin-top: 3px
+    }
+
+    .change-text {
+        color: #686868;
+        font-weight: 500;
+        font-size: 16px;
+    }
+
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+  
+    .index-title {
+        font-size: 16px !important;
+        color: #686868;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 10px;
+    }
+
+    .index-display-price {
+        font-size: 10px !important;
+        color: #686868;
+        margin-left: 0.5em;
+        margin-top: 3px
+    }
+
+    .change-text {
+        color: #686868;
+        font-weight: 500;
+        font-size: 12px;
+    }
+
+}
+  
+
 .index-title {
     font-size: 20px;
     color: #686868;
@@ -50,16 +109,16 @@
     margin-top: 3px
 }
 
+.change-text {
+    color: #686868;
+    font-weight: 500;
+}
+
 .chart {
     height: 60px;
     width: 60px;
     /* border: 1px solid #dfdfdf; */
     margin: 5px
-}
-
-.change-text {
-    color: #686868;
-    font-weight: 500;
 }
 
 .change-up {

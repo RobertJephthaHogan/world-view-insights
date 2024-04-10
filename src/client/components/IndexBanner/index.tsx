@@ -15,7 +15,8 @@ export default function IndexBanner() {
         
         dataService.getMajorIndicesOverview()
             .then((resp: any) => {
-                setBannerData(resp)
+                // set the index banner data, but remove wilshire data if it still exists. Clean this up
+                setBannerData(resp.filter((idx: any) => idx.title !== 'Wilshire 5000 Total Market Index'))
             })
             .catch((error: any) => {
                 console.log('error', error)
@@ -30,7 +31,7 @@ export default function IndexBanner() {
 
                 {
                     !bannerData &&
-                    [0,0,0,0,0]?.map((entry: any, i: number) => {
+                    [0,0,0,0]?.map((entry: any, i: number) => {
                         return (
                             <div 
                                 className={styles['index-card-skeleton']}
