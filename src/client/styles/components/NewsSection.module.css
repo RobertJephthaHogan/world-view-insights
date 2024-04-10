@@ -80,6 +80,15 @@
         text-overflow: ellipsis;
     }
 
+    .ms-date-text {
+        color: #515151;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 12px !important;
+    }
+
     .main-story-description-container {
         flex-grow: 1;
         max-height: 50%;
@@ -123,6 +132,80 @@
 @media only screen and (min-width: 768px) and (max-width: 991.98px) {
     /* CSS rules for medium devices like tablets and small laptops */
   
+    .ns-main-story {
+        display: flex;
+        padding: 1em 1em;
+        height: 120px !important;
+    }
+
+    .ns-ms-image {
+        width: 150px !important;
+        height: 120px !important;
+        /* background-color: #f1f1f1; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #dfdfdf
+    }
+
+    .ms-title {
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+
+    .ms-description {
+        font-size: 10px !important;
+        color: #656565;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .ms-date-text {
+        color: #515151;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 12px !important;
+    }
+
+    .main-story-description-container {
+        flex-grow: 1;
+        max-height: 50%;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3 !important; /* Number of lines after which text should be truncated */
+    }
+
+    .story-row-title {
+        font-size: 12px !important;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .story-row-date {
+        font-size: 12px !important;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #515151;
+    }
+    
+    .story-row-description {
+        font-size: 10px !important;
+        color: #616161;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4 !important; 
+    }
+
 }
   
   
@@ -162,6 +245,14 @@
 .ms-description {
     font-size: 15px;
     color: #656565;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ms-date-text {
+    color: #515151;
+    font-weight: 500;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -254,14 +345,6 @@
 .main-story-date-container {
     position: absolute;
     bottom: 0;
-}
-
-.ms-date-text {
-    color: #515151;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .more-news-title {
