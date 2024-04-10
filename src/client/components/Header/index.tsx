@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
 import { FaCaretDown } from 'react-icons/fa';
 import { GoSearch } from "react-icons/go";
+import { CiMenuBurger } from "react-icons/ci";
 
 
 const Button = dynamic(
@@ -84,6 +85,13 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles['hc-right']}>
+                    <div className={styles['mobile-menu-container']}>
+                        <Button
+                            onClick={() => console.log('clicked')}
+                        >
+                            <CiMenuBurger />
+                        </Button>
+                    </div>
                 <div className={styles['hc-parent-menu']}>
                     <span className={styles['hc-parent-menu-title']}>
                         News
