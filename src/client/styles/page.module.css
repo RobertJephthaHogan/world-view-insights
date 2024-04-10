@@ -38,11 +38,21 @@
 @media only screen and (min-width: 1200px) {
   /* CSS rules for extra large devices like large desktops and TVs */
 
+  .latest-news-title {
+    font-weight: 500;
+    font-size: 30px !important;
+  }
+
 }
 
 
 @media only screen and (min-width: 992px) and (max-width: 1199.98px) {
   /* CSS rules for large devices like desktops and large laptops */
+
+  .latest-news-title {
+    font-weight: 500;
+    font-size: 25px !important;
+  }
 
 }
 
@@ -51,7 +61,6 @@
   /* CSS rules for medium devices like tablets and small laptops */
 
 }
-
 
 
 @media only screen and (min-width: 576px) and (max-width: 767.98px) {
