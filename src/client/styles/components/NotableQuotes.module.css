@@ -58,8 +58,19 @@
 
     .quote-row-symbol {
         color: #5C5C5C;
-        font-size: 18px !important;
+        font-size: 10px !important;
         font-weight: 500;
+    }
+
+    .quote-change-text {
+        font-size: 10px !important;
+        font-weight: 500;
+    }
+
+    .quote-row-quote {
+        font-weight: 500;
+        font-size: 10px !important;
+        color: #5C5C5C;
     }
 
 }
