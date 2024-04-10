@@ -2,6 +2,93 @@
 
 
 
+
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+
+    .quote-section-title {
+        font-size: 23px !important;
+        font-weight: 500;
+    }
+
+    .quote-row-symbol {
+        color: #5C5C5C;
+        font-size: 16px !important;
+        font-weight: 500;
+    }
+  
+}
+  
+  
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+
+    .quote-section-title {
+        font-size: 20px !important;
+        font-weight: 500;
+    }
+
+    .quote-row-symbol {
+        color: #5C5C5C;
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+
+    .quote-change-text {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+
+    .quote-row-quote {
+        font-weight: 500;
+        font-size: 12px !important;
+        color: #5C5C5C;
+    }
+  
+}
+  
+  
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    /* CSS rules for medium devices like tablets and small laptops */
+  
+    .quote-section-title {
+        font-size: 18px !important;
+        font-weight: 500;
+    }
+
+    .quote-row-symbol {
+        color: #5C5C5C;
+        font-size: 18px !important;
+        font-weight: 500;
+    }
+
+}
+  
+.quote-row-symbol {
+    color: #5C5C5C;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.quote-change-chip {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #f3f3f3;
+}
+
+.quote-change-text {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.quote-row-quote {
+    font-weight: 500;
+    color: #5C5C5C;
+}
+
 .notable-quotes {
 
 }
@@ -33,6 +120,7 @@
     grid-template-columns: repeat(3, 1fr);
     border-bottom: 1px solid #dfdfdf;
     padding: 0.4em
+    
 }
 
 .quote-row:hover {
@@ -55,12 +143,6 @@
     border-bottom: 1px solid #dfdfdf; */
 }
 
-.quote-row-symbol {
-    color: #5C5C5C;
-    font-size: 23px;
-    font-weight: 500;
-}
-
 .qrl {
     display: flex;
     /* justify-content: center; */
@@ -79,19 +161,6 @@
     align-items: center;
 }
 
-.quote-change-chip {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    background-color: #f3f3f3;
-}
-
-.quote-change-text {
-    font-size: 15px;
-    font-weight: 500;
-}
 
 .quote-change-up-chip {
     width: 100%;
@@ -121,11 +190,6 @@
     font-size: 15px;
     font-weight: 500;
     color: var(--red-one);
-}
-
-.quote-row-quote {
-    font-weight: 500;
-    color: #5C5C5C;
 }
 
 .mts {
