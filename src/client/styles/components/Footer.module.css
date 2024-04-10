@@ -32,6 +32,25 @@
         height: 50px;
         width: 90px; */
     }
+
+    .ft-menu-option {
+        font-size: 12px !important;
+        color: #838383;
+        margin: 3px 0;
+        cursor: pointer;
+    }
+
+        
+    .fbl-cr-text {
+        color: #838383;
+        font-size: 12px !important;
+    }
+
+    .fbl-pp-text {
+        color: #838383;
+        font-size: 12px !important;
+        cursor: pointer;
+    }
   
 }
 
@@ -43,7 +62,30 @@
     margin-top: 100px;
     border: 1px solid #dfdfdf;
     box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+}
 
+.ft-menu-option-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ft-menu-option {
+    font-size: 16px;
+    color: #838383;
+    margin: 3px 0;
+    cursor: pointer;
+}
+
+.fbl-cr-text {
+    color: #838383;
+    font-size: 16px;
+}
+
+.fbl-pp-text {
+    color: #838383;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .footer-divider {
@@ -124,32 +166,8 @@
     
 }
 
-.fbl-cr-text {
-    color: #838383;
-    font-size: 16px;
-}
-
-.fbl-pp-text {
-    color: #838383;
-    font-size: 16px;
-    cursor: pointer;
-}
-
 .ft-mo-anchor {
     all: unset;
-    font-size: 16px;
-    color: #838383;
-    margin: 3px 0;
-    cursor: pointer;
-}
-
-.ft-menu-option-container {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.ft-menu-option {
     font-size: 16px;
     color: #838383;
     margin: 3px 0;
