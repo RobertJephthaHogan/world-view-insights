@@ -68,7 +68,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}`}
                                     onClick={(e) => handleMenuItemClick(e, '/')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         Homepage
                                     </span>
                                 </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}about`}
                                     onClick={(e) => handleMenuItemClick(e, '/about')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         About
                                     </span>
                                 </a>
@@ -86,7 +86,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}privacy-policy`}
                                     onClick={(e) => handleMenuItemClick(e, '/privacy-policy')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         Privacy Policy
                                     </span>
                                 </a>
@@ -104,7 +104,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}news/latest`}
                                     onClick={(e) => handleMenuItemClick(e, '/news/latest')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         Latest News
                                     </span>
                                 </a>
@@ -113,7 +113,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}news/business`}
                                     onClick={(e) => handleMenuItemClick(e, '/news/business')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         Business News
                                     </span>
                                 </a>
@@ -122,7 +122,7 @@ export default function Footer() {
                                     href={`${config.clientUrl}news/tech`}
                                     onClick={(e) => handleMenuItemClick(e, '/news/tech')}
                                 >
-                                    <span>
+                                    <span className={styles['ft-menu-option']}>
                                         Tech News
                                     </span>
                                 </a>

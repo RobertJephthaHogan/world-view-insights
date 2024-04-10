@@ -9,10 +9,16 @@ import styles from '../../styles/components/Header.module.css'
 import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
 import { FaCaretDown } from 'react-icons/fa';
+import { GoSearch } from "react-icons/go";
 
 
 const Button = dynamic(
     () => import('antd').then(mod => mod.Button),
+    { ssr: false }
+);
+
+const Modal = dynamic(
+    () => import('antd').then(mod => mod.Modal),
     { ssr: false }
 );
 
@@ -34,6 +40,7 @@ const Search = dynamic(
 export default function Header() {
 
     const [searchText, setSearchText] = useState<string>('')
+    const [ searchModalOpen, setSearchModalOpen] = useState<boolean>(false)
     const router = useRouter()
     const config = getConfig()
 
@@ -47,13 +54,7 @@ export default function Header() {
         router.push(path);
     };
 
-    function onSearch() {
-        console.log('onSearch!', searchText)
-    }
 
-    function handleSearchTextChange(value: string) {
-        setSearchText(value)
-    }
 
     return (
         <div className={styles['header']}>
@@ -74,12 +75,12 @@ export default function Header() {
                         </div>
                     </div>
                     <div className={styles['search-container']}>
-                        <Search 
-                            placeholder="Search Site Resource or Stock" 
-                            onSearch={onSearch} 
-                            value={searchText}
-                            onChange={(e) => handleSearchTextChange(e?.target?.value)}
-                        />
+                        
+                        <Button
+                            onClick={() => setSearchModalOpen(true)}
+                        >
+                            <GoSearch />
+                        </Button>
                     </div>
                 </div>
                 <div className={styles['hc-right']}>
@@ -240,6 +241,15 @@ export default function Header() {
                     </div>
                 </div>
             </div>
+            <Modal 
+                title="Search Stocks or Website Resources" 
+                open={searchModalOpen} 
+                onOk={() => setSearchModalOpen(false)} 
+                onCancel={() => setSearchModalOpen(false)}
+            >
+                <p>Search Coming Soon</p>
+                
+            </Modal>
         </div>
     )
 }
