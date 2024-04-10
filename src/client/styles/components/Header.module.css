@@ -122,6 +122,22 @@
         display: none;
     }
 
+    .hc-parent-menu-title {
+        font-size: 12px;
+    }
+
+    .hc-menu-item {
+        font-size: 12px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 4px 8px !important;
+        text-decoration: none;
+        display: block;
+        white-space: nowrap;
+    }
+
 }
 
 
