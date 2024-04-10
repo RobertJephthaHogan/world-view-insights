@@ -68,11 +68,12 @@ class DataService:
         data = await FmpService.MarketIndexes.get_all_major_indexes()
         objects = data.json()
         indexes_needed = ['^DJI', '^GSPC', '^NDX', '^W5000']
+        #indexes_needed = ['^DJI', '^GSPC', '^NDX', '^W5000'] if wilshire is needed again
         index_to_etf_map = {
             '^DJI': 'DIA', 
             '^GSPC': 'SPY', 
             '^NDX': 'QQQ', 
-            '^W5000': 'VTI',
+            #'^W5000': 'VTI',
         }
         matches = [obj for obj in objects if obj['symbol'] in indexes_needed]
 

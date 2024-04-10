@@ -1,5 +1,7 @@
 
 
+
+
 .index-banner {
     height: 85px;
     border-bottom: 1px solid #dfdfdf;
@@ -9,11 +11,64 @@
     justify-content: center;
 }
 
-.index-card-container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    column-gap: 40px;
+
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+
+    .index-card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr) !important;
+        column-gap: 40px;
+    }
+  
 }
+  
+  
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+  
+    .index-card-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr) !important;
+        column-gap: 40px;
+    }
+
+    /* Hide the bitcoin card child */
+    .index-card-container > :nth-child(1) {
+        display: none;
+    }
+
+}
+  
+  
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    /* CSS rules for medium devices like tablets and small laptops */
+
+    .index-card-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important;
+        column-gap: 40px;
+    }
+
+    /* Hide the bitcoin card child */
+    .index-card-container > :nth-child(1) {
+        display: none;
+    }
+
+    /* Hide the dow card child */
+    .index-card-container > :nth-child(4) {
+        display: none;
+    }
+  
+}
+  
+
+
+/* .index-card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 40px;
+} */
 
 .index-card-skeleton {
     width: 250px;

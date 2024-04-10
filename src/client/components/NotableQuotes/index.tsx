@@ -64,7 +64,7 @@ export default function NotableQuotes() {
                     </div>
                 </a>
                 <div className={styles['section-quote-container']}>
-
+                    {/* skeleton loader */}
                     {
                         !quoteData?.marketLeaderQuotes &&
                         [0,0,0,0,0]?.map((quote: any, i: number) => {

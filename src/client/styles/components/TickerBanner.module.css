@@ -23,16 +23,6 @@
     width: 100px;
 }
 
-.banner-item {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    padding: 0 5px;
-    padding: 0 10px;
-    flex: none; /* Prevents flex items from growing or shrinking */
-    margin-right: 20px; /* Space between items */
-}
-
 .bi-info-text {
     font-weight: 500;
     color: #787878;
@@ -81,4 +71,60 @@
     to {
         transform: translateX(-50%);
     }
+}
+
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+    
+    .banner-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 5px;
+        padding: 0 10px;
+        flex: none; /* Prevents flex items from growing or shrinking */
+        margin-right: 20px; /* Space between items */
+    }
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+    
+    .banner-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 5px;
+        padding: 0 10px;
+        flex: none; /* Prevents flex items from growing or shrinking */
+        margin-right: 20px; /* Space between items */
+        font-size: 12px;
+    }
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    /* CSS rules for medium devices like tablets and small laptops */
+    .banner-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 5px;
+        padding: 0 10px;
+        flex: none; /* Prevents flex items from growing or shrinking */
+        margin-right: 20px; /* Space between items */
+        font-size: 10px;
+    }
+}
+  
+
+.banner-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 5px;
+    padding: 0 10px;
+    flex: none; /* Prevents flex items from growing or shrinking */
+    margin-right: 20px; /* Space between items */
 }
