@@ -138,8 +138,45 @@
         white-space: nowrap;
     }
 
+    .login-btn {
+        all: unset;
+        border: 1px solid #1890FF;
+        border-radius: 5px;
+        padding: 1px 10px !important;
+    }
+
+    .login-btn-text {
+        font-size: 10px !important;
+    }
+
+    .hc-parent-menu-title {
+        font-size: 10px;
+    }
+
+    .hc-menu-item {
+        font-size: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 2px 8px !important;
+        text-decoration: none;
+        display: block;
+        white-space: nowrap;
+    }
+
 }
 
+.login-btn {
+    all: unset;
+    border: 1px solid #1890FF;
+    border-radius: 5px;
+    padding: 3px 20px;
+}
+
+.login-btn-text {
+    font-size: 12px;
+}
 
 
 /* default logo styles before screen sizing formatting */
@@ -194,19 +231,8 @@
     display: flex;
 }
 
-.login-btn {
-    all: unset;
-    border: 1px solid #1890FF;
-    border-radius: 5px;
-    padding: 3px 20px;
-}
-
 .login-btn:hover {
     cursor: pointer;
-}
-
-.login-btn-text {
-    font-size: 12px;
 }
 
 .hc-login-item {
