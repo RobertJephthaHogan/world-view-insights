@@ -3,6 +3,205 @@
 
 
 
+
+@media only screen and (min-width: 1200px) {
+    /* CSS rules for extra large devices like large desktops and TVs */
+
+    .ns-main-story {
+        display: flex;
+        padding: 1em 1em;
+        height: 250px !important;
+    }
+
+    .ns-ms-image {
+        width: 300px !important;
+        height: 250px !important;
+        /* background-color: #f1f1f1; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #dfdfdf
+    }
+        
+    .ms-title {
+        font-size: 25px !important;
+        font-weight: 500;
+    }
+
+    .ms-description {
+        font-size: 15px !important;
+        color: #656565;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        
+    .main-story-description-container {
+        flex-grow: 1;
+        max-height: 50%;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 5 !important; /* Number of lines after which text should be truncated */
+    }
+
+}
+  
+  
+@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+    /* CSS rules for large devices like desktops and large laptops */
+  
+    .ns-main-story {
+        display: flex;
+        padding: 1em 1em;
+        height: 170px !important;
+    }
+
+    .ns-ms-image {
+        width: 200px !important;
+        height: 170px !important;
+        /* background-color: #f1f1f1; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #dfdfdf
+    }
+
+    .ms-title {
+        font-size: 20px !important;
+        font-weight: 500;
+    }
+
+    .ms-description {
+        font-size: 12px !important;
+        color: #656565;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .main-story-description-container {
+        flex-grow: 1;
+        max-height: 50%;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4 !important; /* Number of lines after which text should be truncated */
+    }
+
+    .story-row-title {
+        font-size: 14px !important;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .story-row-date {
+        font-size: 14px !important;
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #515151;
+    }
+    
+    .story-row-description {
+        font-size: 12px !important;
+        color: #616161;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; 
+    }
+
+}
+  
+  
+@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+    /* CSS rules for medium devices like tablets and small laptops */
+  
+}
+  
+  
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+    /* CSS rules for small devices like large phones and small tablets */
+  
+}
+  
+  
+@media only screen and (max-width: 575.98px) {
+    /* CSS rules for extra small devices like mobile phones */
+  
+}
+
+
+.ns-ms-image {
+    width: 300px;
+    height: 250px;
+    /* background-color: #f1f1f1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #dfdfdf
+}
+
+.ms-title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.ns-main-story {
+    display: flex;
+    padding: 1em 1em;
+    height: 250px;
+}
+
+.ms-description {
+    font-size: 15px;
+    color: #656565;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-story-description-container {
+    flex-grow: 1;
+    max-height: 50%;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5; /* Number of lines after which text should be truncated */
+}
+
+.story-row-title {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.story-row-date {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #515151;
+}
+
+.story-row-description {
+    color: #616161;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; 
+}
+
 .news-section {
     padding-top: 20px;
 }
@@ -33,35 +232,14 @@
     all:unset
 }
 
-.ns-main-story {
-    display: flex;
-    padding: 1em 1em;
-    height: 250px;
-}
-
 .ns-main-story:hover {
     cursor: pointer;
-}
-
-.ns-ms-image {
-    width: 300px;
-    height: 250px;
-    /* background-color: #f1f1f1; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #dfdfdf
 }
 
 .ns-ms-r {
     padding: 0 1em;
     position: relative;
     height: 100% ;
-}
-
-.ms-title {
-    font-size: 30px;
-    font-weight: 500;
 }
 
 .main-story-title-container {
@@ -71,25 +249,6 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2; /* Number of lines after which text should be truncated */
-}
-
-.main-story-description-container {
-    flex-grow: 1;
-    max-height: 50%;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5; /* Number of lines after which text should be truncated */
-
-
-}
-
-.ms-description {
-    font-size: 15px;
-    color: #656565;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .main-story-date-container {
@@ -160,33 +319,8 @@
     justify-content: space-between;
 }
 
-.story-row-title {
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.story-row-date {
-    font-size: 16px;
-    font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #515151;
-}
-
 .sr-r-b {
     margin-top: 0.5em;
 }
 
-.story-row-description {
-    color: #616161;
-    overflow-y: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3; 
-}
 
