@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import dynamic from 'next/dynamic';
 //import { Button, Input } from 'antd'
+import type { MenuProps } from 'antd';
 import InfoCircleOutlined from '@ant-design/icons/InfoCircleOutlined'
 import CaretDownOutlined from '@ant-design/icons/CaretDownOutlined'
 import styles from '../../styles/components/Header.module.css'
@@ -20,6 +21,16 @@ const Button = dynamic(
 
 const Modal = dynamic(
     () => import('antd').then(mod => mod.Modal),
+    { ssr: false }
+);
+
+const Dropdown = dynamic(
+    () => import('antd').then(mod => mod.Dropdown),
+    { ssr: false }
+);
+
+const Menu = dynamic(
+    () => import('antd').then(mod => mod.Menu),
     { ssr: false }
 );
 
@@ -55,6 +66,113 @@ export default function Header() {
         router.push(path);
     };
 
+    type MenuItem = Required<MenuProps>['items'][number];
+
+    function getItem(
+        label: React.ReactNode,
+        key?: React.Key | null,
+        icon?: React.ReactNode,
+        children?: MenuItem[],
+        type?: 'group',
+    ): MenuItem {
+        return {
+            key,
+            icon,
+            children,
+            label,
+            type,
+        } as MenuItem;
+    }
+
+    const items: MenuItem[] = [
+        getItem('News', 'sub1', null, [
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/latest')}
+                    href={`${config.clientUrl}news/latest`}
+                >
+                    Latest News
+                </a>, 
+                '1'
+            ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/business')}
+                    href={`${config.clientUrl}news/business`}
+                >
+                    Business News
+                </a>, 
+                '2'
+            ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/politics')}
+                    href={`${config.clientUrl}news/politics`}
+                >
+                    Political News
+                </a>, 
+                '3'
+                ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/tech')}
+                    href={`${config.clientUrl}news/tech`}
+                >
+                    Tech News
+                </a>, 
+                '4'
+            ),
+        ]),
+      
+        getItem('Markets', 'sub2', null, [
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
+                    href={`${config.clientUrl}markets/gainers`}
+                >
+                    Gainers
+                </a>, 
+                '5'
+            ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/losers')}
+                    href={`${config.clientUrl}markets/losers`}
+                >
+                    Losers
+                </a>, 
+                '6'
+            ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
+                    href={`${config.clientUrl}markets/leaders`}
+                >
+                    Market Leaders
+                </a>, 
+                '7'
+            ),
+            getItem(
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/active')}
+                    href={`${config.clientUrl}markets/active`}
+                >
+                    Most Active
+                </a>, 
+                '8'
+            ),
+        ]),
+      
+        getItem('Tools', 'sub4', null, [
+            getItem(
+                <a>
+                    Insider Transactions
+                </a>, 
+                '9'
+            ),
+        ]),
+    ];
+
 
 
     return (
@@ -86,11 +204,17 @@ export default function Header() {
                 </div>
                 <div className={styles['hc-right']}>
                     <div className={styles['mobile-menu-container']}>
-                        <Button
-                            onClick={() => console.log('clicked')}
+                        <Dropdown 
+                            menu={{ items }} 
+                            placement="bottomRight"
+                            trigger={['click']}
                         >
-                            <CiMenuBurger />
-                        </Button>
+                            <Button
+                                onClick={() => console.log('clicked')}
+                            >
+                                <CiMenuBurger />
+                            </Button>
+                        </Dropdown>
                     </div>
                     <div className={styles['hc-parent-menu']}>
                         <span className={styles['hc-parent-menu-title']}>
