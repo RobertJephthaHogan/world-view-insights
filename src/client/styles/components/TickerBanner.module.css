@@ -136,8 +136,20 @@
   
 @media only screen and (max-width: 575.98px) {
     /* CSS rules for extra small devices like mobile phones */
-  
+    
+    .banner-item {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 5px;
+        padding: 0 10px;
+        flex: none; /* Prevents flex items from growing or shrinking */
+        margin-right: 20px; /* Space between items */
+        font-size: 10px;
+    }
+
 }
+
   
 
 .banner-item {
