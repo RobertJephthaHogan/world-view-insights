@@ -68,9 +68,14 @@
   
   .hpb-r {
     width: 100% !important;
-    border-left: 1px solid #dfdfdf;
-    padding-left: 2em;
-    padding-top: 2em;
+    border-left: none !important;
+    padding: 2em 2em !important;
+    box-sizing: border-box;
+  }
+
+  .latest-news-title {
+    font-weight: 500;
+    font-size: 25px !important;
   }
 
 }
