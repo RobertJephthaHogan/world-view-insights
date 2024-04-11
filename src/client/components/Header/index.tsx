@@ -87,25 +87,37 @@ export default function Header() {
     const items: MenuItem[] = [
         getItem('News', 'sub1', null, [
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/latest')}
+                    href={`${config.clientUrl}news/latest`}
+                >
                     Latest News
                 </a>, 
                 '1'
             ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/business')}
+                    href={`${config.clientUrl}news/business`}
+                >
                     Business News
                 </a>, 
                 '2'
             ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/politics')}
+                    href={`${config.clientUrl}news/politics`}
+                >
                     Political News
                 </a>, 
                 '3'
                 ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/news/tech')}
+                    href={`${config.clientUrl}news/tech`}
+                >
                     Tech News
                 </a>, 
                 '4'
@@ -114,25 +126,37 @@ export default function Header() {
       
         getItem('Markets', 'sub2', null, [
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/gainers')}
+                    href={`${config.clientUrl}markets/gainers`}
+                >
                     Gainers
                 </a>, 
                 '5'
             ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/losers')}
+                    href={`${config.clientUrl}markets/losers`}
+                >
                     Losers
                 </a>, 
                 '6'
             ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/leaders')}
+                    href={`${config.clientUrl}markets/leaders`}
+                >
                     Market Leaders
                 </a>, 
                 '7'
             ),
             getItem(
-                <a>
+                <a
+                    onClick={(e) => handleNavigationClick(e, '/markets/active')}
+                    href={`${config.clientUrl}markets/active`}
+                >
                     Most Active
                 </a>, 
                 '8'
