@@ -54,6 +54,10 @@
     .hc-parent-menu-title {
 
     }
+    
+    .mobile-menu-container {
+        display: none !important;
+    }
 }
 
 
@@ -94,6 +98,10 @@
         text-decoration: none;
         display: block;
         white-space: nowrap;
+    }
+
+    .mobile-menu-container {
+        display: none !important;
     }
 }
 
@@ -165,6 +173,95 @@
         white-space: nowrap;
     }
 
+    .mobile-menu-container {
+        display: none !important;
+    }
+
+}
+
+
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {
+    /* CSS rules for small devices like large phones and small tablets */
+
+    .wvi-icon-dark {
+        background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+        background-size: cover;
+        height: 50px;
+        width: 90px;
+    }
+
+    .wvi-logo-text {
+        /* font-size: 16px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap; */
+        display: none;
+    }
+
+    .wvi-beta-text {
+        /* font-size: 8px;
+        font-weight: 300;
+        margin-left: 10px; */
+        display: none;
+    }
+
+    .hc-parent-menu {
+        display: none !important;
+    }
+
+    .login-btn {
+        display: none !important;
+    }
+
+    .header {
+        height: 60px;
+        border-bottom: 1px solid #dfdfdf;
+        display: flex;
+        justify-content: center;
+        padding: 0 50px !important;
+    }
+  
+}
+  
+  
+@media only screen and (max-width: 575.98px) {
+    /* CSS rules for extra small devices like mobile phones */
+
+    .wvi-icon-dark {
+        background-image: url('../../public/images/WVI_logo_transparent_dark_xsmall.png'); 
+        background-size: cover;
+        height: 50px;
+        width: 90px;
+    }
+
+    .wvi-logo-text {
+        /* font-size: 16px;
+        font-weight: 500;
+        margin-left: 10px;
+        white-space: nowrap; */
+        display: none;
+    }
+
+    .wvi-beta-text {
+        /* font-size: 8px;
+        font-weight: 300;
+        margin-left: 10px; */
+        display: none;
+    }
+
+    .hc-parent-menu {
+        display: none !important;
+    }
+
+    .login-btn {
+        display: none !important;
+    }
+  
+}
+
+.mobile-menu-container {
+    display: flex;
+    align-items: center;
 }
 
 .login-btn {

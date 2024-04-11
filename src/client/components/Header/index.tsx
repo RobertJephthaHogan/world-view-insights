@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { getConfig } from '@/config/Constants';
 import { FaCaretDown } from 'react-icons/fa';
 import { GoSearch } from "react-icons/go";
+import { CiMenuBurger } from "react-icons/ci";
 
 
 const Button = dynamic(
@@ -84,47 +85,54 @@ export default function Header() {
                     </div>
                 </div>
                 <div className={styles['hc-right']}>
-                <div className={styles['hc-parent-menu']}>
-                    <span className={styles['hc-parent-menu-title']}>
-                        News
-                    </span>
-                    {/* <FaCaretDown /> */}
-                    <FaCaretDown />
-                    <div className={styles["dropdown-content"]}>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/latest')}
-                            href={`${config.clientUrl}news/latest`}
+                    <div className={styles['mobile-menu-container']}>
+                        <Button
+                            onClick={() => console.log('clicked')}
                         >
-                            <span className={styles["hc-menu-item"]}>
-                                Latest News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/business')}
-                            href={`${config.clientUrl}news/business`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Business News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/politics')}
-                            href={`${config.clientUrl}news/politics`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Political News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/tech')}
-                            href={`${config.clientUrl}news/tech`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Tech News
-                            </span>
-                        </a>
+                            <CiMenuBurger />
+                        </Button>
                     </div>
-                </div>
+                    <div className={styles['hc-parent-menu']}>
+                        <span className={styles['hc-parent-menu-title']}>
+                            News
+                        </span>
+                        {/* <FaCaretDown /> */}
+                        <FaCaretDown />
+                        <div className={styles["dropdown-content"]}>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/latest')}
+                                href={`${config.clientUrl}news/latest`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Latest News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/business')}
+                                href={`${config.clientUrl}news/business`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Business News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/politics')}
+                                href={`${config.clientUrl}news/politics`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Political News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/tech')}
+                                href={`${config.clientUrl}news/tech`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Tech News
+                                </span>
+                            </a>
+                        </div>
+                    </div>
                     <div className={styles['hc-parent-menu']}>
                         <span className={styles['hc-parent-menu-title']}>
                             Markets
