@@ -212,6 +212,14 @@
     .login-btn {
         display: none !important;
     }
+
+    .header {
+        height: 60px;
+        border-bottom: 1px solid #dfdfdf;
+        display: flex;
+        justify-content: center;
+        padding: 0 50px !important;
+    }
   
 }
   

@@ -92,47 +92,47 @@ export default function Header() {
                             <CiMenuBurger />
                         </Button>
                     </div>
-                <div className={styles['hc-parent-menu']}>
-                    <span className={styles['hc-parent-menu-title']}>
-                        News
-                    </span>
-                    {/* <FaCaretDown /> */}
-                    <FaCaretDown />
-                    <div className={styles["dropdown-content"]}>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/latest')}
-                            href={`${config.clientUrl}news/latest`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Latest News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/business')}
-                            href={`${config.clientUrl}news/business`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Business News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/politics')}
-                            href={`${config.clientUrl}news/politics`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Political News
-                            </span>
-                        </a>
-                        <a 
-                            onClick={(e) => handleNavigationClick(e, '/news/tech')}
-                            href={`${config.clientUrl}news/tech`}
-                        >
-                            <span className={styles["hc-menu-item"]}>
-                                Tech News
-                            </span>
-                        </a>
+                    <div className={styles['hc-parent-menu']}>
+                        <span className={styles['hc-parent-menu-title']}>
+                            News
+                        </span>
+                        {/* <FaCaretDown /> */}
+                        <FaCaretDown />
+                        <div className={styles["dropdown-content"]}>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/latest')}
+                                href={`${config.clientUrl}news/latest`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Latest News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/business')}
+                                href={`${config.clientUrl}news/business`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Business News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/politics')}
+                                href={`${config.clientUrl}news/politics`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Political News
+                                </span>
+                            </a>
+                            <a 
+                                onClick={(e) => handleNavigationClick(e, '/news/tech')}
+                                href={`${config.clientUrl}news/tech`}
+                            >
+                                <span className={styles["hc-menu-item"]}>
+                                    Tech News
+                                </span>
+                            </a>
+                        </div>
                     </div>
-                </div>
                     <div className={styles['hc-parent-menu']}>
                         <span className={styles['hc-parent-menu-title']}>
                             Markets
