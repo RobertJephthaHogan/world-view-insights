@@ -91,17 +91,17 @@ class CollectorService:
             # Prune Notable Quote Snapshots
             await NotableQuotesSnapshotOperations.delete_old_entries(24)
         
-            # TODO: Prune Leader Table Snapshots
+            # Prune Leader Table Snapshots
             await LeadersTableSnapshotOperations.delete_old_entries(24)
         
-            # TODO: Prune Loser Price Snapshots
+            # Prune Loser Price Snapshots
             await LoserPriceSnapshotOperations.delete_old_entries(24)
         
-            # TODO: Prune Most Active Snapshots
+            # Prune Most Active Snapshots
             await MostActiveSnapshotOperations.delete_old_entries(24)
         
-        # TODO: Prune News Article Snapshots Every 90 Days
-        await MostActiveSnapshotOperations.delete_old_entries(2160)
+        # Prune News Article Snapshots Every 90 Days
+        #await MostActiveSnapshotOperations.delete_old_entries(2160)
         
         
         return {"status": "complete"}
